@@ -7,6 +7,35 @@ const request = require('request');
 let mainWindow, updateWindow;
 let appPath = app.getAppPath();
 
+async function createWelcomeWindow () {
+    app.setAsDefaultProtocolClient('fracturedspace')
+    // Create the browser window.
+    mainWindow = new BrowserWindow({
+      width: 800,
+      height: 600,
+      webPreferences: {
+        preload: appPath + '/views/js/preload.js',
+        // nodeIntegration: false,
+        // contextIsolation: false
+    }
+    })
+  
+    // and load the index.html of the app.
+    mainWindow.loadFile('index.html')
+  
+    // Open the DevTools.
+    mainWindow.webContents.openDevTools()
+  
+    // Emitted when the window is closed.
+    mainWindow.on('closed', function () {
+      // Dereference the window object, usually you would store windows
+      // in an array if your app supports multi windows, this is the time
+      // when you should delete the corresponding element.
+      mainWindow = null
+    })
+  }
+  
+
 async function createDiscordWindow() {
     mainWindow = new BrowserWindow({
         width: 800,
@@ -18,11 +47,11 @@ async function createDiscordWindow() {
         }
     });
 
-    mainWindow.loadURL('https://doublecolossus.com/');
+    mainWindow.loadURL('https://google.com/');
     // mainWindow.loadURL('http://localhost/');
 
     // mainWindow.removeMenu();
-    // mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
     // mainWindow.maximize();
 
     mainWindow.on('closed', function () {
@@ -93,7 +122,8 @@ autoUpdater.on('update-available', (info) => {
 });
 
 autoUpdater.on('update-not-available', async (info) => {
-    await createDiscordWindow();
+    // await createDiscordWindow();
+    await createWelcomeWindow();
     updateWindow.close();
 });
 

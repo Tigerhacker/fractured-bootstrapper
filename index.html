@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Fractured Bootlegger</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <input type="hidden" value="xxxx" id="hidden-guid">
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
+      <span id="logged-in"></span>
+        <div class="nav-item">
+            <div class="navbar-brand" id="welcome-name">Welcome</div>
+        </div>
+
+        <div class="nav-item">
+
+        </div>
+        <div class="navbar-nav ml-auto">
+            <div class="nav-item">
+                <button class="btn navbar-btn btn-outline-success" id="login">Sign In</button>
+            </div>
+            <div class="nav-item">
+                <button class="btn navbar-btn btn-outline-danger" id="logout">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" style="max-width:42em">
+        <main role="main" class="inner cover jumbotron text-center">
+          Game Language: 
+          <select class="form-control" id="lang-select">
+              <option value="en-GB">English</option>
+              <option value="de-DE">Deutsche</option>
+              <option value="ru-RU">русский</option>
+              <option value="zh-CN">中文</option>
+          </select>
+          <br>
+          <button class="btn btn-primary w-100" type="button" id="launch-game">Launch Game</button>
+        </main>
+
+        <div class="inner cover">
+          <h2 class="cover-heading">Patch Game Files:</h2>
+          <button class="navbar-brand btn btn-success" type="button" id="install-files">Install</button>
+        </div>
+
+        <br>
+        <div class="inner cover">
+            <h2 class="cover-heading">Manual auth:</h2>
+            Discord token: <input type="text" id="discord_token_input"><br>
+            <button class="navbar-brand btn btn-success" type="button" id="manual-auth">Save Token</button>
+
+            <br><br><br>
+            <button class="navbar-brand btn btn-success" type="button" id="check-auth">Check Authorisation</button>
+            
+          </div>
+      
+      </div>
+
+    <div class="center-vertical">
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="views/js/home.js"></script>
+</body>
+
+</html>

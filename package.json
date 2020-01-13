@@ -5,7 +5,7 @@
     "author": "rukqoa",
     "repository": {
         "type": "git",
-        "url": "https://github.com/rukqoa/fractured-bootlegger"
+        "url": "https://github.com/Tigerhacker/fractured-bootlegger"
     },
     "main": "main.js",
     "scripts": {
@@ -22,10 +22,11 @@
         "pug": "^2.0.4",
         "request": "^2.88.0",
         "vdf": "0.0.2",
-        "winreg": "^1.2.4"
+        "winreg": "^1.2.4",
+        "electron-store": "^5.1.0"
     },
     "build": {
-        "appId": "com.fractured.bootlegger",
+        "appId": "com.fractured.bootstrapper",
         "extraResources": [
             "./data/**"
         ],
