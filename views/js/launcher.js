@@ -3,15 +3,15 @@ const steam = require('./find-steam.js');
 
 module.exports = function (options, callback) {
     steam((folder) => {
-        // let launchPath = '"' + folder.replace(/\\\\/g, "/") + '/spacegame/Binaries/Win64/Fractured Space.exe"';
-        // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>")
-        // console.log(launchPath)
-        // console.log(folder)
-
-        let launchPath = '"' + folder.replace(/\\\\/g, "/") + '/spacegame/Binaries/Win64/spacegame-Win64-Shipping-30x.exe"';
+        let launchPath = '"' + folder.replace(/\\\\/g, "/") + '/spacegame/Binaries/Win64/Fractured Space.exe"';
         console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>")
         console.log(launchPath)
         console.log(folder)
+
+        // let launchPath = '"' + folder.replace(/\\\\/g, "/") + '/spacegame/Binaries/Win64/spacegame-Win64-Shipping-30x.exe"';
+        // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>")
+        // console.log(launchPath)
+        // console.log(folder)
 
         let guid = $('#hidden-guid').val();
         let username = $('#hidden-username').val();

@@ -16,7 +16,7 @@ function onReady() {
 
     $('#login').on('click', login);
     $('#logout').on('click', logout);
-  //   $('#install-files').on('click', installFiles);
+    $('#install-files').on('click', installFiles);
 
     $('#manual-auth').on('click', readManualToken);
     $('#lang-select').on('change', saveLanguage);

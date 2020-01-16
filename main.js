@@ -75,13 +75,13 @@ if (!gotTheLock) {
 
     // Create myWindow, load the rest of the app, etc...
     // No autoupdate
-    // app.on('ready', async () => { await createWelcomeWindow(); })
+    app.on('ready', async () => { await createWelcomeWindow(); })
 
     // Autoupdate
-    app.on('ready', async () => {
-        await createUpdateWindow();
-        autoUpdater.checkForUpdates();
-    })
+    // app.on('ready', async () => {
+    //     await createUpdateWindow();
+    //     autoUpdater.checkForUpdates();
+    // })
 
 }
 
