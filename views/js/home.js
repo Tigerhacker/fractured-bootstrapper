@@ -1,16 +1,29 @@
 $(document).ready(onReady);
 
 function onReady() {
-    $('#welcome-name').html('Welcome, ' + window.interop.settingGet('discord_name'));
+    username = window.interop.settingGet('discord_name');
+    if (username === undefined){
+        //if there is a token, try to validate and get username
+        if(window.interop.settingGet('discord_token')){
+            validateToken(window.interop.settingGet('discord_token'))
+            $('#logout').hide();
+        }
+        $('#logout').hide();
+    }else{
+        $('#welcome-name').html('Welcome, ' + username);
+        $('#login').hide();
+    }
 
     $('#login').on('click', login);
     $('#logout').on('click', logout);
-    $('#install-files').on('click', installFiles);
+  //   $('#install-files').on('click', installFiles);
 
     $('#manual-auth').on('click', readManualToken);
     $('#lang-select').on('change', saveLanguage);
 
     $('#manual-auth').on('click', validateTokenInput);
+    $('#check-auth').on('click', debugToken);
+    
 
     //load language
     if(getLanguage()){
@@ -35,7 +48,7 @@ function readVersion() {
             if (match) {
                 $('#install-files').html('Reinstall');
                 launchBtn.removeClass('disabled');
-                launchBtn.on('click', launchGame);
+                launchBtn.on('click', checkAndLaunch);
             } else {
                 $('#install-files').html('Install');
                 launchBtn.addClass('disabled');
@@ -74,7 +87,7 @@ function launchGame() {
                 lang: getLanguage()
             }, function () {
                 launchBtn.removeClass('disabled');
-                launchBtn.on('click', launchGame);
+                launchBtn.on('click', checkAndLaunch);
             });
     } else {
         alert('Client launcher not detected!');
@@ -82,11 +95,11 @@ function launchGame() {
 }
 
 function login() {
-    window.interop.openBrowser("https://lifeline.returnvector.net/static/discord_manual.html")
+    window.interop.openBrowser("https://discordapp.com/api/oauth2/authorize?client_id=518348437125857280&redirect_uri=https%3A%2F%2Flifeline.returnvector.net%2Fapi%2Fv0%2Fdiscord%2Foauth&response_type=code&scope=identify&state=launcher")
 }
 
 function readManualToken(){
-    var discord_token = $('#discord_token_input').val()
+    let discord_token = $('#discord_token_input').val()
     if (discord_token.length > 0){
         setToken(discord_token)
     }else{
@@ -101,30 +114,85 @@ function getToken(){
     return window.interop.settingGet('discord_token')
 }
 
-function tokenCallback(err, res, body) {
-    let json = JSON.parse(body);
-    console.log(json);
+function tokenCallbackHandler(err, res, body, successAction, failureAction) {
+    console.log(err);
     console.log(res);
+    console.log(body);
 
-    if (res['statusCode'] == 200){
+    if (res && res['statusCode'] == 200){
+        let json = JSON.parse(body);
+        console.log(json);
         if (json['username'] === undefined || json['token'] === undefined){
             //invalid response
-            alert("Invalid response")
+            failureAction("Invalid response")
         }else{
             //All good
+            successAction(json)
+        }
+    }else if (res && res['statusCode'] == 401){
+        failureAction('unauthorised')
+    }else if (res){
+        //Unkown server error
+        failureAction("Server error" + res['statusCode'])
+    }else{
+        failureAction("Server error: no response object")
+    }
+}
+
+function checkAndLaunch(){
+    return window.interop.isTokenValid(getToken(), launchIfValid);
+}
+
+function launchIfValid(err, res, body){
+    tokenCallbackHandler(err, res, body, 
+        function(json){
+            launchGame();
+        },
+        function(message){
+            if(message == 'unauthorised'){
+                alert('Discord token has expired, please re-login')
+                logout();
+            }else{
+                alert('Warning: Server appears to be offline')
+                launchGame();
+            }
+            
+        }
+    )
+}
+
+function saveIfValid(err, res, body){
+    tokenCallbackHandler(err, res, body, 
+        function(json){
             window.interop.settingSet('discord_name', json['username']);
             window.interop.settingSet('discord_token', json['token']);
             location.reload();
+        }, 
+        function(message){
+            alert(message)
+            logout()
         }
-    }else if (res['statusCode'] == 401){
-        alert("Discord token not valid")
-    }else{
-        //Unkown server error
-        alert("Server error" + res['statusCode'])
-    }
+    )
 }
+
+function debugIfValid(err, res, body){
+    tokenCallbackHandler(err, res, body, 
+        function(json){
+            alert(JSON.stringify(json))
+            console.log(json)
+        }, 
+        function(message){
+            alert(message)
+        }
+    )
+}
+
+function debugToken(){
+    return window.interop.isTokenValid(getToken(), debugIfValid);
+}
+
 function validateToken(token){    
-    return window.interop.isTokenValid(token, tokenCallback);
+    return window.interop.isTokenValid(token, saveIfValid);
 }
 
 function validateTokenInput(){
@@ -140,4 +208,18 @@ function saveLanguage(){
 
 function getLanguage(){
     return window.interop.settingGet('game_language');
+}
+
+
+function customPathSave(){
+    let path = $('#custom-path-input').val();
+    return window.interop.settingSet('game_path', path);
+}
+
+function customPathGet(){
+    return window.interop.settingGet('game_path');
+}
+
+function customPathDel(){
+    return window.interop.settingDel('game_path');
 }

@@ -65,3 +65,6 @@ electron-builder.yml
 dist/
 package-lock.json
 views/login/cache.html
+fractured-bootlegger-v0.1.0/package/.idea/*
+fractured-bootlegger-v0.1.0/package/*
+yarn.lock

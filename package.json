@@ -1,8 +1,8 @@
 {
-    "name": "fractured-bootlegger",
-    "version": "4.1.0",
-    "description": "Bootlegged Installer for Fractured Space",
-    "author": "rukqoa",
+    "name": "fractured-space-bootstrapper",
+    "version": "0.1.0",
+    "description": "Launcher and patcher for playing Fractured Space on community servers",
+    "author": "tigerhacker",
     "repository": {
         "type": "git",
         "url": "https://github.com/Tigerhacker/fractured-bootlegger"
@@ -10,20 +10,19 @@
     "main": "main.js",
     "scripts": {
         "start": "electron .",
-        "pack": "electron-builder --dir"
+        "pack": "electron-builder --dir",
+        "build": "electron-builder --win "
     },
     "devDependencies": {
         "electron": "^5.0.8",
-        "electron-builder": "^21.1.5"
+        "electron-builder": "^21.2.0"
     },
     "dependencies": {
-        "create-torrent": "^4.0.0",
+        "electron-store": "^5.1.0",
         "electron-updater": "^4.1.2",
-        "pug": "^2.0.4",
         "request": "^2.88.0",
         "vdf": "0.0.2",
-        "winreg": "^1.2.4",
-        "electron-store": "^5.1.0"
+        "winreg": "^1.2.4"
     },
     "build": {
         "appId": "com.fractured.bootstrapper",
@@ -36,7 +35,7 @@
             "package.json"
         ],
         "win": {
-            "target": "nsis-web"
+            "target": "portable"
         },
         "nsisWeb": {
             "oneClick": true,
