@@ -1,8 +1,5 @@
 const { shell } = require('electron')
 
-const Store = require('electron-store');
-const store = new Store();
-
 const request = require('request');
 
 
@@ -12,18 +9,6 @@ module.exports.openExternal = function (url) {
 
 module.exports.httpPost = function (url) {
     shell.openExternal(url)
-};
-
-module.exports.sotreSet = function (key, value) {
-    return store.set(key, value);
-};
-
-module.exports.sotreGet = function (key) {
-    return store.get(key)
-};
-
-module.exports.sotreDel = function (key) {
-    return store.delete(key)
 };
 
 module.exports.isTokenValid = function (token, callback) {
@@ -47,3 +32,5 @@ module.exports.isTokenValidDump = function (token){
         console.log(json);
     })
 }
+
+
