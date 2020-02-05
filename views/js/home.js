@@ -9,20 +9,32 @@ function onReady() {
             $('#logout').hide();
         }
         $('#logout').hide();
+        launchUnauthorised();
     }else{
         $('#welcome-name').html('Welcome, ' + username);
         $('#login').hide();
+        launchReady();
     }
 
     $('#login').on('click', login);
     $('#logout').on('click', logout);
+
     $('#install-files').on('click', installFiles);
+    $('#check-files').on('click', window.interop.validateFiles);
 
     $('#manual-auth').on('click', readManualToken);
     $('#lang-select').on('change', saveLanguage);
 
     $('#manual-auth').on('click', validateTokenInput);
     $('#check-auth').on('click', debugToken);
+
+    //write game path override
+    $('#custom-path-input').val(window.interop.settingGetFolder());
+    $('#custom-path-save').on('click', function(){window.interop.settingSet('folder_override', $('#custom-path-input').val()); alert("Override saved\n>"+$('#custom-path-input').val()+"<");location.reload();});
+    $('#custom-path-reset').on('click', function(){window.interop.settingDel('folder_override'); $('#custom-path-input').val('');location.reload();});
+    
+    
+
     
 
     //load language
@@ -51,7 +63,8 @@ function readVersion() {
                 launchBtn.on('click', checkAndLaunch);
             } else {
                 $('#install-files').html('Install');
-                launchBtn.addClass('disabled');
+                // launchBtn.addClass('disabled');
+                launchNotPatched();
                 launchBtn.off('click');
             }
         });
@@ -76,8 +89,9 @@ async function installFiles() {
 function launchGame() {
     if (window.interop) {
         let launchBtn = $('#launch-game');
-        launchBtn.addClass('disabled');
-        launchBtn.off('click');
+        // launchBtn.addClass('disabled');
+        // launchBtn.off('click');
+        launchRunning();
 
         // let accessToken = $('#hidden-access-token').val();
         // let lang = $('#lang-select').val();
@@ -86,8 +100,9 @@ function launchGame() {
                 accessToken: getToken(),
                 lang: getLanguage()
             }, function () {
-                launchBtn.removeClass('disabled');
-                launchBtn.on('click', checkAndLaunch);
+                // launchBtn.removeClass('disabled');
+                // launchBtn.on('click', checkAndLaunch);
+                launchReady();
             });
     } else {
         alert('Client launcher not detected!');
@@ -222,4 +237,29 @@ function customPathGet(){
 
 function customPathDel(){
     return window.interop.settingDel('game_path');
+}
+
+
+function updateLaunchButton(disabled, message, style){
+    var theButton = document.querySelector('#launch-game');
+
+    theButton.disabled = disabled;
+    theButton.innerText = message;
+    theButton.className = 'btn w-100 ' + style;
+}
+
+function launchReady(){
+    updateLaunchButton(false, "Launch Game", "btn-success")
+}
+
+function launchRunning(){
+    updateLaunchButton(true, "Game is running", "btn-outline-info")
+}
+
+function launchUnauthorised(){
+    updateLaunchButton(true, "Not signed in", "btn-outline-danger")
+}
+
+function launchNotPatched(){
+    updateLaunchButton(true, "Game has not been patched yet", "btn-outline-danger")
 }

@@ -22,7 +22,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
       <span id="logged-in"></span>
         <div class="nav-item">
             <div class="navbar-brand" id="welcome-name">Welcome</div>
@@ -49,21 +49,24 @@
               <option value="zh-CN">中文</option>
           </select>
           <br>
-          <button class="btn btn-success w-100" type="button" id="launch-game">Launch Game</button>
+          <button class="btn btn-outline-secondary w-100" type="button" id="launch-game" disabled>Not ready</button>
         </main>
 
         <div class="inner cover jumbotron ">
           <h2 class="cover-heading">Patch Game Files:</h2>
+          Your game must be patched before launching<br><br>
           <button class="navbar-brand btn btn-primary w-100" type="button" id="install-files">Install</button>
+          <br><br>
+          <button class="navbar-brand btn btn-outline-info w-100" type="button" id="check-files">Check patch</button>
         </div>
 
         <div class="inner cover jumbotron " style="padding-top: inherit; padding-bottom: inherit;">
-        <h2 class="cover-heading">Advanced:</h2>
+        <h2 class="cover-heading">Advanced settings:</h2>
         </div>
 
         <div class="inner cover jumbotron ">
             <h2 class="cover-heading">Manual auth:</h2>
-            Discord token: <input type="text" id="discord_token_input" style="width: 20em;">
+            Discord token: <input type="text" id="discord_token_input" style="width: 18em;">
             <button class="navbar-brand btn btn-outline-success" type="button" id="manual-auth">Save Token</button>
 
             <br><br>
@@ -73,16 +76,22 @@
 
         <div class="inner cover jumbotron ">
                 <h2 class="cover-heading">Override game path:</h2>
-                NOT YET READY<br>
-                Root folder: <input type="text" id="custom-path-input" style="width: 20em;">
-                <br>This is typically <span>C:\Program Files (x86)\Steam\steamapps\common\Space</span>
+                This will auto-detect by default, but you can override the folder here<br><br>
+                This folder is typically:<br>
+                <span style="font-family: monospace">C:\Program Files (x86)\Steam\steamapps\common\Space</span><br><br>
+                Root folder: <input type="text" id="custom-path-input" style="width: 100%;">
+                
                 <!-- <button class="navbar-brand btn btn-outline-success" type="button" id="custom-path-browse">Browse</button> -->
     
                 <br><br>
                 <button class="navbar-brand btn btn-outline-info w-25" type="button" id="custom-path-save">Set</button>
                 <button class="navbar-brand btn btn-outline-info w-25" type="button" id="custom-path-reset">Clear</button>
                 
-            </div>
+        </div>
+
+        <div class="inner cover jumbotron ">
+            <h2 class="cover-heading">Override backend:</h2>
+        </div>
       
       </div>
 
