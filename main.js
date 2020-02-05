@@ -90,14 +90,15 @@ async function createWelcomeWindow () {
     // Create the browser window.
     mainWindow = new BrowserWindow({
       width: 800,
-      height: 760,
+      height: 820,
       webPreferences: {
         preload: appPath + '/views/js/preload.js',
-        // nodeIntegration: false,
+        nodeIntegration: false,
         // contextIsolation: false,
         experimentalFeatures: true,
     }
     })
+    // mainWindow.removeMenu();
   
     // and load the index.html of the app.
     mainWindow.loadFile('views/home.html')
