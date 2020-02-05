@@ -23,7 +23,8 @@
         "pug": "^2.0.4",
         "request": "^2.88.0",
         "vdf": "0.0.2",
-        "winreg": "^1.2.4"
+        "winreg": "^1.2.4",
+        "sha256-file": "^1.0.0"
     },
     "build": {
         "appId": "com.fractured.bootstrapper",
