@@ -2,7 +2,15 @@ const registry = require('winreg');
 const vdf = require('vdf');
 const fs = require('fs');
 
+const settings = require('./settings.js');
+
 module.exports = function findSteamFolder(callback) {
+    let override = settings.sotreGetFolder();
+    if (override !== undefined){
+        callback(override.replace(/\\/g, "/"));
+        return;
+    }
+
     if (fs.existsSync("Space")) {
         callback("Space");
         return;
