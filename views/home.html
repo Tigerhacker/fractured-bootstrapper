@@ -25,7 +25,7 @@
     <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
       <span id="logged-in"></span>
         <div class="nav-item">
-            <div class="navbar-brand" id="welcome-name">Welcome</div>
+            <div class="navbar-brand" id="welcome-name">Welcome, please sign in to play</div>
         </div>
 
         <div class="navbar-nav ml-auto">
@@ -55,9 +55,9 @@
         <div class="inner cover jumbotron ">
           <h2 class="cover-heading">Patch Game Files:</h2>
           Your game must be patched before launching<br><br>
-          <button class="navbar-brand btn btn-primary w-100" type="button" id="install-files">Install</button>
+          <button class="btn btn-primary w-100" type="button" id="install-files">Install</button>
           <br><br>
-          <button class="navbar-brand btn btn-outline-info w-100" type="button" id="check-files">Check patch</button>
+          <button class="btn btn-outline-info w-100" type="button" id="check-files">Check patch</button>
         </div>
 
         <div class="inner cover jumbotron " style="padding-top: inherit; padding-bottom: inherit;">
@@ -66,11 +66,14 @@
 
         <div class="inner cover jumbotron ">
             <h2 class="cover-heading">Manual auth:</h2>
-            Discord token: <input type="text" id="discord_token_input" style="width: 18em;">
-            <button class="navbar-brand btn btn-outline-success" type="button" id="manual-auth">Save Token</button>
 
-            <br><br>
-            <button class="navbar-brand btn btn-outline-info w-100" type="button" id="check-auth">Check Authorisation</button>
+            <div class="d-flex justify-content-between align-items-center flex-wrap">
+                Discord token:
+                <input type="text" id="discord_token_input" style="width: 22em;">
+                <button class="btn btn-outline-success" type="button" id="manual-auth">Save Token</button>
+            </div>
+            <br>
+            <button class="btn btn-outline-info w-100" type="button" id="check-auth">Check Authorisation</button>
             
         </div>
 
@@ -84,8 +87,10 @@
                 <!-- <button class="navbar-brand btn btn-outline-success" type="button" id="custom-path-browse">Browse</button> -->
     
                 <br><br>
-                <button class="navbar-brand btn btn-outline-info w-25" type="button" id="custom-path-save">Set</button>
-                <button class="navbar-brand btn btn-outline-info w-25" type="button" id="custom-path-reset">Clear</button>
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-outline-info" type="button" id="custom-path-save" style="width: 48%">Set</button>
+                    <button class="btn btn-outline-info" type="button" id="custom-path-reset" style="width: 48%">Clear</button>
+                </div>
                 
         </div>
 
@@ -93,6 +98,12 @@
             <h2 class="cover-heading">Override backend:</h2>
         </div>
       
+        <div class="inner cover jumbotron ">
+            <h2 class="cover-heading">Verify game archive:</h2>
+
+            Select: fractured-space.7z
+        </div>
+
       </div>
 
 
