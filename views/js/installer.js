@@ -82,7 +82,7 @@ function validateFiles(directory) {
         try {
             hash = sha256File(directory + "/" + v.dest);
             if(hash != v.sha256){
-                rrors.push(v.dest);
+                errors.push(v.dest);
             }{
                 valid.push(v.dest);
             }
