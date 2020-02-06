@@ -1,6 +1,6 @@
 {
     "name": "fractured-space-bootstrapper",
-    "version": "0.9.0",
+    "version": "0.9.1",
     "description": "Launcher and patcher for playing Fractured Space on community servers",
     "author": "tigerhacker",
     "repository": {
