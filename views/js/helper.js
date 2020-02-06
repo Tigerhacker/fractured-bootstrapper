@@ -18,7 +18,8 @@ module.exports.isTokenValid = function (token, callback) {
         headers: {
             'Accept': 'application/json',
             'Accept-Charset': 'utf-8',
-            'User-Agent': 'fs-bootstrapper'
+            'User-Agent': 'fs-bootstrapper',
+            'X-Patch-Level': '0'
         },
         body: token
     };
