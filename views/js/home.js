@@ -11,7 +11,7 @@ function onReady() {
         $('#logout').hide();
         launchUnauthorised();
     }else{
-        $('#welcome-name').html('Welcome, ' + username);
+        $('#welcome-name').html('Welcome ' + username);
         $('#login').hide();
         launchReady();
     }
@@ -58,7 +58,7 @@ function readVersion() {
     if (window.interop) {
         window.interop.isInstalled(function (match) {
             if (match) {
-                $('#install-files').html('Reinstall');
+                $('#install-files').html('Re-install');
                 launchBtn.removeClass('disabled');
                 launchBtn.on('click', checkAndLaunch);
             } else {
@@ -91,7 +91,7 @@ function launchGame() {
         let launchBtn = $('#launch-game');
         // launchBtn.addClass('disabled');
         // launchBtn.off('click');
-        launchRunning();
+        launchRunning(); //disable the button
 
         // let accessToken = $('#hidden-access-token').val();
         // let lang = $('#lang-select').val();
@@ -102,7 +102,7 @@ function launchGame() {
             }, function () {
                 // launchBtn.removeClass('disabled');
                 // launchBtn.on('click', checkAndLaunch);
-                launchReady();
+                launchReady(); //restore the button
             });
     } else {
         alert('Client launcher not detected!');
@@ -161,12 +161,17 @@ function checkAndLaunch(){
 function launchIfValid(err, res, body){
     tokenCallbackHandler(err, res, body, 
         function(json){
+            if(json['message'] !== undefined){
+                alert(json['message']);
+            }
             launchGame();
         },
         function(message){
             if(message == 'unauthorised'){
                 alert('Discord token has expired, please re-login')
                 logout();
+            }else if(message == 'oldclient'){
+                alert('Client is out of date, please update');
             }else{
                 alert('Warning: Server appears to be offline')
                 launchGame();
