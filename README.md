@@ -11,7 +11,4 @@ This is a 3rd party launcher for FS to re-enable multiplayer functionality
   * Removes Steam authentication replacing it with Discord
   * Allows new players who don't *own* the free game to play
 - Automates the new Discord authentication process
-
-
-# Todo:
-- Re-implement auto-updates
+- Check for updates and auto-updates when required

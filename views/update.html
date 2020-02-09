@@ -62,11 +62,6 @@
         </main>
     </div>
 
-
-    
-
-
-
     <script>
         let update_progress = "";
         const {
@@ -80,9 +75,6 @@
             version.innerText = 'Version ' + arg.version;
         });
 
-
-        
-
         //get update notifications
         const notification = document.getElementById('notification');
         const message = document.getElementById('message');
@@ -91,13 +83,6 @@
         const progressBar = document.getElementById('progressBar');
         const progressText = document.getElementById('progressText');
         
-
-        ipcRenderer.on('update_available', () => {
-            ipcRenderer.removeAllListeners('update_available');
-            message.innerText = 'A new update is available. Downloading now...';
-            notification.classList.remove('hidden');
-        });
-
         ipcRenderer.on('update_progress', (event, payload) => {
             console.log("update_progress")
             console.log(payload)

@@ -2,7 +2,7 @@ const {app, BrowserWindow, ipcMain, dialog, session, cookies} = require('electro
 const {autoUpdater} = require("electron-updater");
 const url = require('url')
 
-const helper = require('./views/js/helper.js');
+const settings = require('./views/js/settings.js');
 
 let protoUrl = null
 
@@ -32,7 +32,7 @@ function processAuthUri(path){
         provider = m[1];
         token = m[2];
         if(provider == "discord"){
-            helper.sotreSet('discord_token', token)
+            settings.sotreSet('discord_token', token)
             if (mainWindow) mainWindow.reload()
             return true
         }
@@ -72,17 +72,9 @@ if (!gotTheLock) {
     })
 
     // Create myWindow, load the rest of the app, etc...
-    // No autoupdate
     app.on('ready', async () => {
         await createWelcomeWindow();
-        // autoUpdater.checkForUpdates();
     })
-
-    // Autoupdate
-    // app.on('ready', async () => {
-    //     await createUpdateWindow();
-    //     autoUpdater.checkForUpdates();
-    // })
 
 }
 
@@ -91,7 +83,7 @@ async function createWelcomeWindow () {
     // Create the browser window.
     mainWindow = new BrowserWindow({
       width: 800,
-      height: 870,
+      height: 850,
       webPreferences: {
         preload: appPath + '/views/js/preload.js',
         // nodeIntegration: false,
@@ -137,12 +129,6 @@ async function changeToUpdateWindow(window){
 
 }
 
-// app.on('ready', async () => {
-//     await createWelcomeWindow();
-//     // await createUpdateWindow();
-//     // autoUpdater.checkForUpdates();
-// });
-
 autoUpdater.on('checking-for-update', () => {
     // updateWindow.webContents.send('update', 'Checking for updates', '...');
 });
@@ -156,6 +142,7 @@ autoUpdater.on('update-available', (info) => {
 });
 
 autoUpdater.on('download-progress', (progress) => {
+    // logEverywhere("download-progress fired");
     mainWindow.webContents.send('update_progress', progress);
 });
 
@@ -171,10 +158,6 @@ ipcMain.on('restart_update', () => {
     autoUpdater.quitAndInstall();
 });
 
-ipcMain.on('nav_update', () => {
-    mainWindow.loadFile('views/update.html');
-});
-
 
 //IPC commands
 ipcMain.on('open_developer_tools', (event) => {
@@ -184,6 +167,22 @@ ipcMain.on('open_developer_tools', (event) => {
 
 ipcMain.on('app_version', (event) => {
     event.sender.send('app_version', {
+        version: app.getVersion()
+    });
+});
+
+ipcMain.on('set_progress', (event, args) => {
+    mainWindow.setProgressBar(args)
+});
+
+ipcMain.on('nav_update', () => {
+    mainWindow.loadFile('views/update.html');
+});
+
+ipcMain.on('app_checkUpdates', (event) => {
+    logEverywhere("ipc_checkForUpdatesAndNotify")
+    autoUpdater.checkForUpdatesAndNotify();
+    event.sender.send('to_render_console', {
         version: app.getVersion()
     });
 });
