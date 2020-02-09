@@ -2,6 +2,7 @@ const { shell } = require('electron')
 
 const request = require('request');
 
+const patchManifest = require('./patch_manifest.js')
 
 module.exports.openExternal = function (url) {
     shell.openExternal(url)
@@ -19,7 +20,7 @@ module.exports.isTokenValid = function (token, callback) {
             'Accept': 'application/json',
             'Accept-Charset': 'utf-8',
             'User-Agent': 'fs-bootstrapper',
-            'X-Patch-Level': '30'
+            'X-Patch-Level': patchManifest.patchLevel
         },
         body: token
     };
