@@ -11,6 +11,7 @@ function onReady() {
         $('#logout').hide();
         launchUnauthorised();
     }else{
+        //Logged in
         $('#welcome-name').html('Welcome ' + username);
         $('#login').hide();
         launchReady();
@@ -171,7 +172,8 @@ function launchIfValid(err, res, body){
                 alert('Discord token has expired, please re-login')
                 logout();
             }else if(message == 'oldclient'){
-                alert('Client is out of date, please update');
+                alert('Client is out of date, please update'); //fallback
+                checkForUpdates(false);
             }else{
                 alert('Warning: Server appears to be offline')
                 launchGame();
@@ -245,6 +247,7 @@ function customPathDel(){
 }
 
 
+// Launch button
 function updateLaunchButton(disabled, message, style){
     var theButton = document.querySelector('#launch-game');
 
@@ -268,3 +271,53 @@ function launchUnauthorised(){
 function launchNotPatched(){
     updateLaunchButton(true, "Game has not been patched yet", "btn-outline-danger")
 }
+
+function openDevTools(){
+    ipcRenderer.send('open_developer_tools');
+}
+
+
+// update notification
+const notify_container = document.getElementById('notificationContainer');
+const notification_update_updating = document.getElementById('notification_update_updating');
+const notification_update_none = document.getElementById('notification_update_none');
+
+function show_update_checking(){
+    notify_container.classList.remove('hide');
+    notification_update_updating.style.display = "";
+    notification_update_none.style.display = "none";
+}
+function show_update_none(){
+    notify_container.classList.add('hide');
+    notification_update_updating.style.display = "none";
+    notification_update_none.style.display = "";
+}
+
+let update_alert = false;
+function checkForUpdates(send_alert){
+    show_update_checking();
+    if(send_alert){
+        update_alert=true;
+    }
+    console.log("checkForUpdates");
+    ipcRenderer.send('app_checkUpdates');
+}
+
+ipcRenderer.on('update_none', (event, payload) => {
+    show_update_none();
+    console.log("No udpate")
+    console.log(payload);
+    if (update_alert){
+        alert("Up to date\nLast update: "+payload.releaseDate)
+        update_alert = false
+    }
+});
+ipcRenderer.on('update_error', (event, payload) => {
+    console.log(payload);
+    alert("Error: "+JSON.stringify(payload))
+});
+
+ipcRenderer.send('app_version');
+ipcRenderer.on('app_version', (event, arg) => {
+    document.getElementById('app_version').innerText = arg.version;
+});

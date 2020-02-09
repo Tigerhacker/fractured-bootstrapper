@@ -3,25 +3,69 @@
 
 <head>
     <title>Fractured Space Bootstrapper</title>
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-    <!-- https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="/css/style.css"> -->
 
     <style>
         body{
             background-image: url(img/green-fx-mod.png);
             background-size: 100% auto;
             background-repeat: no-repeat;
-            background-color: black;
+            background-color: #080808;
         }
         .jumbotron{
-            background-color: rgba(255,255,255,0.85);
+            background-color: rgba(255,255,255,0.7);
+            backdrop-filter: blur(16pt);
+            /* box-shadow: 0 0 16pt 1pt rgba(255,255,255,0.5); */
+            box-shadow: 0 0 16pt 1pt rgba(0,0,0,0.2);
+        }
+        .navbar-dark{
+            backdrop-filter: blur(16pt);
+            background-color: rgba(26, 29, 32, 0.5)!important;
+        }
+        footer.text-muted{
+            backdrop-filter: blur(16pt);
+            background-color: rgba(8,8,8,0.7);
+        }
+        select{
+            background-color: rgba(255,255,255,0.7);
+        }
+
+        .fade {
+            transition-delay: 2s;
+            opacity: 0;
+            transition: opacity 0.5s linear, height 0.5s linear;
+            height: 0px !important;
+        }
+        #notificationContainer{
+            transition: all 0.5s linear;
+            position: fixed;
+            top: 0px;
+            z-index: 1;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+        #notification{
+            min-width: 300pt;
+            padding-top: 50pt !important;
+            background-color: rgba(204, 229, 255, 0.5);
+            backdrop-filter: blur(16pt);
+            box-shadow: 0 0 32pt 1pt rgba(0,0,0,0.2);
+        }
+        #notificationContainer.hide{
+            transition-delay: 2s;
+            top: -140pt !important;
         }
     </style>
 </head>
 
 <body>
+    <script>
+
+    </script>
+    <script>const { ipcRenderer } = require('electron');</script>
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>    
+
     <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
       <span id="logged-in"></span>
         <div class="nav-item">
@@ -37,8 +81,29 @@
             </div>
         </div>
     </nav>
+    <br><br>
+
+    <div id="notificationContainer" class="hide">
+        <div class="cover-container alert alert-primary ml-auto mx-auto" style="display: inline-block;" id="notification">
+
+            <div id="notification_update_updating">
+                <div class="d-inline-flex align-items-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <h4 class="mb-0 ml-2 ">Checking for updates...</h4>
+                </div>
+            </div>
+
+            <div id="notification_update_none">
+                <h4  style="min-height: 2rem; padding-bottom: 0.25em; padding-top: 0.2em;" class="mb-0 ml-2 ">Up to date</h4>
+            </div>
+
+        </div>
+    </div>
 
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" style="max-width:42em">
+
         <main role="main" class="inner cover jumbotron">
           <h2 class="cover-heading">Launch Game:</h2>
           Game Language: 
@@ -66,7 +131,10 @@
 
         <div class="inner cover jumbotron ">
             <h2 class="cover-heading">Manual auth:</h2>
-
+            <br>
+            Generate a token here:<br>
+            <a href="javascript:void(0)" onclick="window.interop.openBrowser('https://lifeline.returnvector.net/static/discord_manual.html')">https://lifeline.returnvector.net/static/discord_manual.html</a>
+            <br><br>
             <div class="d-flex justify-content-between align-items-center flex-wrap">
                 Discord token:
                 <input type="text" id="discord_token_input" style="width: 22em;">
@@ -91,7 +159,17 @@
                     <button class="btn btn-outline-info" type="button" id="custom-path-save" style="width: 48%">Set</button>
                     <button class="btn btn-outline-info" type="button" id="custom-path-reset" style="width: 48%">Clear</button>
                 </div>
-                
+        </div>
+
+        <div class="inner cover jumbotron ">
+            <h2 class="cover-heading">Check for updates:</h2>
+            Force check now
+            <button class="btn btn-outline-info w-100" type="button" onclick="checkForUpdates(true);">Check now</button>
+        </div>
+
+        <div class="inner cover jumbotron ">
+            <h2 class="cover-heading">Open developer tools:</h2>
+            <button class="btn btn-outline-info w-100" type="button" onclick="ipcRenderer.send('open_developer_tools');">Developer Tools</button>
         </div>
 
         <div class="inner cover jumbotron ">
@@ -104,15 +182,35 @@
             Select: fractured-space.7z
         </div>
 
-      </div>
+    </div>
 
 
+    <footer class="text-muted">
+        <br>
+        <div class="container">
+            <p class="float-right">
+            <a href="#">Back to top</a>
+            </p>
+            <p>Launcher version: <span id="app_version"> </span></p>
+            <p>This is an 3rd party patcher and launcher.</p>
+            <p>Join our discord:
+                <a href="javascript:void(0)" onclick="window.interop.openBrowser('https://discord.gg/wxSU5Ab')">https://discord.gg/wxSU5Ab</a>
+            </p>
+            <p>This is an open source project:
+                <a href="javascript:void(0)" onclick="window.interop.openBrowser('https://github.com/Tigerhacker/fractured-bootstrapper')">https://github.com/Tigerhacker/fractured-bootstrapper</a>
+            </p>
+        </div>
+        <br>
+    </footer>
 
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
     <script src="js/jquery.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script> -->
-    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
     <script src="js/home.js"></script>
+    <script>
+        checkForUpdates();
+    </script>
+
+    <script>if (window.module) module = window.module;</script>
+
 </body>
 
 </html>

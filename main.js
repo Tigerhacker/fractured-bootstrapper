@@ -1,7 +1,5 @@
 const {app, BrowserWindow, ipcMain, dialog, session, cookies} = require('electron');
 const {autoUpdater} = require("electron-updater");
-const pug = require('pug');
-const request = require('request');
 const url = require('url')
 
 const helper = require('./views/js/helper.js');
@@ -62,7 +60,7 @@ if (!gotTheLock) {
         // logEverywhere("commandLineLen: "+ commandLine.length)
         // logEverywhere("protoUrl: "+ protoUrl)
         // logEverywhere(commandLine)
-        // console.log(commandLine)
+        console.log(commandLine)
 
 
         // Someone tried to run a second instance, we should focus our window.
@@ -75,7 +73,10 @@ if (!gotTheLock) {
 
     // Create myWindow, load the rest of the app, etc...
     // No autoupdate
-    app.on('ready', async () => { await createWelcomeWindow(); })
+    app.on('ready', async () => {
+        await createWelcomeWindow();
+        // autoUpdater.checkForUpdates();
+    })
 
     // Autoupdate
     // app.on('ready', async () => {
@@ -90,15 +91,16 @@ async function createWelcomeWindow () {
     // Create the browser window.
     mainWindow = new BrowserWindow({
       width: 800,
-      height: 820,
+      height: 870,
       webPreferences: {
         preload: appPath + '/views/js/preload.js',
-        nodeIntegration: false,
+        // nodeIntegration: false,
+        nodeIntegration: true,
         // contextIsolation: false,
         experimentalFeatures: true,
     }
     })
-    // mainWindow.removeMenu();
+    mainWindow.removeMenu();
   
     // and load the index.html of the app.
     mainWindow.loadFile('views/home.html')
@@ -111,7 +113,7 @@ async function createWelcomeWindow () {
         // Keep only command line / deep linked arguments
         protoUrl = process.argv.slice(1)
     }
-    logEverywhere("createWindow# " + protoUrl)
+    // logEverywhere("createWindow# " + protoUrl)
   
     // Emitted when the window is closed.
     mainWindow.on('closed', function () {
@@ -129,78 +131,10 @@ function logEverywhere(s) {
         mainWindow.webContents.executeJavaScript(`console.log("${s}")`)
     }
 }
-  
 
-async function createDiscordWindow() {
-    mainWindow = new BrowserWindow({
-        width: 800,
-        height: 800,
-        webPreferences: {
-            preload: appPath + '/views/js/preload.js',
-            nodeIntegration: false,
-            contextIsolation: false
-        }
-    });
 
-    mainWindow.loadURL('https://google.com/');
-    // mainWindow.loadURL('http://localhost/');
+async function changeToUpdateWindow(window){
 
-    // mainWindow.removeMenu();
-    mainWindow.webContents.openDevTools();
-    // mainWindow.maximize();
-
-    mainWindow.on('closed', function () {
-        mainWindow = null;
-    });
-
-    let cookies = session.defaultSession.cookies;
-    cookies.on('changed', function (event, cookie, cause, removed) {
-        if (!cookie.session || removed) {
-            return;
-        }
-
-        let url = `${(!cookie.httpOnly && cookie.secure) ? 'https' : 'http'}://${cookie.domain}${cookie.path}`;
-        cookies.set({
-            url: url,
-            name: cookie.name,
-            value: cookie.value,
-            domain: cookie.domain,
-            path: cookie.path,
-            secure: cookie.secure,
-            httpOnly: cookie.httpOnly,
-            expirationDate: Math.floor(new Date().getTime() / 1000) + 1209600
-        }, function (err) {
-            if (err) console.log(err);
-        });
-    });
-
-}
-
-async function createUpdateWindow() {
-    updateWindow = new BrowserWindow({
-        width: 500,
-        height: 200,
-        frame: false,
-        resizable: false,
-        webPreferences: {
-            nodeIntegration: true
-        }
-    });
-
-    let params = {
-        title: 'Launcher'
-    };
-
-    let html = pug.renderFile(appPath + '/views/update.pug', params);
-    updateWindow.loadURL('data:text/html,' + encodeURIComponent(html), {
-        baseURLForDataURL: `file://${appPath}/views/`
-    });
-
-    updateWindow.removeMenu();
-
-    updateWindow.on('closed', function () {
-        updateWindow = null;
-    });
 }
 
 // app.on('ready', async () => {
@@ -210,28 +144,46 @@ async function createUpdateWindow() {
 // });
 
 autoUpdater.on('checking-for-update', () => {
-    updateWindow.webContents.send('update', 'Checking for updates', '...');
-});
-
-autoUpdater.on('update-available', (info) => {
-    updateWindow.webContents.send('update', 'Update found', '...');
+    // updateWindow.webContents.send('update', 'Checking for updates', '...');
 });
 
 autoUpdater.on('update-not-available', async (info) => {
-    // await createDiscordWindow();
-    await createWelcomeWindow();
-    updateWindow.close();
+    mainWindow.webContents.send('update_none', info);
 });
 
-autoUpdater.on('error', (err) => {
-    updateWindow.webContents.send('update', 'Error when updating', JSON.stringify(err));
+autoUpdater.on('update-available', (info) => {
+    mainWindow.loadFile('views/update.html');
 });
 
 autoUpdater.on('download-progress', (progress) => {
-    let progressMsg = `Progress: ${progress.percent} (${progress.transferred} / ${progress.total})`;
-    updateWindow.webContents.send('update', 'Downloading', progressMsg);
+    mainWindow.webContents.send('update_progress', progress);
 });
 
-autoUpdater.on('update-downloaded', (info) => {
+autoUpdater.on('update-downloaded', () => {
+    mainWindow.webContents.send('update_downloaded');
+});
+
+autoUpdater.on('error', (err) => {
+    updateWindow.webContents.send('update_error', err);
+});
+
+ipcMain.on('restart_update', () => {
     autoUpdater.quitAndInstall();
+});
+
+ipcMain.on('nav_update', () => {
+    mainWindow.loadFile('views/update.html');
+});
+
+
+//IPC commands
+ipcMain.on('open_developer_tools', (event) => {
+    event.sender.openDevTools();
+    // mainWindow.webContents.openDevTools();
+});
+
+ipcMain.on('app_version', (event) => {
+    event.sender.send('app_version', {
+        version: app.getVersion()
+    });
 });

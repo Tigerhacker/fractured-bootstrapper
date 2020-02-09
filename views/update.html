@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Fractured Space Bootstrapper: Updating...</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <style>
+        body {
+            background-image: url(img/booster-uncommon.png);
+            /* background-size: 100% auto; */
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        #updateBox{
+            background-color: rgba(255,134,87,0.5) !important;
+            backdrop-filter: blur(16pt);
+            border: 1px rgba(255,180,143,0.7) solid;
+            color: white;
+        }
+
+        #progressBarContainer{
+            height: 24pt;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div class="cover-container d-flex p-3 mx-auto flex-column justify-content-center align-items-center" style="height: 100vh;max-width:42em">
+            
+        <main id="updateBox" role="main" class="inner cover jumbotron w-100 ">
+            <h1 class="cover-heading">Update required</h1>
+            <br>
+            <hr>
+            <h3 id="state">Starting update</h3>
+            <br>
+            <div id="progressBarContainer" class="progress">
+                <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%"></div>
+            </div>
+            <br>
+            <div id="progressText">Waiting for download to start...</div>
+            <br>
+            <button class="btn btn-outline-secondary w-100" type="button" id="restart-button" onClick="restartApp()" disabled>Download in progress</button>
+        </main>
+
+        <main role="main" class="inner cover jumbotron" style="display: None">
+            update.html
+            <p id="version"></p>
+
+            <button onclick="checkForUpdates();">Check for updates</button>
+            <button onclick="openDevTools();">openDevTools</button>
+
+            <p id="message"></p>
+            <button id="close-button" onClick="closeNotification()">
+                Close
+            </button>
+            <button id="restart-button" onClick="restartApp()" class="">
+                Restart
+            </button>
+        </main>
+    </div>
+
+
+    
+
+
+
+    <script>
+        let update_progress = "";
+        const {
+            ipcRenderer
+        } = require('electron');
+        const version = document.getElementById('version');
+
+        ipcRenderer.send('app_version');
+        ipcRenderer.on('app_version', (event, arg) => {
+            ipcRenderer.removeAllListeners('app_version');
+            version.innerText = 'Version ' + arg.version;
+        });
+
+
+        
+
+        //get update notifications
+        const notification = document.getElementById('notification');
+        const message = document.getElementById('message');
+        const restartButton = document.getElementById('restart-button');
+        const state = document.getElementById('state');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        
+
+        ipcRenderer.on('update_available', () => {
+            ipcRenderer.removeAllListeners('update_available');
+            message.innerText = 'A new update is available. Downloading now...';
+            notification.classList.remove('hidden');
+        });
+
+        ipcRenderer.on('update_progress', (event, payload) => {
+            console.log("update_progress")
+            console.log(payload)
+
+            update_progress = payload;
+            setProgress(payload);
+        });
+
+        ipcRenderer.on('update_downloaded', () => {
+            ipcRenderer.removeAllListeners('update_downloaded');
+            // restartButton.classList.remove('hidden');
+            restartButton.disabled = false
+            restartButton.classList.remove('btn-outline-secondary');
+            restartButton.classList.add('btn-success');
+            restartButton.innerText="Install update"
+            state.innerText = "Download complete";
+            progressBar.classList.remove('progress-bar-animated');
+        });
+
+        ipcRenderer.on('update_error', (event, payload) => {
+            console.log(payload);
+            alert("Error: "+JSON.stringify(payload))
+        });
+
+        function closeNotification() {
+            notification.classList.add('hidden');
+        }
+
+        function restartApp() {
+            ipcRenderer.send('restart_update');
+        }
+
+
+        function checkForUpdates(){
+            ipcRenderer.send('app_checkUpdates');
+        }
+        ipcRenderer.on('to_render_console', (event, arg) => {
+            // ipcRenderer.removeAllListeners('update_downloaded');
+            console.log(event, arg)
+        });
+
+        function openDevTools(){
+            ipcRenderer.send('open_developer_tools');
+        }
+
+        ipcRenderer.send('set_progress', 2);
+
+        function setProgress(progress){
+            let percent_1 = Math.round(progress.percent*10)/10;
+            let total_1 = Math.round(progress.total/100000)/10;
+            let transferred_1 = Math.round(progress.transferred/100000)/10;
+            let speed_1 = Math.round(progress.bytesPerSecond/100)/10;
+            //state
+            state.innerText = "Downloading update...";
+            //taskbar
+            ipcRenderer.send('set_progress', progress.percent/100.0);
+            //progressbar
+            progressBar.style.width=`${progress.percent}%`;
+            progressBar.innerText=`${percent_1}%`;
+            //message
+            progressText.innerText = `${transferred_1}MB of ${total_1}MB at ${speed_1}KB/s`;
+
+        }
+    </script>
+</body>
+
+</html>

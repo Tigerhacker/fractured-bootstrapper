@@ -78,12 +78,11 @@ function validateFiles(directory) {
     let errors = [];
     let valid = [];
     dataMapping.forEach((v) => {
-        // fs.copyFileSync("resources/data/" + v.src, directory + "/" + v.dest);
         try {
             hash = sha256File(directory + "/" + v.dest);
             if(hash != v.sha256){
                 errors.push(v.dest);
-            }{
+            }else{
                 valid.push(v.dest);
             }
         }catch (e){
