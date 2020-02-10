@@ -83,8 +83,14 @@ function readVersion() {
 
 async function installFiles() {
     if (window.interop) {
-        await window.interop.installFiles();
-        logout();
+        await window.interop.installFiles(
+            function (success){
+                if(success){
+                    alert("Patch completed successfully")
+                    location.reload();
+                }
+            }
+        );
     } else {
         alert('Client launcher not detected!');
     }
@@ -324,3 +330,12 @@ ipcRenderer.send('app_version');
 ipcRenderer.on('app_version', (event, arg) => {
     document.getElementById('app_version').innerText = arg.version;
 });
+
+
+// reload with ctrl+r
+function keydown_handler(e) {
+    if (e.ctrlKey && e.keyCode == 82) {//ctrl+r
+        location.reload();
+    }
+}
+document.addEventListener('keydown', keydown_handler, false);

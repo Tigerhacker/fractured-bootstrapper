@@ -39,7 +39,6 @@ function validateFiles(directory) {
     });
     console.log(errors);
     console.log(valid);
-    return errors;
     return [errors, valid];
 }
 
@@ -48,7 +47,14 @@ function writeManifest(directory) {
         version: patchManifest.patchLevel,
         status: "ok"
     };
-    fs.writeFileSync(directory + '/bootlegger.json', JSON.stringify(manifestData));
+    try {
+        fs.writeFileSync(directory + '/bootlegger.json', JSON.stringify(manifestData));
+    }catch (e){
+        alert(`Error: Failed to write out ${directory}\\bootlegger.json`);
+        return false;
+    }
+
+    return true;
 }
 
 function dirtyManifest(directory) {
@@ -68,28 +74,31 @@ function readManifest(directory) {
     }
 }
 
-module.exports.install = function () {
+module.exports.install = function (callback) {
     steam((folder) => {
+        let success = true;
         // alert("DEBUG ENABLED: FILES WILL NOT BE PATCHED")
         replaceFiles(folder);
-        errors = validateFiles(folder);
         [errors, valid] = validateFiles(folder);
         if(errors.length > 0){
-            alert("Error: Failed to patch "+errors.length+" files\n\n"+errors.join("\n")+"\n\nMake sure the game is closed and try again")
+            alert("Error: Failed to patch "+errors.length+" of "+(valid.length+errors.length)+" files\n\n"+errors.join("\n")+"\n\nMake sure the game is closed and try again")
+            success = false;
         }else{
-            writeManifest(folder);
+            if (! writeManifest(folder)){
+                success = false;
+            }
         }
+        callback(success);
     });
 };
 
 module.exports.validate = function (callback) {
     steam((folder) => {
-        errors = validateFiles(folder);
         [errors, valid] = validateFiles(folder);
         if(errors.length > 0){
-            alert("Error: "+errors.length+" mismatched files found\n\n"+errors.join("\n")+"\n\nYou should re-install the patch")
+            alert("Error: "+errors.length+" mismatched files found (out of "+(valid.length+errors.length)+")\n\n"+errors.join("\n")+"\n\nYou should re-install the patch")
         }else{
-            alert("All files match")
+            alert(`All ${valid.length} files match`)
         }
     });
 };
