@@ -3,6 +3,7 @@ const installer = require('./installer.js');
 const launcher = require('./launcher.js');
 const helper = require('./helper.js');
 const settings = require('./settings.js');
+const steam = require('./find-steam.js')
 
 window.interop = {};
 window.interop.isInstalled = installer.isInstalled;
@@ -18,3 +19,5 @@ window.interop.settingDel = settings.sotreDel;
 window.interop.settingGetFolder = settings.sotreGetFolder;
 
 window.interop.isTokenValid = helper.isTokenValid;
+
+window.interop.steam = steam;
