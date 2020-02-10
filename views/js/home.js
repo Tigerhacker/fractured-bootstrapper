@@ -33,6 +33,9 @@ function onReady() {
     $('#custom-path-input').val(window.interop.settingGetFolder());
     $('#custom-path-save').on('click', function(){window.interop.settingSet('folder_override', $('#custom-path-input').val()); alert("Override saved\n>"+$('#custom-path-input').val()+"<");location.reload();});
     $('#custom-path-reset').on('click', function(){window.interop.settingDel('folder_override'); $('#custom-path-input').val('');location.reload();});
+
+    
+    window.interop.steam((folder) => {$('#game-folder-out').val(folder);});
     
     
 
