@@ -40,6 +40,7 @@ function validateFiles(directory) {
     console.log(errors);
     console.log(valid);
     return errors;
+    return [errors, valid];
 }
 
 function writeManifest(directory) {
@@ -72,6 +73,7 @@ module.exports.install = function () {
         // alert("DEBUG ENABLED: FILES WILL NOT BE PATCHED")
         replaceFiles(folder);
         errors = validateFiles(folder);
+        [errors, valid] = validateFiles(folder);
         if(errors.length > 0){
             alert("Error: Failed to patch "+errors.length+" files\n\n"+errors.join("\n")+"\n\nMake sure the game is closed and try again")
         }else{
@@ -83,6 +85,7 @@ module.exports.install = function () {
 module.exports.validate = function (callback) {
     steam((folder) => {
         errors = validateFiles(folder);
+        [errors, valid] = validateFiles(folder);
         if(errors.length > 0){
             alert("Error: "+errors.length+" mismatched files found\n\n"+errors.join("\n")+"\n\nYou should re-install the patch")
         }else{
