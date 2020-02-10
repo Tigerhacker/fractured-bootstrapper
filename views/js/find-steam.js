@@ -1,13 +1,14 @@
 const registry = require('winreg');
 const vdf = require('vdf');
 const fs = require('fs');
+const path = require('path');
 
 const settings = require('./settings.js');
 
 module.exports = function findSteamFolder(callback) {
     let override = settings.sotreGetFolder();
     if (override !== undefined){
-        callback(override.replace(/\\/g, "/"));
+        callback(path.normalize(override));
         return;
     }
 
@@ -62,7 +63,7 @@ function matchAppManifest(steamappsPath, callback) {
 
         appManifests.forEach(function (file) {
             if (file === appManifestString) {
-                callback(steamappsPath.replace(/\\\\/g, "/") + "/common/Space");
+                callback(path.normalize(steamappsPath + "\\common\\Space"));
                 return true;
             }
         });
