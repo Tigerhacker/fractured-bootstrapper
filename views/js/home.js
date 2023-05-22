@@ -336,7 +336,7 @@ ipcRenderer.on('app_version', (event, arg) => {
 
 // reload with ctrl+r
 function keydown_handler(e) {
-    if (e.shiftKey && e.keyCode == 73){// F12
+    if (e.shiftKey && e.keyCode == 73){// shift+i
         openDevTools()
     } 
     if (e.ctrlKey && e.keyCode == 82) {//ctrl+r
