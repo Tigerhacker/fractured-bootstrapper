@@ -160,16 +160,9 @@ ipcMain.on('restart_update', () => {
 
 
 //IPC commands
-ipcMain.on('open_developer_tools', (event, targetContentsId, devtoolsContentsId) => {
-    console.log("DEV TOOLS")
-
-    const target = webContents.fromId(targetContentsId)
-    const devtools = webContents.fromId(devtoolsContentsId)
-    target.setDevToolsWebContents(devtools)
-    target.openDevTools()
-
-    // event.sender.openDevTools({ mode: 'detach' });
-    // mainWindow.webContents.openDevTools();
+ipcMain.on('open_developer_tools', (event) => {
+    event.sender.openDevTools();
+    mainWindow.webContents.openDevTools();
 });
 
 ipcMain.on('app_version', (event) => {
