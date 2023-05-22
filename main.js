@@ -96,9 +96,6 @@ async function createWelcomeWindow () {
   
     // and load the index.html of the app.
     mainWindow.loadFile('views/home.html')
-  
-    // Open the DevTools.
-    // mainWindow.webContents.openDevTools()
 
     // Protocol handler for win32
     if (process.platform == 'win32') {
@@ -162,7 +159,6 @@ ipcMain.on('restart_update', () => {
 //IPC commands
 ipcMain.on('open_developer_tools', (event) => {
     event.sender.openDevTools();
-    mainWindow.webContents.openDevTools();
 });
 
 ipcMain.on('app_version', (event) => {
