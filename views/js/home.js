@@ -1,3 +1,5 @@
+const { ipcRenderer } = require('electron');
+
 $(document).ready(onReady);
 
 function onReady() {

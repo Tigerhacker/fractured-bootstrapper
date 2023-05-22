@@ -17,7 +17,7 @@ module.exports.isTokenValid = function (token, callback) {
         url: 'https://lifeline.returnvector.net/api/v0/discord/bearercheck',
         method: 'GET',
         headers: {
-            'Accept': 'application/json',
+            'Content-Type': 'application/json',
             'Accept-Charset': 'utf-8',
             'User-Agent': 'fs-bootstrapper',
             'X-Patch-Level': patchManifest.patchLevel
@@ -25,7 +25,7 @@ module.exports.isTokenValid = function (token, callback) {
         body: token
     };
     
-    request(options, callback);
+        request(options, callback);
 };
 
 module.exports.isTokenValidDump = function (token){

@@ -1,4 +1,4 @@
-const {app, BrowserWindow, ipcMain, dialog, session, cookies} = require('electron');
+const {app, BrowserWindow, ipcMain} = require('electron');
 const {autoUpdater} = require("electron-updater");
 const url = require('url')
 
@@ -88,7 +88,7 @@ async function createWelcomeWindow () {
         preload: appPath + '/views/js/preload.js',
         // nodeIntegration: false,
         nodeIntegration: true,
-        // contextIsolation: false,
+        contextIsolation: false,
         experimentalFeatures: true,
     }
     })
@@ -160,8 +160,15 @@ ipcMain.on('restart_update', () => {
 
 
 //IPC commands
-ipcMain.on('open_developer_tools', (event) => {
-    event.sender.openDevTools();
+ipcMain.on('open_developer_tools', (event, targetContentsId, devtoolsContentsId) => {
+    console.log("DEV TOOLS")
+
+    const target = webContents.fromId(targetContentsId)
+    const devtools = webContents.fromId(devtoolsContentsId)
+    target.setDevToolsWebContents(devtools)
+    target.openDevTools()
+
+    // event.sender.openDevTools({ mode: 'detach' });
     // mainWindow.webContents.openDevTools();
 });
 

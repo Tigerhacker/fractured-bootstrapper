@@ -1,6 +1,6 @@
 {
     "name": "fractured-space-bootstrapper",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Launcher and patcher for playing Fractured Space on community servers",
     "author": "Tigerhacker",
     "repository": {
@@ -15,12 +15,12 @@
         "deploy": "electron-builder build --win --publish always"
     },
     "devDependencies": {
-        "electron": "^8.0.0",
-        "electron-builder": "^22.3.2"
+        "electron": "^13",
+        "electron-builder": "22.10.5"
     },
     "dependencies": {
-        "electron-store": "^5.1.0",
-        "electron-updater": "^4.2.0",
+        "electron-store": "^8.1.0",
+        "electron-updater": "^5",
         "request": "^2.88.0",
         "vdf": "0.0.2",
         "winreg": "^1.2.4",
