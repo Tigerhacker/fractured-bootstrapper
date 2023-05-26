@@ -15,11 +15,11 @@ module.exports = function (options, callback) {
 
         let guid = $('#hidden-guid').val();
         let username = $('#hidden-username').val();
-        let host = ' -flhost=https://lifeline.returnvector.net';
-        let langParam = ' -culture=' + options.lang;
+        let host = '-flhost=https://lifeline.returnvector.net';
+        let langParam = '-culture=' + options.lang;
         // let auth = ' -netid=' + guid + ' -nick=' + username;
-        let auth = ' -discord=' + options.accessToken;
-        let launchCmd = 'set SteamAppId=310380 & ' + launchPath + host + auth + langParam;
+        let auth = '-discord=' + options.accessToken;
+        let launchCmd = `set SteamAppId=310380 & set OPENSSL_ia32cap=:~0x20000000 & ${launchPath} ${host} ${auth} ${langParam}`;
 
         child_process.exec(launchCmd,
             (error, stdout, stderr) => {
