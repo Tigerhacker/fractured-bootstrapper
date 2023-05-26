@@ -62,11 +62,35 @@ function onReady() {
         browseForGameFolder();
     });
     $('#custom-path-input').val(window.interop.settingGetFolder());
-    $('#custom-path-save').on('click', function(){window.interop.settingSet('folder_override', $('#custom-path-input').val()); alert("Override saved\n>"+$('#custom-path-input').val()+"<");location.reload();});
+    $('#custom-path-save').on('click', function(){
+        window.interop.settingSet('folder_override', $('#custom-path-input').val()); 
+        ipcRenderer.invoke("showMessageBox", {
+            "title": " ",
+            "type": "info",
+            "message": "Game path override saved",
+            "detail": ">"+$('#custom-path-input').val()+"<"
+        });
+        location.reload();
+    });
     $('#custom-path-reset').on('click', function(){window.interop.settingDel('folder_override'); $('#custom-path-input').val('');location.reload();});
 
     
-    window.interop.steam((folder) => {$('#game-folder-out').val(folder);});
+    window.interop.steam((folder) => {
+        if(folder === null){
+            (async () => {
+                await ipcRenderer.invoke("showMessageBox", {
+                    "title": " ",
+                    "type": "warning",
+                    "message": "Fractured Space not found",
+                    "detail": "Could not automatically detect the folder that Fractured Space has been installed into.\nPlease set the game path manually"
+                });
+                
+                browseForGameFolder();
+            })();
+            window.location = '#custom-path-section';
+        }
+        $('#game-folder-out').val(folder);
+    });
     
     
 
@@ -106,7 +130,7 @@ function readVersion() {
     } else {
         console.log('Client launcher not detected!');
         launchBtn.on('click', () => {
-            alert('Client launcher not detected!');
+            ipcRenderer.invoke("showDialog", 'Client launcher not detected!');
         });
 
     }
@@ -117,13 +141,13 @@ async function installFiles() {
         await window.interop.installFiles(
             function (success){
                 if(success){
-                    alert("Patch completed successfully")
+                    ipcRenderer.invoke("showDialog", "Patch completed successfully")
                     location.reload();
                 }
             }
         );
     } else {
-        alert('Client launcher not detected!');
+        ipcRenderer.invoke("showDialog", 'Client launcher not detected!');
     }
 }
 
@@ -146,7 +170,7 @@ function launchGame() {
                 launchReady(); //restore the button
             });
     } else {
-        alert('Client launcher not detected!');
+        ipcRenderer.invoke("showDialog", 'Client launcher not detected!');
     }
 }
 
@@ -158,8 +182,9 @@ function readManualToken(){
     let discord_token = $('#discord_token_input').val()
     if (discord_token.length > 0){
         setToken(discord_token)
+        ipcRenderer.invoke("showDialog", "Token saved")
     }else{
-        alert("Enter a token")
+        ipcRenderer.invoke("showDialog", "Enter a token")
     }
 }
 
@@ -203,19 +228,19 @@ function launchIfValid(err, res, body){
     tokenCallbackHandler(err, res, body, 
         function(json){
             if(json['message'] !== undefined){
-                alert(json['message']);
+                ipcRenderer.invoke("showDialog", json['message']);
             }
             launchGame();
         },
         function(message){
             if(message == 'unauthorised'){
-                alert('Discord token has expired, please re-login')
+                ipcRenderer.invoke("showDialog", 'Discord token has expired, please re-login')
                 logout();
             }else if(message == 'oldclient'){
-                alert('Client is out of date, please update'); //fallback
+                ipcRenderer.invoke("showDialog", 'Client is out of date, please update'); //fallback
                 checkForUpdates(false);
             }else{
-                alert('Warning: Server appears to be offline')
+                ipcRenderer.invoke("showDialog", 'Warning: Server appears to be offline')
                 launchGame();
             }
             
@@ -231,7 +256,7 @@ function saveIfValid(err, res, body){
             location.reload();
         }, 
         function(message){
-            alert(message)
+            ipcRenderer.invoke("showDialog", message)
             logout()
         }
     )
@@ -240,11 +265,21 @@ function saveIfValid(err, res, body){
 function debugIfValid(err, res, body){
     tokenCallbackHandler(err, res, body, 
         function(json){
-            alert(JSON.stringify(json))
+            ipcRenderer.invoke("showMessageBox", {
+                "title": "Discord Debug",
+                "type": "info",
+                "message": "Discord token contents",
+                "detail": JSON.stringify(json, null, 4)
+            });
             console.log(json)
         }, 
         function(message){
-            alert(message)
+            ipcRenderer.invoke("showMessageBox", {
+                "title": "Discord Debug",
+                "type": "error",
+                "message": "ReFireline response:",
+                "detail": message
+            });
         }
     )
 }
@@ -348,13 +383,13 @@ ipcRenderer.on('update_none', (event, payload) => {
     console.log("No udpate")
     console.log(payload);
     if (update_alert){
-        alert("Up to date\nLast update: "+payload.releaseDate)
+        ipcRenderer.invoke("showDialog", "Up to date\nLast update: "+payload.releaseDate)
         update_alert = false
     }
 });
 ipcRenderer.on('update_error', (event, payload) => {
     console.log(payload);
-    alert("Error: "+JSON.stringify(payload))
+    ipcRenderer.invoke("showDialog", "Error: "+JSON.stringify(payload))
 });
 
 ipcRenderer.send('app_version');
