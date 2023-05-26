@@ -24,6 +24,7 @@ module.exports = function findSteamFolder(callback) {
 
     regKey.values((err, items) => {
         if (items === null){
+            callback(null)
             return;
         }
         let steamPath = items.filter((item) => {
