@@ -144,18 +144,24 @@
             
         </div>
 
-        <div class="inner cover jumbotron ">
+        <div class="inner cover jumbotron" id="custom-path-section">
                 <h2 class="cover-heading">Override game path:</h2>
                 This will auto-detect by default, but you can override the folder here<br><br>
                 This folder is typically:<br>
                 <span style="font-family: monospace">C:\Program Files (x86)\Steam\steamapps\common\Space</span><br><br>
-                Root folder: <input type="text" id="custom-path-input" style="width: 100%;">
-                
-                <!-- <button class="navbar-brand btn btn-outline-success" type="button" id="custom-path-browse">Browse</button> -->
-    
-                <br><br>
+                <span>
+                    The folder you select should contain 3 subfolders
+                    <pre style="padding-left: 2em;" class="border"><code>
+Engine
+launcher
+spacegame
+                    </code></pre>
+                </span>
+                <!-- Root folder: <input type="text" id="custom-path-input" style="width: 100%;"> -->
+
                 <div class="d-flex justify-content-between">
-                    <button class="btn btn-outline-info" type="button" id="custom-path-save" style="width: 48%">Set</button>
+                    <!-- <button class="btn btn-outline-info" type="button" id="custom-path-save" style="width: 48%">Set</button> -->
+                    <button class="navbar-brand btn btn-outline-success" type="button" id="custom-path-browse" style="width: 48%">Browse</button>
                     <button class="btn btn-outline-info" type="button" id="custom-path-reset" style="width: 48%">Clear</button>
                 </div>
                 <hr>

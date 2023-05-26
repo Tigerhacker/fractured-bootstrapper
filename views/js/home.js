@@ -31,7 +31,36 @@ function onReady() {
     // $('#manual-auth').on('click', validateTokenInput);
     $('#check-auth').on('click', debugToken);
 
+    
+    function browseForGameFolder(){
+        (async () => {
+            const chosenFolders = await ipcRenderer.invoke("showOpenDialog", {
+                title: "",
+                type: "info",
+                message: "Select the \"Space\" folder",
+                detail: "this folder should have the following folders inside: Engine, launcher and spacegame",
+                properties: ['openDirectory']
+            });
+            console.log("chosenFolders", chosenFolders)
+            if(chosenFolders.filePaths.length > 0){
+                const gameFolder = chosenFolders.filePaths[0];
+                window.interop.settingSet('folder_override', gameFolder);
+
+                ipcRenderer.invoke("showMessageBox", {
+                    "title": " ",
+                    "type": "info",
+                    "message": "Game path override saved",
+                    "detail": gameFolder
+                });
+                location.reload();
+            }
+        })();
+    }
     //write game path override
+    $('#custom-path-browse').on('click', function(){
+        // window.interop.settingSet('folder_override', $('#custom-path-input').val()); 
+        browseForGameFolder();
+    });
     $('#custom-path-input').val(window.interop.settingGetFolder());
     $('#custom-path-save').on('click', function(){window.interop.settingSet('folder_override', $('#custom-path-input').val()); alert("Override saved\n>"+$('#custom-path-input').val()+"<");location.reload();});
     $('#custom-path-reset').on('click', function(){window.interop.settingDel('folder_override'); $('#custom-path-input').val('');location.reload();});
