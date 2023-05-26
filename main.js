@@ -1,4 +1,4 @@
-const {app, BrowserWindow, ipcMain} = require('electron');
+const {app, BrowserWindow, ipcMain, dialog, shell} = require('electron');
 const {autoUpdater} = require("electron-updater");
 const url = require('url')
 
@@ -8,6 +8,27 @@ let protoUrl = null
 
 let mainWindow, updateWindow;
 let appPath = app.getAppPath();
+
+// ipc handlers
+ipcMain.handle("showDialog", (e, message) => {
+    dialog.showMessageBox(mainWindow, { 
+        title: " ",
+        type: "info",
+        message: message
+     });
+});
+
+ipcMain.handle("showMessageBox", async (e, options) => {
+    return await dialog.showMessageBox(mainWindow, options);
+});
+
+ipcMain.handle("showOpenDialog", async (e, options) => {
+    return await dialog.showOpenDialog(mainWindow, options);
+});
+
+ipcMain.handle("openExternalBrowser", (e, url) => {
+    return shell.openExternal(url);
+});
 
 
 // Force Single Instance Application
