@@ -1,5 +1,6 @@
 const fs = require('fs');
 const sha256File = require('sha256-file');
+const { shell } = require('electron')
 
 // Launch imports
 const electron = require("electron");
@@ -12,7 +13,7 @@ const dataMapping = patchManifest.dataMapping;
 function replaceFiles(directory) {
     try {
         dataMapping.forEach((v) => {
-            fs.copyFileSync("resources/data/" + v.src, directory + "/" + v.dest);
+            fs.copyFileSync("resources\\data\\" + v.src, directory + "\\" + v.dest);
         });
     }catch (e){
         alert("Patching failed: \n"+e)
@@ -103,7 +104,12 @@ module.exports.install = function (callback) {
         replaceFiles(folder);
         [errors, valid] = validateFiles(folder);
         if(errors.length > 0){
-            alert("Error: Failed to patch "+errors.length+" of "+(valid.length+errors.length)+" files\n\n"+errors.join("\n")+"\n\nMake sure the game is closed and try again")
+            ipcRenderer.invoke("showMessageBox", {
+                "title": " ",
+                "type": "error",
+                "message": "Patch failed to install",
+                "detail": `Failed to patch ${errors.length} of ${valid.length+errors.length} files\n\n${errors.join("\n")}\n\nMake sure the game is closed and try again`
+            });
             success = false;
         }else{
             if (! writeManifest(folder)){
@@ -118,9 +124,19 @@ module.exports.validate = function (callback) {
     steam((folder) => {
         [errors, valid] = validateFiles(folder);
         if(errors.length > 0){
-            alert("Error: "+errors.length+" mismatched files found (out of "+(valid.length+errors.length)+")\n\n"+errors.join("\n")+"\n\nYou should re-install the patch")
+            ipcRenderer.invoke("showMessageBox", {
+                "title": " ",
+                "type": "error",
+                "message": "Patch failed to validate",
+                "detail": `${errors.length} mismatched files found (out of ${valid.length+errors.length} files\n\n${errors.join("\n")}\n\nYou should re-install the patch`
+            });
         }else{
-            alert(`All ${valid.length} files match`)
+            ipcRenderer.invoke("showMessageBox", {
+                "title": " ",
+                "type": "info",
+                "message": "Patch validated",
+                "detail": `All ${valid.length} files match`
+            });
         }
     });
 };
