@@ -28,7 +28,7 @@ function onReady() {
     $('#manual-auth').on('click', readManualToken);
     $('#lang-select').on('change', saveLanguage);
 
-    $('#manual-auth').on('click', validateTokenInput);
+    // $('#manual-auth').on('click', validateTokenInput);
     $('#check-auth').on('click', debugToken);
 
     //write game path override
