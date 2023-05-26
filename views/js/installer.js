@@ -24,6 +24,7 @@ function validateFiles(directory) {
     let errors = [];
     let valid = [];
     dataMapping.forEach((v) => {
+        let hash = null;
         try {
             hash = sha256File(directory + "/" + v.dest);
             if(hash != v.sha256){
