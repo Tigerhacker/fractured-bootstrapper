@@ -23,6 +23,9 @@ module.exports = function findSteamFolder(callback) {
     });
 
     regKey.values((err, items) => {
+        if (items === null){
+            return;
+        }
         let steamPath = items.filter((item) => {
             return item.name === "InstallPath"
         })[0].value;
