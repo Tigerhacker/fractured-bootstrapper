@@ -49,9 +49,9 @@ if (!gotTheLock) {
 
         // Protocol handler for win32
         // argv: An array of the second instance’s (command line / deep linked) arguments
-        if (process.platform == 'win32' && commandLine.length == 4) {
+        if (process.platform == 'win32' && commandLine.length > 1) {
             // Keep only command line / deep linked arguments
-            protoUrl = commandLine.slice(3);
+            protoUrl = commandLine[commandLine.length -1];
             processProtoUri(protoUrl);
         }
         // logEverywhere("app.makeSingleInstance# ")
@@ -60,7 +60,7 @@ if (!gotTheLock) {
         // logEverywhere("commandLineLen: "+ commandLine.length)
         // logEverywhere("protoUrl: "+ protoUrl)
         // logEverywhere(commandLine)
-        console.log(commandLine)
+        console.log("commandLine", commandLine)
 
 
         // Someone tried to run a second instance, we should focus our window.
