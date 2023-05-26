@@ -168,6 +168,11 @@
             Force check now
             <button class="btn btn-outline-info w-100" type="button" onclick="checkForUpdates(true);">Check now</button>
         </div>
+        
+        <div class="inner cover jumbotron ">
+            <h2 class="cover-heading">Open developer tools:</h2>
+            <button class="btn btn-outline-info w-100" type="button" onclick="ipcRenderer.send('open_developer_tools');">Developer Tools</button>
+        </div>
 
         <div class="inner cover jumbotron ">
             <h2 class="cover-heading">Override backend:</h2>
