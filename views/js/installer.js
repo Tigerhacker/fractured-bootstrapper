@@ -21,6 +21,8 @@ function replaceFiles(directory) {
 }
 
 function validateFiles(directory) {
+    checkDirectXRedist()
+    
     let errors = [];
     let valid = [];
     dataMapping.forEach((v) => {
@@ -41,6 +43,25 @@ function validateFiles(directory) {
     console.log(errors);
     console.log(valid);
     return [errors, valid];
+}
+
+function checkDirectXRedist(){
+    if (fs.existsSync('C:\\Windows\\system32\\D3DX9_43.dll')) {
+        console.log("Detected DirectX End-User Runtimes (June 2010)")
+    } else {
+        (async () => {
+            const response = await ipcRenderer.invoke("showMessageBox", {
+                title: " ",
+                type: "warning",
+                message: "DirectX End-User Runtimes not installed",
+                detail: "Please download and install from https://www.microsoft.com/download/details.aspx?id=8109",
+                buttons: ['Ignore', 'Open link'],
+            });
+            if(response.response == 1){
+                shell.openExternal('https://www.microsoft.com/download/details.aspx?id=8109');
+            }
+        })();
+    }
 }
 
 function writeManifest(directory) {
