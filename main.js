@@ -89,7 +89,7 @@ async function createWelcomeWindow () {
         // nodeIntegration: false,
         nodeIntegration: true,
         contextIsolation: false,
-        experimentalFeatures: true,
+        // experimentalFeatures: true,
     }
     })
     mainWindow.removeMenu();
