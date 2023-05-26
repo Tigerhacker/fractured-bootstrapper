@@ -400,10 +400,10 @@ ipcRenderer.on('app_version', (event, arg) => {
 
 // reload with ctrl+r
 function keydown_handler(e) {
-    if (e.shiftKey && e.keyCode == 73){// shift+i
+    if (e.ctrlKey && e.keyCode == 73) { // ctrl+i
         openDevTools()
     } 
-    if (e.ctrlKey && e.keyCode == 82) {//ctrl+r
+    if (e.ctrlKey && e.keyCode == 82) { // ctrl+r
         location.reload();
     }
 }
