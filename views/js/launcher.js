@@ -26,6 +26,15 @@ module.exports = function (options, callback) {
                 console.log(error);
                 console.log(stdout);
                 console.log(stderr);
+
+                if(error){
+                    ipcRenderer.invoke("showMessageBox", {
+                        "title": " ",
+                        "type": "error",
+                        "message": "Game failed to start",
+                        "detail": error.toString().replace(/-discord=\S+/g, "-discord=<removed>")
+                    });
+                }
             });
 
 
