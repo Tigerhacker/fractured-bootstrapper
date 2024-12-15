@@ -12,3 +12,6 @@ This is a 3rd party launcher for FS to re-enable multiplayer functionality
   * Allows new players who don't *own* the free game to play
 - Automates the new Discord authentication process
 - Check for updates and auto-updates when required
+
+# Join the Discord community
+https://discord.gg/6DqDJUWgWQ
