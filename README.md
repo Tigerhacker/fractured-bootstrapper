@@ -14,4 +14,4 @@ This is a 3rd party launcher for FS to re-enable multiplayer functionality
 - Check for updates and auto-updates when required
 
 # Join the Discord community
-https://discord.gg/6DqDJUWgWQ
+[https://discord.gg/6DqDJUWgWQ](https://discord.gg/u4gsGCrqfp)
