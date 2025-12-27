@@ -28,8 +28,14 @@ const dataMapping = [
     {
         src: "gamemodes-config.js",
         dest: "spacegame/Content/UIResources/frontend/views/gamemodes/gamemodes-config.js",
-        md5: "be1f9de63ff72133a885a5c7c3962fbd",
-        sha256: "7d864d2985f05b81cd37199c4150652c4becf9c5cc253f160c2f38d7db7509bd",
+        md5: "c0172d105ffce83915cf6ee4cfbe5370",
+        sha256: "d83823a230557be132d5c671da5b5a43ca622ecf29802ac70c3352a106daf074",
+    },
+	{
+        src: "gamemodes-script.js",
+        dest: "spacegame/Content/UIResources/frontend/views/gamemodes/gamemodes-script.js",
+        md5: "3a6875b5dfe947eb2a8abb11552ced6a",
+        sha256: "dd2db52b6a6477834b2ebf99aa1e4dc121822ec09bf9207431c740fe262c9622",
     },
     {
         src: "nsloctext.js",
