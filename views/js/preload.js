@@ -4,6 +4,7 @@ const launcher = require('./launcher.js');
 const helper = require('./helper.js');
 const settings = require('./settings.js');
 const steam = require('./find-steam.js')
+const platform = require('./platform.js');
 
 window.interop = {};
 window.interop.isInstalled = installer.isInstalled;
@@ -21,3 +22,18 @@ window.interop.settingGetFolder = settings.sotreGetFolder;
 window.interop.isTokenValid = helper.isTokenValid;
 
 window.interop.steam = steam;
+
+// Platform detection
+window.interop.isLinux = platform.isLinux;
+window.interop.isWindows = platform.isWindows;
+window.interop.platform = platform.platform;
+
+// Proton support (Linux only)
+if (platform.isLinux) {
+    const proton = require('./proton.js');
+    window.interop.findProtonVersions = proton.findInstalledProtonVersions;
+    window.interop.getProtonExecutable = proton.getProtonExecutable;
+} else {
+    window.interop.findProtonVersions = function() { return []; };
+    window.interop.getProtonExecutable = function() { return null; };
+}

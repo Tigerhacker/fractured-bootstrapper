@@ -12,7 +12,12 @@
         "start": "electron .",
         "pack": "electron-builder --dir",
         "build": "electron-builder build --win --publish never",
-        "deploy": "electron-builder build --win --publish always"
+        "build:linux": "electron-builder build --linux --publish never",
+        "build:linux:dir": "electron-builder build --linux dir --publish never",
+        "build:all": "electron-builder build --win --linux --publish never",
+        "deploy": "electron-builder build --win --publish always",
+        "deploy:linux": "electron-builder build --linux --publish always",
+        "deploy:all": "electron-builder build --win --linux --publish always"
     },
     "devDependencies": {
         "electron": "^23",
@@ -23,8 +28,10 @@
         "electron-updater": "^5",
         "request": "^2.88.0",
         "vdf": "0.0.2",
-        "winreg": "^1.2.4",
         "sha256-file": "^1.0.0"
+    },
+    "optionalDependencies": {
+        "winreg": "^1.2.4"
     },
     "build": {
         "appId": "com.fractured.bootstrapper",
@@ -38,6 +45,13 @@
         ],
         "win": {
             "target": "NSIS"
+        },
+        "linux": {
+            "target": [
+                "AppImage",
+                "dir"
+            ],
+            "category": "Game"
         },
         "nsis": {
             "oneClick": true,

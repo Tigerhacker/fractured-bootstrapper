@@ -1,19 +1,52 @@
 const fs = require('fs');
+const path = require('path');
 const sha256File = require('sha256-file');
 const { shell } = require('electron')
 
 // Launch imports
 const electron = require("electron");
 const steam = require('./find-steam.js');
+const { isLinux, isWindows } = require('./platform.js');
 // const pJson = require('../../package.json');
 
 const patchManifest = require('./patch_manifest.js')
 const dataMapping = patchManifest.dataMapping;
 
+/**
+ * Resolve the path to the bundled data files.
+ * Works both in development and in a packaged Electron app.
+ */
+function getDataPath(filename) {
+    // In packaged apps, resources are at process.resourcesPath
+    // In dev, they're relative to the app root
+    const possiblePaths = [
+        path.join(process.resourcesPath || '', 'data', filename),
+        path.join('resources', 'data', filename),
+    ];
+
+    for (const p of possiblePaths) {
+        if (fs.existsSync(p)) {
+            return p;
+        }
+    }
+
+    // Fallback to original relative path
+    return path.join('resources', 'data', filename);
+}
+
 function replaceFiles(directory) {
     try {
         dataMapping.forEach((v) => {
-            fs.copyFileSync("resources\\data\\" + v.src, directory + "\\" + v.dest);
+            let src = getDataPath(v.src);
+            let dest = path.join(directory, ...v.dest.split('/'));
+            
+            // Ensure destination directory exists
+            let destDir = path.dirname(dest);
+            if (!fs.existsSync(destDir)) {
+                fs.mkdirSync(destDir, { recursive: true });
+            }
+
+            fs.copyFileSync(src, dest);
         });
     }catch (e){
         alert("Patching failed: \n"+e)
@@ -22,14 +55,17 @@ function replaceFiles(directory) {
 }
 
 function validateFiles(directory) {
-    checkDirectXRedist()
+    if (isWindows) {
+        checkDirectXRedist()
+    }
     
     let errors = [];
     let valid = [];
     dataMapping.forEach((v) => {
         let hash = null;
         try {
-            hash = sha256File(directory + "/" + v.dest);
+            let filePath = path.join(directory, ...v.dest.split('/'));
+            hash = sha256File(filePath);
             if(hash != v.sha256){
                 errors.push(v.dest);
             }else{
@@ -71,9 +107,9 @@ function writeManifest(directory) {
         status: "ok"
     };
     try {
-        fs.writeFileSync(directory + '/bootlegger.json', JSON.stringify(manifestData));
+        fs.writeFileSync(path.join(directory, 'bootlegger.json'), JSON.stringify(manifestData));
     }catch (e){
-        alert(`Error: Failed to write out ${directory}\\bootlegger.json`);
+        alert(`Error: Failed to write out ${path.join(directory, 'bootlegger.json')}`);
         return false;
     }
 
@@ -85,12 +121,12 @@ function dirtyManifest(directory) {
         version: patchManifest.patchLevel,
         status: "dirty"
     };
-    fs.writeFileSync(directory + '/bootlegger.json', JSON.stringify(manifestData));
+    fs.writeFileSync(path.join(directory, 'bootlegger.json'), JSON.stringify(manifestData));
 }
 
 function readManifest(directory) {
     try {
-        let manifestData = JSON.parse(fs.readFileSync(directory + '/bootlegger.json'));
+        let manifestData = JSON.parse(fs.readFileSync(path.join(directory, 'bootlegger.json')));
         return manifestData.version;
     } catch (ex) {
         return "0";

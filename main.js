@@ -100,7 +100,9 @@ if (!gotTheLock) {
 }
 
 async function createWelcomeWindow () {
-    app.setAsDefaultProtocolClient('fracturedspace')
+    if (process.platform === 'win32') {
+        app.setAsDefaultProtocolClient('fracturedspace')
+    }
     // Create the browser window.
     mainWindow = new BrowserWindow({
       width: 800,

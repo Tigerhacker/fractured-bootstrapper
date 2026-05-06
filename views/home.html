@@ -113,6 +113,17 @@
               <option value="zh-CN">中文</option>
           </select>
           <br>
+          <div id="proton-section" style="display: none;">
+              Proton Version:
+              <div class="d-flex align-items-center">
+                  <select class="form-control" id="proton-select" style="flex: 1;">
+                      <option value="">-- Scanning for Proton... --</option>
+                  </select>
+                  <button class="btn btn-outline-info ml-2" type="button" id="proton-refresh" title="Refresh Proton versions">&#x21bb;</button>
+              </div>
+              <small id="proton-status" class="text-muted"></small>
+              <br>
+          </div>
           <button class="btn btn-outline-secondary w-100" type="button" id="launch-game" disabled>Not ready</button>
         </main>
 
@@ -148,7 +159,8 @@
                 <h2 class="cover-heading">Override game path:</h2>
                 This will auto-detect by default, but you can override the folder here<br><br>
                 This folder is typically:<br>
-                <span style="font-family: monospace">C:\Program Files (x86)\Steam\steamapps\common\Space</span><br><br>
+                <span id="game-path-hint-windows" style="font-family: monospace">C:\Program Files (x86)\Steam\steamapps\common\Space</span>
+                <span id="game-path-hint-linux" style="font-family: monospace; display: none;">~/.local/share/Steam/steamapps/common/Space</span><br><br>
                 <span>
                     The folder you select should contain 3 subfolders
                     <pre style="padding-left: 2em;" class="border"><code>

@@ -103,6 +103,27 @@ function onReady() {
         saveLanguage();
     }
 
+    // Platform-specific UI setup
+    if (window.interop.isLinux) {
+        // Show Proton selector
+        document.getElementById('proton-section').style.display = '';
+
+        // Show Linux path hint, hide Windows hint
+        var winHint = document.getElementById('game-path-hint-windows');
+        var linHint = document.getElementById('game-path-hint-linux');
+        if (winHint) winHint.style.display = 'none';
+        if (linHint) linHint.style.display = '';
+
+        // Populate Proton versions
+        populateProtonVersions();
+
+        // Bind refresh button
+        $('#proton-refresh').on('click', populateProtonVersions);
+
+        // Save Proton selection on change
+        $('#proton-select').on('change', saveProtonVersion);
+    }
+
     readVersion();
 }
 
@@ -319,6 +340,68 @@ function customPathGet(){
 
 function customPathDel(){
     return window.interop.settingDel('game_path');
+}
+
+
+// Proton version selector (Linux only)
+function populateProtonVersions(){
+    var select = document.getElementById('proton-select');
+    var status = document.getElementById('proton-status');
+    if (!select) return;
+
+    // Clear existing options
+    select.innerHTML = '';
+
+    var versions = window.interop.findProtonVersions();
+
+    if (versions.length === 0) {
+        var opt = document.createElement('option');
+        opt.value = '';
+        opt.textContent = '-- No Proton versions found --';
+        select.appendChild(opt);
+        if (status) status.textContent = 'No Proton installations detected. Install Proton via Steam or GE-Proton.';
+        return;
+    }
+
+    versions.forEach(function(v) {
+        var opt = document.createElement('option');
+        opt.value = v.path;
+        opt.textContent = v.name;
+        select.appendChild(opt);
+    });
+
+    // Restore saved selection
+    var savedPath = window.interop.settingGet('proton_version_path');
+    if (savedPath) {
+        // Check if the saved path still exists in the list
+        var found = false;
+        for (var i = 0; i < select.options.length; i++) {
+            if (select.options[i].value === savedPath) {
+                select.value = savedPath;
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            // Previously saved version no longer installed, use first available
+            saveProtonVersion();
+        }
+    } else {
+        // No saved selection, save the first one
+        saveProtonVersion();
+    }
+
+    if (status) status.textContent = versions.length + ' Proton version(s) found.';
+}
+
+function saveProtonVersion(){
+    var select = document.getElementById('proton-select');
+    if (!select) return;
+    var selectedPath = select.value;
+    var selectedName = select.options[select.selectedIndex] ? select.options[select.selectedIndex].textContent : '';
+    window.interop.settingSet('proton_version_path', selectedPath);
+    window.interop.settingSet('proton_version_name', selectedName);
+    console.log('Proton version saved:', selectedName, selectedPath);
 }
 
 
