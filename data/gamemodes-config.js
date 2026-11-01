@@ -93,7 +93,7 @@
     'firingRange': {
       'Id': 'firingRange',
       'RecommendedStatus': false,
-      'IsLocked': 'FTUEFlow' in window && FTUEFlow.state < 2,
+      'IsLocked': true, //'FTUEFlow' in window && FTUEFlow.state < 2, // Thaumic - Lock crashing gameMode
       'Image': 'views/gamemodes/images/{{Folder}}/firing-range.png',
       'Description': 'GameModeFiringRangeDescription',
       'Name': 'GameModeFiringRangeTitle',
@@ -268,6 +268,17 @@
       'IsBeta': false,
       'IsNew': false,
       'IsLegacy': true
+	},
+	'svaFrontline': { 
+      'Id': 'payload', // Thaumic - Hijacks Payload id to make button function
+      'Name': 'GameModeFrontlineLabel',
+      'Image': 'views/gamemodes/images/{{Folder}}/solo-frontline.png',
+      'Description': 'GameModeSoloFrontlineDescription',
+      'RecommendedStatus': false,
+      'IsLocked': false,
+      'IsBeta': true,
+      'IsNew': false,
+      'IsLegacy': false
     } 
   };
 
@@ -307,7 +318,8 @@
       Object.assign({}, panels.svaDiscovery),
       Object.assign({}, panels.svaRift),
       Object.assign({}, panels.svaPayload),
-      Object.assign({}, panels.svaArkain)
+      Object.assign({}, panels.svaArkain),
+	  Object.assign({}, panels.svaFrontline)
     ];
 
     this.updateImages();
