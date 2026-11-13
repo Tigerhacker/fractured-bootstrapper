@@ -1,4 +1,3 @@
-const {remote} = require('electron');
 const installer = require('./installer.js');
 const launcher = require('./launcher.js');
 const helper = require('./helper.js');

@@ -31,13 +31,18 @@ ipcMain.handle("openExternalBrowser", (e, url) => {
 });
 
 
+// Find the fracturedspace:// deep link (if any) in a list of command line args
+function findProtoUri(argv){
+    return (argv || []).find((arg) => /^fracturedspace:\/\//i.test(String(arg)));
+}
+
 // Force Single Instance Application
 function processProtoUri(uri){
-    m = String(uri).match(/^fracturedspace:\/\/([^\/]+)\/(.*)/) 
+    const m = String(uri).match(/^fracturedspace:\/\/([^\/]+)\/(.*?)\/?$/i)
 
     if(m){
-        command = m[1];
-        payload = m[2];
+        const command = m[1];
+        const payload = m[2];
         if(command == 'auth'){
             processAuthUri(payload)
         }
@@ -48,13 +53,17 @@ function processProtoUri(uri){
 }
 
 function processAuthUri(path){
-    m = path.match(/^([^\/]+)\/([^\/]+)$/) 
+    const m = path.match(/^([^\/]+)\/([^\/]+)$/)
     if(m){
-        provider = m[1];
-        token = m[2];
+        const provider = m[1];
+        const token = decodeURIComponent(m[2]);
+        // Tokens are passed to the game on its command line, only accept safe characters
+        if(!/^[A-Za-z0-9._~+\/=-]+$/.test(token)){
+            return false
+        }
         if(provider == "discord"){
             settings.sotreSet('discord_token', token)
-            if (mainWindow) mainWindow.reload()
+            if (mainWindow && mainWindow.webContents.getURL()) mainWindow.reload()
             return true
         }
     }
@@ -70,10 +79,9 @@ if (!gotTheLock) {
 
         // Protocol handler for win32
         // argv: An array of the second instance’s (command line / deep linked) arguments
-        if (process.platform == 'win32' && commandLine.length > 1) {
-            // Keep only command line / deep linked arguments
-            protoUrl = commandLine[commandLine.length -1];
-            processProtoUri(protoUrl);
+        if (process.platform == 'win32') {
+            protoUrl = findProtoUri(commandLine);
+            if (protoUrl) processProtoUri(protoUrl);
         }
         // logEverywhere("app.makeSingleInstance# ")
         // logEverywhere("event: "+ event)
@@ -100,7 +108,12 @@ if (!gotTheLock) {
 }
 
 async function createWelcomeWindow () {
-    app.setAsDefaultProtocolClient('fracturedspace')
+    if (process.defaultApp && process.argv.length >= 2) {
+        // Running via `electron .` in dev: register electron.exe + app path
+        app.setAsDefaultProtocolClient('fracturedspace', process.execPath, [require('path').resolve(process.argv[1])])
+    } else {
+        app.setAsDefaultProtocolClient('fracturedspace')
+    }
     // Create the browser window.
     mainWindow = new BrowserWindow({
       width: 800,
@@ -114,15 +127,25 @@ async function createWelcomeWindow () {
     }
     })
     mainWindow.removeMenu();
-  
+
+    // The window has full Node access, so never let it navigate to or open remote pages
+    mainWindow.webContents.on('will-navigate', (e, navUrl) => {
+        if (!navUrl.startsWith('file://')) e.preventDefault();
+    });
+    mainWindow.webContents.setWindowOpenHandler(({ url: openUrl }) => {
+        if (/^https?:\/\//i.test(openUrl)) shell.openExternal(openUrl);
+        return { action: 'deny' };
+    });
+
+    // Protocol handler for win32: app was cold-started from a deep link
+    // (handle before loading the page so a new token is picked up on first render)
+    if (process.platform == 'win32') {
+        protoUrl = findProtoUri(process.argv);
+        if (protoUrl) processProtoUri(protoUrl);
+    }
+
     // and load the index.html of the app.
     mainWindow.loadFile('views/home.html')
-
-    // Protocol handler for win32
-    if (process.platform == 'win32') {
-        // Keep only command line / deep linked arguments
-        protoUrl = process.argv.slice(1)
-    }
     // logEverywhere("createWindow# " + protoUrl)
   
     // Emitted when the window is closed.
@@ -169,7 +192,8 @@ autoUpdater.on('update-downloaded', () => {
 });
 
 autoUpdater.on('error', (err) => {
-    updateWindow.webContents.send('update_error', err);
+    // was `updateWindow`, which is never assigned and crashed the main process
+    if (mainWindow) mainWindow.webContents.send('update_error', String(err && err.message || err));
 });
 
 ipcMain.on('restart_update', () => {

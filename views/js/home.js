@@ -3,7 +3,7 @@ const { ipcRenderer } = require('electron');
 $(document).ready(onReady);
 
 function onReady() {
-    username = window.interop.settingGet('discord_name');
+    const username = window.interop.settingGet('discord_name');
     if (username === undefined){
         //if there is a token, try to validate and get username
         if(window.interop.settingGet('discord_token')){
@@ -14,7 +14,7 @@ function onReady() {
         launchUnauthorised();
     }else{
         //Logged in
-        $('#welcome-name').html('Welcome ' + username);
+        $('#welcome-name').text('Welcome ' + username);
         $('#login').hide();
         launchReady();
     }
@@ -201,9 +201,10 @@ function tokenCallbackHandler(err, res, body, successAction, failureAction) {
     console.log(body);
 
     if (res && res['statusCode'] == 200){
-        let json = JSON.parse(body);
+        let json = null;
+        try { json = JSON.parse(body); } catch (e) { console.log(e); }
         console.log(json);
-        if (json['username'] === undefined || json['token'] === undefined){
+        if (!json || json['username'] === undefined || json['token'] === undefined){
             //invalid response
             failureAction("Invalid response")
         }else{
@@ -293,7 +294,7 @@ function validateToken(token){
 }
 
 function validateTokenInput(){
-    token = $('#discord_token_input').val()
+    const token = $('#discord_token_input').val()
     validateToken(token)
 }
 
@@ -357,15 +358,31 @@ const notify_container = document.getElementById('notificationContainer');
 const notification_update_updating = document.getElementById('notification_update_updating');
 const notification_update_none = document.getElementById('notification_update_none');
 
+const notification_update_error = document.getElementById('notification_update_error');
+let update_error_timer = null;
 function show_update_checking(){
+    clearTimeout(update_error_timer);
     notify_container.classList.remove('hide');
     notification_update_updating.style.display = "";
     notification_update_none.style.display = "none";
+    notification_update_error.style.display = "none";
 }
 function show_update_none(){
+    clearTimeout(update_error_timer);
     notify_container.classList.add('hide');
     notification_update_updating.style.display = "none";
     notification_update_none.style.display = "";
+    notification_update_error.style.display = "none";
+}
+function show_update_error(){
+    clearTimeout(update_error_timer);
+    notify_container.classList.remove('hide');
+    notification_update_updating.style.display = "none";
+    notification_update_none.style.display = "none";
+    notification_update_error.style.display = "";
+    update_error_timer = setTimeout(() => {
+        notify_container.classList.add('hide');
+    }, 10000);
 }
 
 let update_alert = false;
@@ -389,7 +406,8 @@ ipcRenderer.on('update_none', (event, payload) => {
 });
 ipcRenderer.on('update_error', (event, payload) => {
     console.log(payload);
-    ipcRenderer.invoke("showDialog", "Error: "+JSON.stringify(payload))
+    update_alert = false;
+    show_update_error();
 });
 
 ipcRenderer.send('app_version');

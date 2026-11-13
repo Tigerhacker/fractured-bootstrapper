@@ -1,4 +1,6 @@
-const Store = require('electron-store');
+// electron-store v9+ is ESM-only; require() of ESM works in Electron's Node (22.12+)
+const StoreModule = require('electron-store');
+const Store = StoreModule.default || StoreModule;
 const store = new Store();
 
 module.exports.sotreSet = function (key, value) {

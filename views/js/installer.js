@@ -1,19 +1,31 @@
 const fs = require('fs');
-const sha256File = require('sha256-file');
-const { shell } = require('electron')
+const path = require('path');
+const crypto = require('crypto');
+const { shell, ipcRenderer } = require('electron')
 
-// Launch imports
-const electron = require("electron");
 const steam = require('./find-steam.js');
-// const pJson = require('../../package.json');
 
 const patchManifest = require('./patch_manifest.js')
 const dataMapping = patchManifest.dataMapping;
 
+// Packaged: <install>/resources/data (electron-builder extraResources). Dev: <repo>/data
+function dataDir() {
+    const packaged = path.join(process.resourcesPath || '', 'data');
+    if (process.resourcesPath && fs.existsSync(packaged)) return packaged;
+    return path.join(__dirname, '..', '..', 'data');
+}
+
+function sha256File(file) {
+    return crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+}
+
 function replaceFiles(directory) {
+    const src = dataDir();
     try {
         dataMapping.forEach((v) => {
-            fs.copyFileSync("resources\\data\\" + v.src, directory + "\\" + v.dest);
+            const dest = path.join(directory, v.dest);
+            fs.mkdirSync(path.dirname(dest), { recursive: true });
+            fs.copyFileSync(path.join(src, v.src), dest);
         });
     }catch (e){
         alert("Patching failed: \n"+e)
@@ -102,7 +114,7 @@ module.exports.install = function (callback) {
         let success = true;
         // alert("DEBUG ENABLED: FILES WILL NOT BE PATCHED")
         replaceFiles(folder);
-        [errors, valid] = validateFiles(folder);
+        const [errors, valid] = validateFiles(folder);
         if(errors.length > 0){
             ipcRenderer.invoke("showMessageBox", {
                 "title": " ",
@@ -122,7 +134,7 @@ module.exports.install = function (callback) {
 
 module.exports.validate = function (callback) {
     steam((folder) => {
-        [errors, valid] = validateFiles(folder);
+        const [errors, valid] = validateFiles(folder);
         if(errors.length > 0){
             ipcRenderer.invoke("showMessageBox", {
                 "title": " ",

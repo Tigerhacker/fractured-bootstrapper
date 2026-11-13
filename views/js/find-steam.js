@@ -1,9 +1,10 @@
 const registry = require('winreg');
-const vdf = require('vdf');
 const fs = require('fs');
 const path = require('path');
 
 const settings = require('./settings.js');
+
+const APP_MANIFEST = "appmanifest_310380.acf";
 
 module.exports = function findSteamFolder(callback) {
     let override = settings.sotreGetFolder();
@@ -23,61 +24,55 @@ module.exports = function findSteamFolder(callback) {
     });
 
     regKey.values((err, items) => {
-        if (items === null){
-            callback(null)
-            return;
-        }
-        let steamPath = items.filter((item) => {
-            return item.name === "InstallPath"
-        })[0].value;
-
-        let steamappsPath = steamPath + "/steamapps";
-
-        let matchMainFolder = matchAppManifest(steamappsPath, callback);
-        if (matchMainFolder) {
+        const installPath = !err && Array.isArray(items)
+            ? items.find((item) => item.name === "InstallPath")
+            : undefined;
+        if (!installPath) {
+            callback(null);
             return;
         }
 
-        let libraryFolders = fs.readFileSync(steamappsPath + "/libraryfolders.vdf", "utf8");
-        let vdfResult = vdf.parse(libraryFolders);
-        let steamOtherFolders = [];
-        for (let i = 1; true; i++) {
-            let steamFolder = vdfResult.LibraryFolders[i];
-            if (steamFolder) {
-                steamOtherFolders.push(steamFolder + "/steamapps");
-            } else {
-                break;
-            }
-        }
+        const steamappsPath = path.join(installPath.value, "steamapps");
+        const candidates = [steamappsPath].concat(readLibraryFolders(steamappsPath));
 
-        for (let i = 0; i < steamOtherFolders.length; i++) {
-            let matchFolder = matchAppManifest(steamOtherFolders[i], callback);
-            if (matchFolder) {
+        for (const candidate of candidates) {
+            if (hasAppManifest(candidate)) {
+                callback(path.normalize(path.join(candidate, "common", "Space")));
                 return;
             }
         }
+
+        callback(null);
     });
 };
 
-
-function matchAppManifest(steamappsPath, callback) {
-    const appManifestString = "appmanifest_310380.acf";
+// Returns the steamapps folders of all extra Steam libraries.
+// Handles both the old ("1" "D:\\Lib") and new ("path" "D:\\Lib") libraryfolders.vdf formats.
+function readLibraryFolders(steamappsPath) {
+    let text;
     try {
-        let appManifests = fs.readdirSync(steamappsPath);
-
-        appManifests.forEach(function (file) {
-            if (file === appManifestString) {
-                callback(path.normalize(steamappsPath + "\\common\\Space"));
-                return true;
-            }
-        });
+        text = fs.readFileSync(path.join(steamappsPath, "libraryfolders.vdf"), "utf8");
     } catch (err) {
-        if (err.code === 'ENOENT') {
-            console.log('Dir not found: ' + err);
-        } else {
-            throw err;
-        }
+        console.log('libraryfolders.vdf not readable: ' + err);
+        return [];
     }
 
-    return false;
+    const folders = [];
+    const re = /^\s*"(path|\d+)"\s+"([^"]+)"\s*$/gm;
+    let m;
+    while ((m = re.exec(text)) !== null) {
+        const folder = m[2].replace(/\\\\/g, "\\");
+        if (m[1] === "path" || /[\\\/]/.test(folder)) {
+            folders.push(path.join(folder, "steamapps"));
+        }
+    }
+    return folders;
+}
+
+function hasAppManifest(steamappsPath) {
+    try {
+        return fs.existsSync(path.join(steamappsPath, APP_MANIFEST));
+    } catch (err) {
+        return false;
+    }
 }
