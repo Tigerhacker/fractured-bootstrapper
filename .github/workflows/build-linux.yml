@@ -1,0 +1,46 @@
+# Builds the Linux packages (AppImage, .deb, .rpm). These can't be built on Windows.
+#
+# Run it from the Actions tab. With "publish" ticked, the packages and latest-linux.yml are
+# uploaded to the draft GitHub release for the version in package.json, the same draft that
+# `npm run deploy` creates on Windows. Run it BEFORE publishing that draft: Linux copies of the
+# launcher look for latest-linux.yml in the newest release to auto-update.
+name: Build Linux
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Upload to the draft GitHub release
+        type: boolean
+        default: false
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install rpm tooling
+        run: sudo apt-get update && sudo apt-get install -y rpm
+
+      - run: npm install
+
+      - name: Build
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx electron-builder build --linux --publish ${{ inputs.publish && 'always' || 'never' }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: linux-packages
+          path: |
+            dist/*.AppImage
+            dist/*.deb
+            dist/*.rpm
+            dist/latest-linux.yml

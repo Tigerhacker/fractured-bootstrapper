@@ -59,6 +59,8 @@ function validateFiles(directory) {
 }
 
 function checkDirectXRedist(){
+    // Only meaningful on Windows; Proton ships its own d3dx9
+    if (process.platform !== 'win32') return;
     if (fs.existsSync('C:\\Windows\\system32\\D3DX9_43.dll')) {
         console.log("Detected DirectX End-User Runtimes (June 2010)")
     } else {
@@ -85,7 +87,7 @@ function writeManifest(directory) {
     try {
         fs.writeFileSync(directory + '/bootlegger.json', JSON.stringify(manifestData));
     }catch (e){
-        alert(`Error: Failed to write out ${directory}\\bootlegger.json`);
+        alert(`Error: Failed to write out ${path.join(directory, 'bootlegger.json')}`);
         return false;
     }
 

@@ -8,11 +8,15 @@
         "url": "https://github.com/Tigerhacker/fractured-bootstrapper"
     },
     "main": "main.js",
+    "desktopName": "fractured-space-bootstrapper.desktop",
     "scripts": {
         "start": "electron .",
+        "start:linux-ui": "electron . --show-linux-settings",
         "pack": "electron-builder --dir",
         "build": "electron-builder build --win --publish never",
-        "deploy": "electron-builder build --win --publish always"
+        "build:linux": "electron-builder build --linux --publish never",
+        "deploy": "electron-builder build --win --publish always",
+        "deploy:linux": "electron-builder build --linux --publish always"
     },
     "devDependencies": {
         "electron": "^45.2.1",
@@ -33,6 +37,14 @@
             "main.js",
             "package.json"
         ],
+        "protocols": [
+            {
+                "name": "Fractured Space Bootstrapper",
+                "schemes": [
+                    "fracturedspace"
+                ]
+            }
+        ],
         "win": {
             "target": "NSIS"
         },
@@ -42,6 +54,28 @@
             "allowToChangeInstallationDirectory": false,
             "differentialPackage": true,
             "shortcutName": "Fractured Space Bootstrapper"
+        },
+        "linux": {
+            "target": [
+                "AppImage",
+                "deb",
+                "rpm"
+            ],
+            "category": "Game",
+            "executableName": "fractured-space-bootstrapper",
+            "artifactName": "FracturedSpaceBootstrapper-${arch}.${ext}",
+            "maintainer": "Tigerhacker <2382883+Tigerhacker@users.noreply.github.com>",
+            "synopsis": "Launcher and patcher for playing Fractured Space on community servers",
+            "desktop": {
+                "entry": {
+                    "Name": "Fractured Space Bootstrapper",
+                    "StartupWMClass": "fractured-space-bootstrapper"
+                }
+            },
+            "syncDesktopName": true
+        },
+        "appImage": {
+            "artifactName": "FracturedSpaceBootstrapper-${arch}.AppImage"
         }
     },
     "allowScripts": {

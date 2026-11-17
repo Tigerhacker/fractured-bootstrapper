@@ -2,9 +2,17 @@ const { ipcRenderer } = require('electron');
 
 $(document).ready(onReady);
 
+const OFFLINE_NAME = 'Captain';
+
 function onReady() {
     const username = window.interop.settingGet('discord_name');
-    if (username === undefined){
+    if (isOffline()){
+        // Fully offline: no sign-in, no token validation, no network. Never show the real name.
+        $('#welcome-name').text('Welcome ' + OFFLINE_NAME + ' (offline)');
+        $('#login').hide();
+        $('#logout').hide();
+        launchReady();
+    }else if (username === undefined){
         //if there is a token, try to validate and get username
         if(window.interop.settingGet('discord_token')){
             validateToken(window.interop.settingGet('discord_token'))
@@ -18,6 +26,12 @@ function onReady() {
         $('#login').hide();
         launchReady();
     }
+
+    $('#backend-select').val(getBackend()).on('change', function(){
+        setBackend(this.value);
+        location.reload();
+    });
+    updateBackendStatus();
 
     $('#login').on('click', login);
     $('#logout').on('click', logout);
@@ -75,7 +89,13 @@ function onReady() {
     $('#custom-path-reset').on('click', function(){window.interop.settingDel('folder_override'); $('#custom-path-input').val('');location.reload();});
 
     
+    if (window.interop.isLinux) {
+        $('.path-hint-windows').hide();
+        $('.path-hint-linux').show();
+    }
+
     window.interop.steam((folder) => {
+        if (window.interop.showLinuxSettings) setupLinuxSettings(folder);
         if(folder === null){
             (async () => {
                 await ipcRenderer.invoke("showMessageBox", {
@@ -157,13 +177,18 @@ function launchGame() {
         // launchBtn.addClass('disabled');
         // launchBtn.off('click');
         launchRunning(); //disable the button
+        if (window.interop.isLinux && !window.interop.linux.prefixInfo().exists) {
+            // Proton/Wine builds the prefix first, which takes a minute or two
+            updateLaunchButton(true, "First launch: setting up the Wine prefix, this can take a few minutes...", "btn-outline-info");
+        }
 
         // let accessToken = $('#hidden-access-token').val();
         // let lang = $('#lang-select').val();
         window.interop.launchGame(
             {
                 accessToken: getToken(),
-                lang: getLanguage()
+                lang: getLanguage(),
+                offline: isOffline()
             }, function () {
                 // launchBtn.removeClass('disabled');
                 // launchBtn.on('click', checkAndLaunch);
@@ -222,6 +247,8 @@ function tokenCallbackHandler(err, res, body, successAction, failureAction) {
 }
 
 function checkAndLaunch(){
+    // Offline: nothing to check against the community server
+    if (isOffline()) return launchGame();
     return window.interop.isTokenValid(getToken(), launchIfValid);
 }
 
@@ -286,6 +313,7 @@ function debugIfValid(err, res, body){
 }
 
 function debugToken(){
+    if (isOffline()) return ipcRenderer.invoke("showDialog", "Offline mode is on, no sign-in is used.");
     return window.interop.isTokenValid(getToken(), debugIfValid);
 }
 
@@ -309,6 +337,25 @@ function getLanguage(){
 }
 
 
+// Backend: 'online' (community server) or 'offline' (local Fireline emulator, single player)
+function getBackend(){
+    return window.interop.settingGet('backend') === 'offline' ? 'offline' : 'online';
+}
+
+function setBackend(backend){
+    if (backend === 'offline') return window.interop.settingSet('backend', 'offline');
+    return window.interop.settingDel('backend');
+}
+
+function isOffline(){
+    return getBackend() === 'offline';
+}
+
+function updateBackendStatus(){
+    $('#backend-offline-note').toggle(isOffline());
+}
+
+
 function customPathSave(){
     let path = $('#custom-path-input').val();
     return window.interop.settingSet('game_path', path);
@@ -323,6 +370,149 @@ function customPathDel(){
 }
 
 
+// Linux settings (Proton/Wine). Shown on Linux, or elsewhere via fsDebug.showLinuxSettings()
+function setupLinuxSettings(gameFolder){
+    const linux = window.interop.linux;
+    $('#linux-settings-section').show();
+    if (!window.interop.isLinux) $('#linux-preview-warning').show();
+
+    // Compatibility tool
+    function populateRunners(){
+        const select = $('#linux-runner-select');
+        const runners = linux.findRunners();
+        let current = linux.getRunner();
+        select.empty();
+
+        if (runners.length === 0) {
+            select.append($('<option>').val('').text('-- No Proton or Wine found --'));
+            $('#linux-runner-status').text('Install Proton from Steam (Library > Tools > "Proton"), or GE-Proton via ProtonUp-Qt, then press refresh.');
+            return;
+        }
+        runners.forEach((r) => {
+            select.append($('<option>').val(r.path).text(r.name + (r.source === 'custom' ? ' (custom)' : '')).data('runner', r));
+        });
+        if (current && runners.some((r) => r.path === current.path)) {
+            select.val(current.path);
+        } else {
+            // Nothing chosen yet, or it was uninstalled: pick the best one
+            current = runners[0];
+            linux.setRunner(current);
+            select.val(current.path);
+        }
+        $('#linux-runner-status').text(`${runners.length} found. ${current.path}`);
+        updateRuntimeStatus();
+    }
+    $('#linux-runner-select').on('change', function(){
+        const r = $(this).find('option:selected').data('runner');
+        linux.setRunner(r);
+        $('#linux-runner-status').text(r ? r.path : '');
+        updateRuntimeStatus();
+    });
+    $('#linux-runner-refresh').on('click', populateRunners);
+
+    // Wine prefix
+    function updatePrefix(){
+        const info = linux.prefixInfo();
+        $('#linux-prefix-path').val(info.compatDataDir);
+        let status = info.exists
+            ? `Prefix exists${info.protonVersion ? ' (created by Proton ' + info.protonVersion + ')' : ''}.`
+            : 'Will be created on first launch.';
+        status += info.isDefault ? ' Default location.' : ' Custom location.';
+        $('#linux-prefix-status').text(status);
+        const steamPrefix = linux.steamPrefixDir(gameFolder);
+        $('#linux-prefix-steam').toggle(!!steamPrefix && steamPrefix !== info.compatDataDir);
+    }
+    $('#linux-prefix-browse').on('click', async function(){
+        const res = await ipcRenderer.invoke("showOpenDialog", {
+            title: "Select a folder for the Wine prefix",
+            defaultPath: linux.getPrefixDir(),
+            properties: ['openDirectory', 'createDirectory']
+        });
+        if (res.filePaths && res.filePaths.length > 0) {
+            linux.setPrefixDir(res.filePaths[0]);
+            updatePrefix();
+        }
+    });
+    $('#linux-prefix-steam').on('click', function(){
+        linux.setPrefixDir(linux.steamPrefixDir(gameFolder));
+        updatePrefix();
+    });
+    $('#linux-prefix-default').on('click', function(){
+        linux.setPrefixDir(null);
+        updatePrefix();
+    });
+    $('#linux-prefix-open').on('click', function(){
+        ipcRenderer.invoke('openPath', linux.getPrefixDir(), true);
+    });
+    $('#linux-prefix-reset').on('click', async function(){
+        const info = linux.prefixInfo();
+        const res = await ipcRenderer.invoke("showMessageBox", {
+            title: " ",
+            type: "warning",
+            message: "Delete the Wine prefix?",
+            detail: `This permanently deletes:\n${info.winePrefix}\n\nIt will be rebuilt on the next launch. ` +
+                `Game files and your Steam install are not touched, but in-game settings stored in the prefix are lost.`,
+            buttons: ['Cancel', 'Delete'],
+            defaultId: 0,
+            cancelId: 0,
+        });
+        if (res.response !== 1) return;
+        try {
+            linux.resetPrefix();
+        } catch (e) {
+            ipcRenderer.invoke("showDialog", "Could not delete prefix:\n" + e.message);
+        }
+        updatePrefix();
+    });
+
+    // Runtime / logging / env
+    function updateRuntimeStatus(){
+        const runner = linux.getRunner();
+        let text = '';
+        if (runner && runner.type === 'proton') {
+            const rt = linux.findRuntimeFor(runner.path);
+            if (!rt.required) text = 'This Proton version does not need a runtime.';
+            else if (rt.entryPoint) text = 'Using ' + rt.name;
+            else text = `${rt.name} is not installed. Install it from Steam, or Proton will run without it.`;
+        } else if (runner) {
+            text = 'Not used with system Wine.';
+        }
+        $('#linux-runtime-status').text(text);
+    }
+    $('#linux-use-runtime').prop('checked', linux.getUseRuntime()).on('change', function(){
+        window.interop.settingSet(linux.KEYS.useRuntime, this.checked);
+    });
+    $('#linux-proton-log').prop('checked', linux.getProtonLog()).on('change', function(){
+        window.interop.settingSet(linux.KEYS.protonLog, this.checked);
+    });
+    $('#linux-extra-env').val(linux.getExtraEnvText()).on('change', function(){
+        window.interop.settingSet(linux.KEYS.extraEnv, this.value.trim());
+    });
+    $('#linux-open-logs').on('click', function(){
+        ipcRenderer.invoke('openPath', linux.logsDir(), true);
+    });
+
+    // fracturedspace:// handler for the Discord sign-in redirect
+    async function registerProtocol(){
+        const res = await ipcRenderer.invoke('registerProtocolHandler');
+        $('#linux-protocol-status').text(res.ok ? 'Sign-in link handler registered.' : 'Sign-in link handler: ' + res.message);
+        return res;
+    }
+    $('#linux-register-protocol').on('click', async function(){
+        const res = await registerProtocol();
+        ipcRenderer.invoke("showMessageBox", {
+            title: " ",
+            type: res.ok ? "info" : "warning",
+            message: res.ok ? "Sign-in link handler registered" : "Could not register the sign-in link handler",
+            detail: (res.message || '') + "\n\nIf signing in through the browser still does not return to the launcher, use \"Manual auth\" below.",
+        });
+    });
+
+    populateRunners();
+    updatePrefix();
+}
+
+
 // Launch button
 function updateLaunchButton(disabled, message, style){
     var theButton = document.querySelector('#launch-game');
@@ -333,7 +523,8 @@ function updateLaunchButton(disabled, message, style){
 }
 
 function launchReady(){
-    updateLaunchButton(false, "Launch Game", "btn-success")
+    if (isOffline()) updateLaunchButton(false, "Launch Game (offline, single player)", "btn-success")
+    else updateLaunchButton(false, "Launch Game", "btn-success")
 }
 
 function launchRunning(){
@@ -387,6 +578,11 @@ function show_update_error(){
 
 let update_alert = false;
 function checkForUpdates(send_alert){
+    if (isOffline()) {
+        // Offline mode makes no network requests
+        if (send_alert) ipcRenderer.invoke("showDialog", "Offline mode is on, switch back to Online to check for updates.");
+        return;
+    }
     show_update_checking();
     if(send_alert){
         update_alert=true;
@@ -402,6 +598,14 @@ ipcRenderer.on('update_none', (event, payload) => {
     if (update_alert){
         ipcRenderer.invoke("showDialog", "Up to date\nLast update: "+payload.releaseDate)
         update_alert = false
+    }
+});
+ipcRenderer.on('update_unsupported', (event, reason) => {
+    console.log("Auto-update unavailable:", reason);
+    show_update_none();
+    if (update_alert){
+        ipcRenderer.invoke("showDialog", "Automatic updates are not available for this copy of the launcher.\n\n" + reason);
+        update_alert = false;
     }
 });
 ipcRenderer.on('update_error', (event, payload) => {
