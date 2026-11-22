@@ -1,4 +1,4 @@
-const patchLevel = 33;
+const patchLevel = 34;
 
 const dataMapping = [
     {
@@ -60,10 +60,13 @@ const dataMapping = [
         dest: "Engine/Config/BaseEngine.ini",
         md5: "280bf6a1ea48fa3c536a7a3b20cc150c",
         sha256: "047690ae6ce7ba5c0c7a5c8ab5b786050f02f985f3f8958f4d66f85ad1223dd4",
+    },
+    {
+        src: "Makichika_XmasEvent_P.pak",
+        dest: "spacegame/Content/Paks/Makichika_XmasEvent_P.pak",
+        sha256: "9e0295ee27b34c55f04cc3a2f6b30a2ef376f47d01bd2868646f8978453640db",
+        md5: "a4b7ea1db38663af67c2f2af8147a66b",
     }
 ];
 
-module.exports = {
-    patchLevel,
-    dataMapping
-}
+module.exports = { patchLevel, dataMapping };
