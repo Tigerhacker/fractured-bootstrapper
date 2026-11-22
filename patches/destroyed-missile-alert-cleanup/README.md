@@ -10,7 +10,9 @@ Code cave: 0x91080–0x91093 (RVA 0x91A80). The recipe records exact file offset
 
 ## What the patch does
 
-Exclude destroyed and trail-cleanup missile state bits from the HUD predicate and both warning queries while retaining the existing warning configuration.
+Destroyed or trail-cleanup missiles stop contributing their red HUD icon and incoming warning. Living missiles and the original warning configuration remain eligible. This does not change damage, point defense or projectile cleanup lifetime.
+
+The machine-readable recipe preserves the published payload while keeping this fix separately reviewable.
 
 ## Interpretation
 
@@ -19,3 +21,7 @@ The guard addresses stale presentation state without changing the authoritative 
 ## Not established / limitations
 
 This is a client display/audio query change, not a projectile damage or lifetime change. Repeated audible salvos and slow-motion behavior require fresh game validation on V2. The testing status is intentional. Build/hash checks are not runtime proof.
+
+## Source and review classification
+
+Bug fix. Source: [pinned public package](https://github.com/Makichika/Fractured-space-fixe-/tree/7e43fb70ca660c35ae903fcc1f703b9c0a624cb0), including its installation document. Historical test statements in that document are not fresh V2 runtime proof.
