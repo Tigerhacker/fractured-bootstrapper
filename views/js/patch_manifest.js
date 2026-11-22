@@ -1,4 +1,4 @@
-const patchLevel = 33;
+const patchLevel = 34;
 
 const dataMapping = [
     {
@@ -60,10 +60,13 @@ const dataMapping = [
         dest: "Engine/Config/BaseEngine.ini",
         md5: "280bf6a1ea48fa3c536a7a3b20cc150c",
         sha256: "047690ae6ce7ba5c0c7a5c8ab5b786050f02f985f3f8958f4d66f85ad1223dd4",
+    },
+    {
+        src: "Makichika_VenturerSkins_P.pak",
+        dest: "spacegame/Content/Paks/Makichika_VenturerSkins_P.pak",
+        sha256: "7ffe8a3e05e5f169b466b60ffd0bad2abae40ebe62f135ca3aa29892a32a4aa2",
+        md5: "461a1f5951870cef39edf0b846d732a0",
     }
 ];
 
-module.exports = {
-    patchLevel,
-    dataMapping
-}
+module.exports = { patchLevel, dataMapping };

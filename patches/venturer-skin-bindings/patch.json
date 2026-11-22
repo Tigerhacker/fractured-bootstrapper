@@ -1,0 +1,21 @@
+{
+  "id": "venturer-skin-bindings",
+  "title": "Correct Venturer skin material bindings",
+  "status": "testing",
+  "requires": [],
+  "target": "spacegame/Content/Paks/Makichika_VenturerSkins_P.pak",
+  "assets": [
+    {
+      "path": "BP_SHP_MID_M00_C018_Venturer.uasset",
+      "replace": "files/BP_SHP_MID_M00_C018_Venturer.uasset",
+      "baseSha256": null,
+      "sha256": "6b96209ddab7a5a128567fb806d36c09b72c1bb8333a9cb8fe23ce5a94ec66a3"
+    },
+    {
+      "path": "BP_SHP_MID_M00_C018_Venturer.uexp",
+      "replace": "files/BP_SHP_MID_M00_C018_Venturer.uexp",
+      "baseSha256": null,
+      "sha256": "171dc54849204aa83b6019b52ed40dc8a0f88f01d7af843093cd50ad97a76984"
+    }
+  ]
+}

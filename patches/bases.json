@@ -9,5 +9,14 @@
         "sha256": "cfa30ee8f3019c5b334f7a83843322e87cedd93e9c90d13b18bc4473bc975a49",
         "size": 71567712,
         "source": "Steam depot (app 310380), unmodified"
+    },
+    "spacegame/Content/Paks/Makichika_VenturerSkins_P.pak": {
+        "sha256": "16e41dd4c3cc7fcc94688b5c861fb35fa9342eca81bcab7f3099eb848a9a9a54",
+        "size": 102,
+        "source": "Generated empty version-4 PAK for an additive Makichika overlay; contains no Steam content.",
+        "emptyPak": {
+            "mountPoint": "../../../spacegame/Content/Blueprints/Parts/M00/"
+        },
+        "encrypted": false
     }
 }
