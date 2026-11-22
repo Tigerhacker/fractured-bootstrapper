@@ -16,8 +16,8 @@ const dataMapping = [
     {
         src: "startgame-script.js",
         dest: "spacegame/Content/UIResources/frontend/views/startgame/startgame-script.js",
-        md5: "26e8ba2459da250bc88626077d4fbc40",
-        sha256: "bac58eaa7f06a1b2401e5300e0141739055736bfb66d285e28b0096b83bcc1bb",
+        md5: "3e14a4be88acf215282342163b494c28",
+        sha256: "1c62a37d09fc3930aa97e7b798c337e95ce1d24be4829fa15e62eb23de7711af",
     },
     {
         src: "startgame-style.css",
@@ -63,7 +63,4 @@ const dataMapping = [
     }
 ];
 
-module.exports = {
-    patchLevel,
-    dataMapping
-}
+module.exports = { patchLevel, dataMapping };

@@ -935,7 +935,7 @@
       },
 
       onAddSessions: function onAddSessions(servers) {
-        var serversToRender = [];
+        var serverGroups = [[], [], []];
 
         for (var i = 0, len = servers.length, server; i < len; i++) {
           server = servers[i];
@@ -945,12 +945,16 @@
           server.StatusText = utils.l10n.get('ServerStatus' + (server.InProgress ? 'InProgress' : 'WarmUp'));
 
           if (shouldAddServer) {
-            serversToRender.push(server);
+            var name = server.Name || '';
+            var group = /^\s*(?:\u2665|&#0*9829;|&#x0*2665;|&hearts;)/i.test(name) ? 0 :
+              /^\s*tiger/i.test(name) ? 1 : 2;
+            serverGroups[group].push(server);
           }
 
           this.serversMap[server.Index] = server;
         }
 
+        var serversToRender = serverGroups[0].concat(serverGroups[1], serverGroups[2]);
         var html = '';
         for (var i = 0, len = serversToRender.length; i < len; i++) {
           html += TEMPLATE_SERVER.format(serversToRender[i]);
