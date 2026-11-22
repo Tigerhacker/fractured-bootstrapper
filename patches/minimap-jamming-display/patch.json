@@ -1,0 +1,33 @@
+{
+  "id": "minimap-jamming-display",
+  "title": "Minimap objects and sectors show jamming state (Destroyer / Interceptor map jamming)",
+  "status": "testing",
+  "requires": [],
+  "target": "spacegame/Content/Paks/BP.pak",
+  "assets": [
+    {
+      "path": "HUD/W_MinimapObject.uasset",
+      "replace": "files/HUD/W_MinimapObject.uasset",
+      "baseSha256": "69fb09a9d57f284ddd30df9bdd9286e1090912bf7d9a7a438dc0ea7443d4b0fa",
+      "sha256": "ed5528546edca5d7c18b37c4c61ff018a9f0197c7e6181b46aed75ccc360bbb0"
+    },
+    {
+      "path": "HUD/W_MinimapObject.uexp",
+      "replace": "files/HUD/W_MinimapObject.uexp",
+      "baseSha256": "a1b62e7f791e5b6f33dec2849ed325045848a81bf99fa7586c815bd4c6e069cc",
+      "sha256": "b18b91aa892ea8abe852c647a2e7ded231f97aa18d6cb07b0668fdb2efce1675"
+    },
+    {
+      "path": "HUD/W_MinimapSector.uasset",
+      "replace": "files/HUD/W_MinimapSector.uasset",
+      "baseSha256": "c4839732b3d233a98ada01d15d9c1cf7f1c2f9b121fdc2dfda7071bf3624cb39",
+      "sha256": "5519d7402d1ae2ba0bf4cc2cc2c61779cedc8a4189e790b048c6253a29cef9c3"
+    },
+    {
+      "path": "HUD/W_MinimapSector.uexp",
+      "replace": "files/HUD/W_MinimapSector.uexp",
+      "baseSha256": "e2e182862e986c7538becafcadbceb87ff24c54b50d2282d20c8007db62e6df4",
+      "sha256": "4b2ccb51b7beebb745c21c3d2197e2c6e78ba895da58a9a935b6a844ed48c53a"
+    }
+  ]
+}
