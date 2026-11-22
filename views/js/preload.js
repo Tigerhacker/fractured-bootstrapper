@@ -4,6 +4,7 @@ const helper = require('./helper.js');
 const settings = require('./settings.js');
 const steam = require('./find-steam.js')
 const platform = require('./platform.js');
+const gameFolder = require('./game-folder.js');
 
 window.interop = {};
 window.interop.isInstalled = installer.isInstalled;
@@ -21,6 +22,8 @@ window.interop.settingGetFolder = settings.sotreGetFolder;
 window.interop.isTokenValid = helper.isTokenValid;
 
 window.interop.steam = steam;
+window.interop.checkGameFolder = gameFolder.checkGameFolder;
+window.interop.gameFolderRequired = gameFolder.REQUIRED;
 
 // Platform
 window.interop.isLinux = platform.isLinux;

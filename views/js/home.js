@@ -43,34 +43,60 @@ function onReady() {
             });
             console.log("chosenFolders", chosenFolders)
             if(chosenFolders.filePaths.length > 0){
-                const gameFolder = chosenFolders.filePaths[0];
-                window.interop.settingSet('folder_override', gameFolder);
-
-                ipcRenderer.invoke("showMessageBox", {
-                    "title": " ",
-                    "type": "info",
-                    "message": "Game path override saved",
-                    "detail": gameFolder
-                });
-                location.reload();
+                await saveGameFolder(chosenFolders.filePaths[0], true);
             }
         })();
     }
+
+    // Saves the game path override after checking it looks like the game folder.
+    // A folder missing Engine/launcher/spacegame gets a warning; the user can take
+    // a nearby folder that does look right, pick again, keep it anyway, or cancel.
+    async function saveGameFolder(gameFolder, canBrowse){
+        gameFolder = (gameFolder || '').trim();
+        if (!gameFolder) return;
+        const check = window.interop.checkGameFolder(gameFolder);
+        if (!check.ok) {
+            const required = window.interop.gameFolderRequired.join(', ');
+            const buttons = [];
+            if (check.suggestion) buttons.push('Use suggested folder');
+            if (canBrowse) buttons.push('Choose again');
+            buttons.push('Use anyway', 'Cancel');
+            const detail = gameFolder + "\n\n" +
+                "Missing: " + check.missing.join(', ') + "\n" +
+                "The Fractured Space folder (usually called \"Space\") contains the folders " + required + "." +
+                (check.suggestion ? "\n\nThis folder looks right instead:\n" + check.suggestion : "");
+            const res = await ipcRenderer.invoke("showMessageBox", {
+                "title": " ",
+                "type": "warning",
+                "message": "This is probably not the Fractured Space folder",
+                "detail": detail,
+                "buttons": buttons,
+                "defaultId": 0,
+                "cancelId": buttons.length - 1,
+                "noLink": true
+            });
+            const choice = buttons[res.response];
+            if (choice === 'Use suggested folder') gameFolder = check.suggestion;
+            else if (choice === 'Choose again') { browseForGameFolder(); return; }
+            else if (choice !== 'Use anyway') return;
+        }
+        window.interop.settingSet('folder_override', gameFolder);
+        // Wait for the box before reloading, or the reload throws it away.
+        await ipcRenderer.invoke("showMessageBox", {
+            "title": " ",
+            "type": "info",
+            "message": "Game path override saved",
+            "detail": gameFolder
+        });
+        location.reload();
+    }
     //write game path override
     $('#custom-path-browse').on('click', function(){
-        // window.interop.settingSet('folder_override', $('#custom-path-input').val()); 
         browseForGameFolder();
     });
     $('#custom-path-input').val(window.interop.settingGetFolder());
     $('#custom-path-save').on('click', function(){
-        window.interop.settingSet('folder_override', $('#custom-path-input').val()); 
-        ipcRenderer.invoke("showMessageBox", {
-            "title": " ",
-            "type": "info",
-            "message": "Game path override saved",
-            "detail": ">"+$('#custom-path-input').val()+"<"
-        });
-        location.reload();
+        saveGameFolder($('#custom-path-input').val(), false);
     });
     $('#custom-path-reset').on('click', function(){window.interop.settingDel('folder_override'); $('#custom-path-input').val('');location.reload();});
 
