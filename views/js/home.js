@@ -2,17 +2,9 @@ const { ipcRenderer } = require('electron');
 
 $(document).ready(onReady);
 
-const OFFLINE_NAME = 'Captain';
-
 function onReady() {
     const username = window.interop.settingGet('discord_name');
-    if (isOffline()){
-        // Fully offline: no sign-in, no token validation, no network. Never show the real name.
-        $('#welcome-name').text('Welcome ' + OFFLINE_NAME + ' (offline)');
-        $('#login').hide();
-        $('#logout').hide();
-        launchReady();
-    }else if (username === undefined){
+    if (username === undefined){
         //if there is a token, try to validate and get username
         if(window.interop.settingGet('discord_token')){
             validateToken(window.interop.settingGet('discord_token'))
@@ -26,12 +18,6 @@ function onReady() {
         $('#login').hide();
         launchReady();
     }
-
-    $('#backend-select').val(getBackend()).on('change', function(){
-        setBackend(this.value);
-        location.reload();
-    });
-    updateBackendStatus();
 
     $('#login').on('click', login);
     $('#logout').on('click', logout);
@@ -136,16 +122,20 @@ function readVersion() {
     let launchBtn = $('#launch-game');
     if (window.interop) {
         window.interop.isInstalled(function (match) {
+            gamePatched = !!match;
             if (match) {
                 $('#install-files').html('Re-install');
                 launchBtn.removeClass('disabled');
                 launchBtn.on('click', checkAndLaunch);
+                $('#launch-offline').on('click', () => launchGame(true));
             } else {
                 $('#install-files').html('Install');
                 // launchBtn.addClass('disabled');
                 launchNotPatched();
                 launchBtn.off('click');
+                $('#launch-offline').off('click');
             }
+            updateOfflineButton(!match);
         });
     } else {
         console.log('Client launcher not detected!');
@@ -171,12 +161,13 @@ async function installFiles() {
     }
 }
 
-function launchGame() {
+function launchGame(offline) {
     if (window.interop) {
         let launchBtn = $('#launch-game');
         // launchBtn.addClass('disabled');
         // launchBtn.off('click');
         launchRunning(); //disable the button
+        updateOfflineButton(true);
         if (window.interop.isLinux && !window.interop.linux.prefixInfo().exists) {
             // Proton/Wine builds the prefix first, which takes a minute or two
             updateLaunchButton(true, "First launch: setting up the Wine prefix, this can take a few minutes...", "btn-outline-info");
@@ -188,11 +179,14 @@ function launchGame() {
             {
                 accessToken: getToken(),
                 lang: getLanguage(),
-                offline: isOffline()
+                offline: offline === true
             }, function () {
                 // launchBtn.removeClass('disabled');
                 // launchBtn.on('click', checkAndLaunch);
-                launchReady(); //restore the button
+                // restore the button (stay disabled if not signed in, offline launch still works)
+                if (window.interop.settingGet('discord_name') === undefined) launchUnauthorised();
+                else launchReady();
+                updateOfflineButton(!gamePatched);
             });
     } else {
         ipcRenderer.invoke("showDialog", 'Client launcher not detected!');
@@ -247,8 +241,6 @@ function tokenCallbackHandler(err, res, body, successAction, failureAction) {
 }
 
 function checkAndLaunch(){
-    // Offline: nothing to check against the community server
-    if (isOffline()) return launchGame();
     return window.interop.isTokenValid(getToken(), launchIfValid);
 }
 
@@ -313,7 +305,6 @@ function debugIfValid(err, res, body){
 }
 
 function debugToken(){
-    if (isOffline()) return ipcRenderer.invoke("showDialog", "Offline mode is on, no sign-in is used.");
     return window.interop.isTokenValid(getToken(), debugIfValid);
 }
 
@@ -337,22 +328,10 @@ function getLanguage(){
 }
 
 
-// Backend: 'online' (community server) or 'offline' (local Fireline emulator, single player)
-function getBackend(){
-    return window.interop.settingGet('backend') === 'offline' ? 'offline' : 'online';
-}
-
-function setBackend(backend){
-    if (backend === 'offline') return window.interop.settingSet('backend', 'offline');
-    return window.interop.settingDel('backend');
-}
-
-function isOffline(){
-    return getBackend() === 'offline';
-}
-
-function updateBackendStatus(){
-    $('#backend-offline-note').toggle(isOffline());
+// Offline launch button (single player, local Fireline emulator, no sign-in needed)
+let gamePatched = false;
+function updateOfflineButton(disabled){
+    document.querySelector('#launch-offline').disabled = disabled;
 }
 
 
@@ -523,8 +502,7 @@ function updateLaunchButton(disabled, message, style){
 }
 
 function launchReady(){
-    if (isOffline()) updateLaunchButton(false, "Launch Game (offline, single player)", "btn-success")
-    else updateLaunchButton(false, "Launch Game", "btn-success")
+    updateLaunchButton(false, "Launch Game", "btn-success")
 }
 
 function launchRunning(){
@@ -578,11 +556,6 @@ function show_update_error(){
 
 let update_alert = false;
 function checkForUpdates(send_alert){
-    if (isOffline()) {
-        // Offline mode makes no network requests
-        if (send_alert) ipcRenderer.invoke("showDialog", "Offline mode is on, switch back to Online to check for updates.");
-        return;
-    }
     show_update_checking();
     if(send_alert){
         update_alert=true;

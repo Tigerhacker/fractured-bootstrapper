@@ -11,6 +11,7 @@
             background-size: 100% auto;
             background-repeat: no-repeat;
             background-color: #080808;
+            overflow-x: hidden;
         }
         .jumbotron{
             background-color: rgba(255,255,255,0.7);
@@ -118,6 +119,11 @@
           </select>
           <br>
           <button class="btn btn-outline-secondary w-100" type="button" id="launch-game" disabled>Not ready</button>
+          <button class="btn btn-outline-info w-100 mt-2" type="button" id="launch-offline" disabled>Launch Offline</button>
+          <small class="text-muted">
+              No login or internet connection is needed for offline mode.
+              Only solo modes are available.
+          </small>
         </main>
 
         <div class="inner cover jumbotron ">
@@ -243,22 +249,8 @@ spacegame
 
         <div class="inner cover jumbotron ">
             <h2 class="cover-heading">Override backend:</h2>
-            Which server the game talks to<br><br>
-            <select class="form-control" id="backend-select">
-                <option value="online">Online: community server (lifeline.returnvector.net)</option>
-                <option value="offline">Offline: local emulator, single player only</option>
-            </select>
-            <small class="text-muted">
-                Offline mode runs a copy of the original Fireline backend inside the launcher, replaying
-                recorded responses, so the game can be played without internet or a Discord sign-in.
-                Only solo modes (vs AI) work: there is no matchmaking, the store is read only and nothing
-                you earn is saved.
-            </small>
-            <div id="backend-offline-note" class="alert alert-info mt-2" style="display: none;">
-                Offline mode is on. Switch back to <b>Online</b> to play multiplayer.
-            </div>
         </div>
-      
+
         <div class="inner cover jumbotron ">
             <h2 class="cover-heading">Verify game archive:</h2>
 
