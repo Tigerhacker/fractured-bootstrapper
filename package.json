@@ -15,6 +15,7 @@
         "pack": "electron-builder --dir",
         "build": "electron-builder build --win --publish never",
         "build:linux": "electron-builder build --linux --publish never",
+        "build:linux:wsl": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-linux-wsl.ps1",
         "deploy": "electron-builder build --win --publish always",
         "deploy:linux": "electron-builder build --linux --publish always"
     },

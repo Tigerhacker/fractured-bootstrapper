@@ -1,0 +1,11 @@
+# Patch payload in data/ is hashed in views/js/patch_manifest.js (sha256).
+# Hashes were taken from Windows (CRLF) files, so force CRLF on checkout
+# and keep the binaries untouched.
+data/*.js    text eol=crlf
+data/*.css   text eol=crlf
+data/*.json  text eol=crlf
+data/*.exe   binary
+data/*.pak   binary
+
+# Shell scripts run in WSL/Linux and break with CRLF
+*.sh         text eol=lf

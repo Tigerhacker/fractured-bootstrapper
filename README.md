@@ -70,6 +70,11 @@ The Linux section can be shown on any platform:
 
 ## Building for Linux
 deb/rpm can't be built on Windows. Run the "Build Linux" GitHub Action (tick *publish* to upload to
+
+On Windows with WSL 2 (needs `sudo apt-get install -y rpm` in the distro once), run
+`npm run build:linux:wsl`. It copies the repo into `~/fsb-build` inside WSL, installs Node 22 there on
+first run, builds, and copies the AppImage/deb/rpm and `latest-linux.yml` to `dist\linux`. Add
+`-- -Distro <name>` to pick a WSL distro, or `-- -Clean` to reinstall node_modules.
 the draft release that `npm run deploy` created), or run `npm run build:linux` on a Linux machine.
 Publish the release only after both the Windows and Linux builds are uploaded, otherwise Linux copies
 won't find `latest-linux.yml` and their update check fails.
