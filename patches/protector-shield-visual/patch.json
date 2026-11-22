@@ -1,0 +1,21 @@
+{
+  "id": "protector-shield-visual",
+  "title": "Preserve the Protector shield field visual",
+  "status": "testing",
+  "requires": [],
+  "target": "spacegame/Content/Paks/Makichika_ProtectorShield_P.pak",
+  "assets": [
+    {
+      "path": "BP_SYS_ABLTY_SHIELDAOE_01.uasset",
+      "replace": "files/BP_SYS_ABLTY_SHIELDAOE_01.uasset",
+      "baseSha256": null,
+      "sha256": "4a6c6fb50cd57e35fcbb6f1010a99165ce21b572484d3c73258f85492745268d"
+    },
+    {
+      "path": "BP_SYS_ABLTY_SHIELDAOE_01.uexp",
+      "replace": "files/BP_SYS_ABLTY_SHIELDAOE_01.uexp",
+      "baseSha256": null,
+      "sha256": "539b218fb20ae98b44aee55eca4aa7d966acea0d40c26048fc790d94379f0d08"
+    }
+  ]
+}

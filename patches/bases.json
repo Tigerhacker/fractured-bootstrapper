@@ -9,5 +9,14 @@
         "sha256": "cfa30ee8f3019c5b334f7a83843322e87cedd93e9c90d13b18bc4473bc975a49",
         "size": 71567712,
         "source": "Steam depot (app 310380), unmodified"
+    },
+    "spacegame/Content/Paks/Makichika_ProtectorShield_P.pak": {
+        "sha256": "6826fb0f04fc1899fd086c1d0872a8f5149ac885393c3144886b0254b1e78e65",
+        "size": 111,
+        "source": "Generated empty version-4 PAK for an additive Makichika overlay; contains no Steam content.",
+        "emptyPak": {
+            "mountPoint": "../../../spacegame/Content/Blueprints/Systems/Subsystems/"
+        },
+        "encrypted": false
     }
 }

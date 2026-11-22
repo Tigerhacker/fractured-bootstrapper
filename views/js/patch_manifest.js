@@ -1,4 +1,4 @@
-const patchLevel = 33;
+const patchLevel = 34;
 
 const dataMapping = [
     {
@@ -60,10 +60,13 @@ const dataMapping = [
         dest: "Engine/Config/BaseEngine.ini",
         md5: "280bf6a1ea48fa3c536a7a3b20cc150c",
         sha256: "047690ae6ce7ba5c0c7a5c8ab5b786050f02f985f3f8958f4d66f85ad1223dd4",
+    },
+    {
+        src: "Makichika_ProtectorShield_P.pak",
+        dest: "spacegame/Content/Paks/Makichika_ProtectorShield_P.pak",
+        sha256: "a5ef5c3e7bc5c6a0e367338ca7e95b4f5d17ee1cd5049095d00a2671f5ed4979",
+        md5: "99bfdee9b842857da186bfda4a7b9922",
     }
 ];
 
-module.exports = {
-    patchLevel,
-    dataMapping
-}
+module.exports = { patchLevel, dataMapping };
