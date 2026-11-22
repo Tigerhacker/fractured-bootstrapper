@@ -4,6 +4,7 @@
 //   compat data folder  - what Steam calls STEAM_COMPAT_DATA_PATH, e.g. steamapps/compatdata/310380
 //   wine prefix         - the fake Windows install (drive_c etc), always <compat data folder>/pfx
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
 const child_process = require('child_process');
 
@@ -207,6 +208,19 @@ function findRuntimeFor(protonDir) {
     return { required: true, appId, entryPoint: null, name: KNOWN_RUNTIMES[appId] || `app ${appId}` };
 }
 
+// Proton 10's steam.exe loads Steam's client library from $HOME/.steam/sdk64/steamclient.so and
+// aborts ("Assertion failed ... steamclient_main.c ... !status") if it can't. Flatpak Steam runs
+// with HOME set to its own app folder, so that path only exists there. Returns the HOME to use
+// instead, or null when the real home already has the library (native Steam) or none is found.
+function sandboxedSteamHome() {
+    const home = os.homedir();
+    const lib = (h) => path.join(h, '.steam', 'sdk64', 'steamclient.so');
+    if (isFile(lib(home))) return null;
+    const flatpakHome = path.join(home, '.var', 'app', 'com.valvesoftware.Steam');
+    if (isFile(lib(flatpakHome))) return flatpakHome;
+    return null;
+}
+
 function getUseRuntime() {
     return settings.sotreGet(KEYS.useRuntime) !== false;
 }
@@ -258,7 +272,7 @@ function buildLaunch(gameFolder, gameArgs) {
         }
     }
 
-    let command, args, runtime = null;
+    let command, args, runtime = null, steamHome = null;
 
     if (runner.type === 'wine') {
         env.WINEPREFIX = path.join(compatData, 'pfx');
@@ -275,6 +289,8 @@ function buildLaunch(gameFolder, gameArgs) {
             STEAM_COMPAT_TOOL_PATHS: runner.path,
             STEAM_COMPAT_LIBRARY_PATHS: steamPaths.linuxSteamLibraries().join(':'),
         });
+        steamHome = sandboxedSteamHome();
+        if (steamHome) env.HOME = steamHome;
         if (log) {
             env.PROTON_LOG = '1';
             env.PROTON_LOG_DIR = logsDir();
@@ -307,6 +323,7 @@ function buildLaunch(gameFolder, gameArgs) {
         exePath,
         runner,
         runtime,
+        steamHome: env.HOME !== process.env.HOME ? env.HOME : null,
         compatData,
         logFile: path.join(logsDir(), 'last-launch.log'),
     };

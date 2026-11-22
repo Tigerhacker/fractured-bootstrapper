@@ -126,6 +126,7 @@ function launchLinux(folder, gameArgs, callback) {
             `# runner:  ${launch.runner.name} (${launch.runner.path})`,
             `# runtime: ${launch.runtime ? (launch.runtime.entryPoint || (launch.runtime.disabled ? 'disabled' : 'none')) : 'n/a'}`,
             `# prefix:  ${launch.compatData}`,
+            ...(launch.steamHome ? [`# HOME:    ${launch.steamHome} (Flatpak Steam, or set in extra env)`] : []),
             `# command: ${redact([launch.command, ...launch.args].map((a) => JSON.stringify(a)).join(' '))}`,
             '',
         ].join('\n');
