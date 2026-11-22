@@ -16,7 +16,7 @@ const root = path.join(__dirname, '..');
 const dataDir = path.join(root, 'data');
 const manifestPath = path.join(root, 'views', 'js', 'patch_manifest.js');
 // Files in data/ that are intentionally not part of the patch manifest.
-const IGNORED = new Set(['fireline-responses.json']);
+const IGNORED = new Set(['fireline-responses.json', 'discord-default-avatar.png']);
 
 const args = process.argv.slice(2);
 const update = args.includes('--update');
