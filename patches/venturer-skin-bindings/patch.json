@@ -1,0 +1,75 @@
+{
+  "id": "venturer-skin-bindings",
+  "title": "Venturer skins bind their palettes to the current mesh material slots on all four LODs",
+  "status": "testing",
+  "requires": [],
+  "target": "spacegame/Content/Paks/BP.pak",
+  "assets": [
+    {
+      "path": "Parts/M00/BP_SHP_MID_M00_C018_Venturer.uasset",
+      "edits": [
+        {
+          "offset": "0xA9",
+          "original": "30 DE 01",
+          "patched": "20 1E 02"
+        },
+        {
+          "offset": "0x6D56",
+          "original": "14 7B",
+          "patched": "04 BB"
+        },
+        {
+          "offset": "0x6DC6",
+          "original": "60 D7 01",
+          "patched": "50 17 02"
+        },
+        {
+          "offset": "0x6E2E",
+          "original": "2C D8 01",
+          "patched": "1C 18 02"
+        },
+        {
+          "offset": "0x6E96",
+          "original": "F8 D8 01",
+          "patched": "E8 18 02"
+        },
+        {
+          "offset": "0x6EFE",
+          "original": "C4 D9 01",
+          "patched": "B4 19 02"
+        },
+        {
+          "offset": "0x6F66",
+          "original": "90 DA 01",
+          "patched": "80 1A 02"
+        },
+        {
+          "offset": "0x6FCE",
+          "original": "AA DB 01",
+          "patched": "9A 1B 02"
+        },
+        {
+          "offset": "0x7036",
+          "original": "2A DC 01",
+          "patched": "1A 1C 02"
+        },
+        {
+          "offset": "0x709E",
+          "original": "CD DC 01",
+          "patched": "BD 1C 02"
+        },
+        {
+          "offset": "0x7106",
+          "original": "70 DD 01",
+          "patched": "60 1D 02"
+        }
+      ]
+    },
+    {
+      "path": "Parts/M00/BP_SHP_MID_M00_C018_Venturer.uexp",
+      "replace": "files/Parts/M00/BP_SHP_MID_M00_C018_Venturer.uexp",
+      "baseSha256": "78906bafef33abe9af27d393e9d9446d5b4fd936ee86fb229bf8c05f9aff2154",
+      "sha256": "171dc54849204aa83b6019b52ed40dc8a0f88f01d7af843093cd50ad97a76984"
+    }
+  ]
+}
