@@ -9,5 +9,14 @@
         "sha256": "cfa30ee8f3019c5b334f7a83843322e87cedd93e9c90d13b18bc4473bc975a49",
         "size": 71567712,
         "source": "Steam depot (app 310380), unmodified"
+    },
+    "spacegame/Content/Paks/Makichika_CharonEvent_P.pak": {
+        "sha256": "0470fabae28a9e1b5800abb32d768976c1fbce8c1ba235d129099993e630aa77",
+        "size": 81,
+        "source": "Generated empty version-4 PAK for an additive Makichika overlay; contains no Steam content.",
+        "emptyPak": {
+            "mountPoint": "../../../spacegame/Content/"
+        },
+        "encrypted": false
     }
 }

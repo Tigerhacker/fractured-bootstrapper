@@ -237,3 +237,12 @@ npm run deploy                        # Windows installer -> draft release v<ver
   in-game.
 - Never commit `.pak-key`, Steam files in `vanilla/` (only the tracked source-built exe belongs there), or built binaries in `data/`.
   Regenerate them.
+
+
+## Proposed support for existing additive mods
+
+A raw target may optionally include `append: { "baseSize": 123, "file": "files/sections.bin", "sha256": "..." }` alongside `edits`. The builder verifies the pristine base length and appended payload hash. Exactly one append is allowed per target. Existing-byte edits keep their original-byte and overlap guards, including rejection of edits inside the appended range. This supports a pre-existing PE section extension without storing a complete patched executable.
+
+A new additive unencrypted PAK can register `emptyPak: { "mountPoint": "../../../spacegame/Content/" }` and `encrypted: false` in `bases.json`, with the generated empty PAK's SHA-256. If absent, the empty base is generated and then verified like every other base. The overlay's loose assets are ordinary `replace` entries with `baseSha256: null`. Stock encrypted archives retain their existing behavior. No AES key is required for an explicitly unencrypted additive overlay.
+
+Run `node scripts/test-build-extensions.js` for isolated real-builder checks covering append, invalid size/hash/path, original-byte rejection, overlap, failure atomicity, legacy raw output and unencrypted overlay content.

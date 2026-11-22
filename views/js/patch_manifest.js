@@ -1,4 +1,4 @@
-const patchLevel = 33;
+const patchLevel = 34;
 
 const dataMapping = [
     {
@@ -60,10 +60,13 @@ const dataMapping = [
         dest: "Engine/Config/BaseEngine.ini",
         md5: "280bf6a1ea48fa3c536a7a3b20cc150c",
         sha256: "047690ae6ce7ba5c0c7a5c8ab5b786050f02f985f3f8958f4d66f85ad1223dd4",
+    },
+    {
+        src: "Makichika_CharonEvent_P.pak",
+        dest: "spacegame/Content/Paks/Makichika_CharonEvent_P.pak",
+        sha256: "df58934b92ef8daa37e82e47e0b9563ba6546215d95d790ba809eef5462f5ee1",
+        md5: "23d61faaa36ecc3d7957ac602ff822b2",
     }
 ];
 
-module.exports = {
-    patchLevel,
-    dataMapping
-}
+module.exports = { patchLevel, dataMapping };
