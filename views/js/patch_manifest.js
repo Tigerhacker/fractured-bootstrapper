@@ -60,10 +60,25 @@ const dataMapping = [
         dest: "Engine/Config/BaseEngine.ini",
         md5: "280bf6a1ea48fa3c536a7a3b20cc150c",
         sha256: "047690ae6ce7ba5c0c7a5c8ab5b786050f02f985f3f8958f4d66f85ad1223dd4",
+    },
+    {
+        src: "drafting-script.js",
+        dest: "spacegame/Content/UIResources/frontend/drafting/drafting-script.js",
+        sha256: "f0123b19191d9208581fd8a77dcd9c440af1d8f3cff1b6811dce16aafa5cfdb1",
+        md5: "2d161c7c7e3a83df099fb05b0e6fba15",
+    },
+    {
+        src: "drafting-style.css",
+        dest: "spacegame/Content/UIResources/frontend/drafting/drafting-style.css",
+        sha256: "141794cd40ffbf06c30d3f05cdaea2be05fc6c60384143922b7dbf5dd6b45079",
+        md5: "fd506ebaeacee0fd219c024d4a091391",
+    },
+    {
+        src: "mode-selector.js",
+        dest: "spacegame/Content/UIResources/frontend/drafting/mode-selector.js",
+        sha256: "9b83c60984b50c2ce82fd6690e808b10acc9332df076000781cc994b97d07be7",
+        md5: "4ec9a9907db4416c9f7642c30ce90cf4",
     }
 ];
 
-module.exports = {
-    patchLevel,
-    dataMapping
-}
+module.exports = { patchLevel, dataMapping };
