@@ -1,0 +1,177 @@
+{
+  "id": "status-effect-game-clock",
+  "title": "Use server-announced game time for visual status countdowns",
+  "status": "testing",
+  "requires": [],
+  "target": "spacegame/Binaries/Win64/Fractured Space.exe",
+  "edits": [
+    {
+      "offset": "0x1de",
+      "original": "09",
+      "patched": "0b",
+      "note": "Published status-clock hook or PE section/unwind metadata; extracted independently of draft, missile and avatar changes"
+    },
+    {
+      "offset": "0x1f5",
+      "original": "74",
+      "patched": "c6",
+      "note": "Published status-clock hook or PE section/unwind metadata; extracted independently of draft, missile and avatar changes"
+    },
+    {
+      "offset": "0x1f9",
+      "original": "1c69",
+      "patched": "b88d",
+      "note": "Published status-clock hook or PE section/unwind metadata; extracted independently of draft, missile and avatar changes"
+    },
+    {
+      "offset": "0x22a",
+      "original": "e003",
+      "patched": "0504",
+      "note": "Published status-clock hook or PE section/unwind metadata; extracted independently of draft, missile and avatar changes"
+    },
+    {
+      "offset": "0x230",
+      "original": "dda0b503",
+      "patched": "00000000",
+      "note": "Published status-clock hook or PE section/unwind metadata; extracted independently of draft, missile and avatar changes"
+    },
+    {
+      "offset": "0x279",
+      "original": "90a4",
+      "patched": "c0e0",
+      "note": "Published status-clock hook or PE section/unwind metadata; extracted independently of draft, missile and avatar changes"
+    },
+    {
+      "offset": "0x27c",
+      "original": "3c",
+      "patched": "cc",
+      "note": "Published status-clock hook or PE section/unwind metadata; extracted independently of draft, missile and avatar changes"
+    },
+    {
+      "offset": "0x448",
+      "original": "00000000000000000000",
+      "patched": "2e7374636c6f636b0b50",
+      "note": "Published status-clock hook or PE section/unwind metadata; extracted independently of draft, missile and avatar changes"
+    },
+    {
+      "offset": "0x455",
+      "original": "000000",
+      "patched": "60e003",
+      "note": "Published status-clock hook or PE section/unwind metadata; extracted independently of draft, missile and avatar changes"
+    },
+    {
+      "offset": "0x459",
+      "original": "00",
+      "patched": "52",
+      "note": "Published status-clock hook or PE section/unwind metadata; extracted independently of draft, missile and avatar changes"
+    },
+    {
+      "offset": "0x45d",
+      "original": "000000",
+      "patched": "96b503",
+      "note": "Published status-clock hook or PE section/unwind metadata; extracted independently of draft, missile and avatar changes"
+    },
+    {
+      "offset": "0x46c",
+      "original": "00",
+      "patched": "20",
+      "note": "Published status-clock hook or PE section/unwind metadata; extracted independently of draft, missile and avatar changes"
+    },
+    {
+      "offset": "0x46f",
+      "original": "0000000000000000",
+      "patched": "602e737464617461",
+      "note": "Published status-clock hook or PE section/unwind metadata; extracted independently of draft, missile and avatar changes"
+    },
+    {
+      "offset": "0x478",
+      "original": "000000",
+      "patched": "189a24",
+      "note": "Published status-clock hook or PE section/unwind metadata; extracted independently of draft, missile and avatar changes"
+    },
+    {
+      "offset": "0x47d",
+      "original": "000000",
+      "patched": "c0e003",
+      "note": "Published status-clock hook or PE section/unwind metadata; extracted independently of draft, missile and avatar changes"
+    },
+    {
+      "offset": "0x481",
+      "original": "0000",
+      "patched": "9c24",
+      "note": "Published status-clock hook or PE section/unwind metadata; extracted independently of draft, missile and avatar changes"
+    },
+    {
+      "offset": "0x485",
+      "original": "000000",
+      "patched": "e8b503",
+      "note": "Published status-clock hook or PE section/unwind metadata; extracted independently of draft, missile and avatar changes"
+    },
+    {
+      "offset": "0x494",
+      "original": "00",
+      "patched": "40",
+      "note": "Published status-clock hook or PE section/unwind metadata; extracted independently of draft, missile and avatar changes"
+    },
+    {
+      "offset": "0x497",
+      "original": "00",
+      "patched": "c0",
+      "note": "Published status-clock hook or PE section/unwind metadata; extracted independently of draft, missile and avatar changes"
+    },
+    {
+      "offset": "0x311359",
+      "original": "33612e00",
+      "patched": "c355af03",
+      "note": "Published status-clock hook or PE section/unwind metadata; extracted independently of draft, missile and avatar changes",
+      "rva": "0x311d59"
+    },
+    {
+      "offset": "0x31540d",
+      "original": "f3410f5cf0",
+      "patched": "e8ee51af03",
+      "note": "Published status-clock hook or PE section/unwind metadata; extracted independently of draft, missile and avatar changes",
+      "rva": "0x315e0d"
+    },
+    {
+      "offset": "0x316689",
+      "original": "f3410f5cf0",
+      "patched": "e8723faf03",
+      "note": "Published status-clock hook or PE section/unwind metadata; extracted independently of draft, missile and avatar changes",
+      "rva": "0x317089"
+    },
+    {
+      "offset": "0x5f41d5",
+      "original": "66894104",
+      "patched": "89410490",
+      "note": "Published status-clock hook or PE section/unwind metadata; extracted independently of draft, missile and avatar changes",
+      "rva": "0x5f4bd5"
+    },
+    {
+      "offset": "0x5f77c3",
+      "original": "c9fcffff",
+      "patched": "59f18003",
+      "note": "Published status-clock hook or PE section/unwind metadata; extracted independently of draft, missile and avatar changes",
+      "rva": "0x5f81c3"
+    },
+    {
+      "offset": "0x5fd930",
+      "original": "f30f104108",
+      "patched": "e9bb8d8003",
+      "note": "Published status-clock hook or PE section/unwind metadata; extracted independently of draft, missile and avatar changes",
+      "rva": "0x5fe330"
+    },
+    {
+      "offset": "0x1a51148",
+      "original": "ff9008090000",
+      "patched": "e8d3563b0290",
+      "note": "Published status-clock hook or PE section/unwind metadata; extracted independently of draft, missile and avatar changes",
+      "rva": "0x1a51b48"
+    }
+  ],
+  "append": {
+    "baseSize": 62232064,
+    "file": "files/status-clock-sections.bin",
+    "sha256": "6eaa20187001d6001c1cce2f98762d1d758f6e380eb21575cbbe807a8b752c3c"
+  }
+}
