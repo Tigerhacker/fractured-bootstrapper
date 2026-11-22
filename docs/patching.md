@@ -97,11 +97,13 @@ npm run pak -- extract <pak> <outDir> [prefix...]          decrypt + inflate to 
 npm run pak -- diff    <base.pak> <pak|dir> [prefix...]    which assets differ
 npm run pak -- mkpatch <base.pak> <pak|dir> patches/<id> <target> [prefix...]
 npm run patches:build                                     shipped patches -> data/
-npm run patches:build -- --testing                        + testing patches
+npm run patches:build -- --testing --out <dir>            + testing patches, written elsewhere (never into data/)
 npm run patches:build -- --only a,b --out <dir>           subset, elsewhere
 npm run patches:index [-- --check]                        regenerate / check INDEX.md
 npm run release:zip [-- --upload]                         data/ -> dist/ patch zip (+ attach to release)
-npm run hashes -- --update --bump                         refresh patch_manifest.js
+npm run hashes                                            check data/ against patch_manifest.js
+npm run hashes -- --update                                rewrite changed hashes (text payload PRs)
+npm run hashes -- --update --bump                         also bump patchLevel (maintainer, at release)
 ```
 
 `prefix` matches the start of an entry path, e.g. `HUD/W_Killcam.` (with the
@@ -123,10 +125,15 @@ every target has built, so a failing patch never leaves `data/` half updated.
 npm run pak -- extract vanilla/spacegame/Content/Paks/BP.pak work HUD/W_Foo.
 #   edit work/HUD/W_Foo.uasset/.uexp (UAssetGUI), or drop in re-cooked files
 npm run pak -- mkpatch vanilla/spacegame/Content/Paks/BP.pak work patches/my-fix spacegame/Content/Paks/BP.pak
-#   fill in title + README.md, set "status"
-npm run patches:build -- --testing
-npm run hashes -- --update --bump
+#   fill in title + README.md; leave "status": "testing"
+npm run patches:build -- --testing --out ../fs-test     # test build OUTSIDE data/
+#   copy ../fs-test/BP.pak over a test game install and try it in-game
+npm run patches:index
 ```
+
+Then submit it as described in "Submitting a patch". Don't run
+`npm run hashes -- --update` for a binary patch: a `testing` patch never
+changes `data/` or `patch_manifest.js`.
 
 Hand only the assets you changed to `mkpatch`. Re-saving an asset in the
 editor regenerates GUIDs (see `patches/recook-churn`), and that noise ends up
@@ -194,13 +201,142 @@ order. Changed entries are re-encoded the way UnrealPak does it: zlib blocks of
 64 KiB, each encrypted with padding that repeats its leading bytes, and the
 entry hash = sha1 of its stored bytes. Same inputs, same pak.
 
+## Submitting a patch (pull requests)
+
+A patch arrives as `"status": "testing"` and doesn't change what players get
+until a maintainer promotes it. Shipped files, and the manifest describing
+them, only change at release time. That keeps parallel PRs from conflicting,
+and stops untested changes reaching players by accident.
+
+### A binary (exe / pak) patch PR contains only
+
+- `patches/<id>/`: `patch.json` (`"status": "testing"`), `README.md`
+  (see `patches/AGENTS.md` for the headings), and any `files/`.
+- The regenerated `patches/INDEX.md`.
+
+### It must not contain
+
+- **`views/js/patch_manifest.js`**: no hashes, no `dataMapping` entries, and
+  never `patchLevel`. Those describe what ships. A `testing` patch doesn't
+  ship, so any manifest change in its PR is wrong by definition.
+- **Anything in `data/`.** Binaries there are build outputs, and a build that
+  includes `testing` patches must never be committed.
+- **Changes to `scripts/`, `patches/bases.json`, `.gitattributes` or other
+  patches.** Send builder or format changes as their own PR, and open an issue
+  first if your patch needs one. A new base (another stock pak, say) needs a
+  maintainer anyway, because they hold the pristine files.
+- **New target files** (a new `.pak`, a new loose file). The installer copies
+  `dataMapping` files but never deletes any, so a new file can't be withdrawn
+  by a later release. Put changes to existing assets into the stock pak that
+  holds them (e.g. `BP.pak`) with `mkpatch`, and discuss genuinely new content
+  in an issue first.
+- **Commits from other PRs.** Base the branch on `master`, one fix per PR.
+  If it depends on an unmerged PR, say so in the description instead of
+  including that PR's commits.
+
+### Reviewable form (no opaque blobs)
+
+Every byte a patch ships has to be reviewable by someone who didn't write it.
+A patch that is only a binary blob may sit as `testing`, but it **won't be
+promoted to `shipped`**, and a maintainer may close it as unreviewable.
+
+**Exe code** (byte edits, and any added code they call):
+- **Source:** the source (C, C++ or assembly) for every `files/*.bin`, in the
+  patch folder, with the exact toolchain, version and build command.
+  Rebuilding from them must reproduce each `.bin`'s pinned `sha256`.
+- **Disassembly:** a generated listing of every payload (e.g. `<name>.asm`),
+  with function boundaries and what each function does.
+- **Only your own code and data.** No embedded PE/DLL images (headers, export
+  or debug tables), and no copies of the base exe's tables such as `.pdata`.
+  The builder generates the unwind table and headers.
+- **Annotated edits:** every byte edit carries a `note` naming the
+  instructions it replaces and what replaces them. Displaced instructions must
+  be accounted for.
+
+**Pak assets:**
+- **Byte edits** wherever `mkpatch` can produce them. Hand it only the assets
+  you actually changed.
+- **For each replaced asset, say what changed inside it:** which exports and
+  properties, with before/after values. A UAssetGUI JSON diff of the touched
+  exports is ideal; a written list is the minimum.
+- **No re-cooks unless needed.** Re-saving regenerates GUIDs and recompresses
+  textures (see `patches/recook-churn`), which buries the real change.
+
+**Assets restored from older game releases:**
+- the Steam **depot ID** and **ManifestID** they came from, and the **date that
+  manifest was released** on Steam;
+- the **original path and filename** of each asset in that release, e.g.
+  `Content/Maps/ActionConquest/Halloween/Map_X.umap`, next to the path it
+  ships under here;
+- what, if anything, was changed from the historical file.
+
+That's enough for anyone to download the same manifest and compare.
+
+**Anything made elsewhere** (another repo, a published mod): a link to the
+exact commit or file and its sha256, and whether this patch reproduces those
+bytes.
+
+### Before opening the PR
+
+```
+npm run patches:build -- --testing --out ../fs-test   # your patch builds with all others
+npm run patches:build                                 # data/ back to shipped-only
+npm run hashes                                        # must say "All hashes match" with no --update
+npm run patches:index -- --check
+git diff --cached                                     # no key material, no data/, no manifest
+```
+
+Test in-game with the files from `../fs-test`, and say in the README what you
+tested and on which build. Check the patch meets "Reviewable form" above.
+
+### Text payload PRs (`data/*.js`, `*.css`, `*.json`, `*.ini`)
+
+These files are shipped as-is, and there is no `testing` status for them, so
+a merged change goes out with the next release. Therefore:
+
+- **Show the diff against stock.** If the file isn't in `data/` yet, make the
+  first commit the unmodified game file on its own, then your change on top,
+  so review sees only what you changed.
+- **Update the file's hashes with `npm run hashes -- --update`** (no `--bump`),
+  and add a `dataMapping` entry if the file is new.
+- **Leave `patchLevel` alone.**
+- **Don't add `.gitattributes` overrides.** `data/*.js` etc. are already
+  `eol=crlf`, and the manifest hashes are taken from that CRLF working copy.
+- Keep unrelated changes, such as reformatting or line-ending churn, out of
+  the diff.
+
+## Promoting a patch, and `patchLevel` (maintainers)
+
+The launcher writes `patchLevel` into the game folder's `bootlegger.json`
+after patching. A copy counts as installed only when its recorded level
+equals the launcher's, so a player is asked to repatch whenever the number
+changes. The rules follow from that:
+
+- **`patchLevel` changes only when the shipped set changes**, meaning the files
+  in `data/` built from `shipped` patches plus the text payloads, and only in a
+  maintainer commit for a release.
+- **Bump it at most once per release.** If it's already above the level of the
+  last published release, don't bump again.
+- A PR never sets it. Two PRs that each set it to the same number would claim
+  that two different file sets are the same level.
+
+To promote a tested patch: set `"status": "shipped"`, then run
+
+```
+npm run patches:build                 # shipped only, into data/
+npm run hashes -- --update --bump     # new hashes; bumps only if something changed
+npm run patches:index
+```
+
+and commit `patch.json`, `INDEX.md` and `patch_manifest.js` together.
+
 ## Releases
 
 Order of operations for a launcher release:
 
 ```
 npm run patches:build                 # data/ = bases + shipped patches
-npm run hashes -- --update --bump     # only if any data/ file changed
+npm run hashes -- --update --bump     # only if any data/ file changed, once per release
 npm run deploy                        # Windows installer -> draft release v<version>
                                       #   predeploy: check-hashes; postdeploy: release:zip --upload
 # then run the "Build Linux" workflow (publish ticked), then publish the draft
@@ -224,8 +360,9 @@ npm run deploy                        # Windows installer -> draft release v<ver
 
 ## Working together
 
-- One patch per branch/PR, in its own folder. Two people rarely touch the same
-  files, and when they touch the same *asset*, the build says so.
+- One patch per branch/PR, in its own folder, following "Submitting a
+  patch" above. Two people rarely touch the same files, and when they touch
+  the same *asset*, the build says so.
 - Commit the regenerated `patches/INDEX.md` with the patch. In review, the
   INDEX diff shows at a glance which files and assets the PR touches, and
   `npm run patches:index -- --check` fails if someone forgot.
@@ -233,7 +370,7 @@ npm run deploy                        # Windows installer -> draft release v<ver
 - Changes to `data/BP.pak` show up in review as JSON and a README, not as a
   71 MB blob.
 - Experimental work goes in as `"status": "testing"`. Testers build with
-  `--testing`, and the patch is promoted to `shipped` once it's confirmed
-  in-game.
+  `--testing --out <dir>`, and a maintainer promotes the patch to `shipped`
+  once it's confirmed in-game.
 - Never commit `.pak-key`, Steam files in `vanilla/` (only the tracked source-built exe belongs there), or built binaries in `data/`.
   Regenerate them.
