@@ -1,0 +1,141 @@
+{
+  "id": "charon-event-restoration",
+  "title": "Restore Charon event maps and supporting assets",
+  "status": "testing",
+  "requires": [],
+  "target": "spacegame/Content/Paks/Makichika_CharonEvent_P.pak",
+  "assets": [
+    {
+      "path": "Audio/PlaceholderSpeech/GlitchSound.uasset",
+      "replace": "files/Audio/PlaceholderSpeech/GlitchSound.uasset",
+      "baseSha256": null,
+      "sha256": "85530251168badb5e825003471c8a8e53f3d7b3be6fc074319bbe660617ee7bd"
+    },
+    {
+      "path": "Audio/PlaceholderSpeech/GlitchSound.uexp",
+      "replace": "files/Audio/PlaceholderSpeech/GlitchSound.uexp",
+      "baseSha256": null,
+      "sha256": "43b69f0b0e226f21846398ffe08395208a98c7b282a6a298a54339b7d7631831"
+    },
+    {
+      "path": "Blueprints/Ai/FTUE/BotPlayerControllerHalloweenBot.uasset",
+      "replace": "files/Blueprints/Ai/FTUE/BotPlayerControllerHalloweenBot.uasset",
+      "baseSha256": null,
+      "sha256": "0d2cc827fa37d6bf826bc2c925f877c6384abdc0be197733d5c38e6606c5e2d9"
+    },
+    {
+      "path": "Blueprints/Ai/FTUE/BotPlayerControllerHalloweenBot.uexp",
+      "replace": "files/Blueprints/Ai/FTUE/BotPlayerControllerHalloweenBot.uexp",
+      "baseSha256": null,
+      "sha256": "f945ca3214b40f33b9d0b025614e0636de7b1b675b3e705ce51e5407c475aca3"
+    },
+    {
+      "path": "Blueprints/Ai/FTUE/BP_HalloweenBotBehaviour.uasset",
+      "replace": "files/Blueprints/Ai/FTUE/BP_HalloweenBotBehaviour.uasset",
+      "baseSha256": null,
+      "sha256": "d62b1ec3969a1265d01ff0330da8828113472c8665721b1f9cfb905cfdb0985b"
+    },
+    {
+      "path": "Blueprints/Ai/FTUE/BP_HalloweenBotBehaviour.uexp",
+      "replace": "files/Blueprints/Ai/FTUE/BP_HalloweenBotBehaviour.uexp",
+      "baseSha256": null,
+      "sha256": "d7f56d044aac3e1c855f39f5402f3bcdd28bf7a7521c2eb581b32fa8b0ad19e3"
+    },
+    {
+      "path": "Blueprints/Makichika/Charon/Legacy/BP_Asteroid_Colony_Alpha1b.uasset",
+      "replace": "files/Blueprints/Makichika/Charon/Legacy/BP_Asteroid_Colony_Alpha1b.uasset",
+      "baseSha256": null,
+      "sha256": "e8a68cd56e4b3d8d61077c7e465aa2863ac420aae6d0f0a349d64a4998d91513"
+    },
+    {
+      "path": "Blueprints/Makichika/Charon/Legacy/BP_Asteroid_Colony_Alpha1b.uexp",
+      "replace": "files/Blueprints/Makichika/Charon/Legacy/BP_Asteroid_Colony_Alpha1b.uexp",
+      "baseSha256": null,
+      "sha256": "82527cca3a751cdd1e7bbb943fd8b7ba8e0960465d62b8da331156bf342384f2"
+    },
+    {
+      "path": "Environment/Promotions/Halloween_2015/MI_Sun_Alpha_Halloween.uasset",
+      "replace": "files/Environment/Promotions/Halloween_2015/MI_Sun_Alpha_Halloween.uasset",
+      "baseSha256": null,
+      "sha256": "e5b556750a98fa4630329a9fbd313ccdebc843ee38c90bba99f466aea59273ec"
+    },
+    {
+      "path": "Environment/Promotions/Halloween_2015/MI_Sun_Alpha_Halloween.uexp",
+      "replace": "files/Environment/Promotions/Halloween_2015/MI_Sun_Alpha_Halloween.uexp",
+      "baseSha256": null,
+      "sha256": "6335f61a3adf1183451f964df1c65944f7f78022c48af7405de8ad2d5350e477"
+    },
+    {
+      "path": "Environment/Sky/Textures/MI_Nebula_Vertex_8.uasset",
+      "replace": "files/Environment/Sky/Textures/MI_Nebula_Vertex_8.uasset",
+      "baseSha256": null,
+      "sha256": "9b95969dc0968eee00bcd5e39b0c819154499cb5ddd3ea64dcfa37f09d7c6d15"
+    },
+    {
+      "path": "Environment/Sky/Textures/MI_Nebula_Vertex_8.uexp",
+      "replace": "files/Environment/Sky/Textures/MI_Nebula_Vertex_8.uexp",
+      "baseSha256": null,
+      "sha256": "dcf13521f735f27e6618e6514f08477966746db185c52226929da1695db6a9ba"
+    },
+    {
+      "path": "Maps/ActionConquest/Halloween/Map_ActionConquest_Alpha_Art_01_Fog_Halloween.umap",
+      "replace": "files/Maps/ActionConquest/Halloween/Map_ActionConquest_Alpha_Art_01_Fog_Halloween.umap",
+      "baseSha256": null,
+      "sha256": "5ac0fbbfc5bf562271670d72d48351a7f8b02c7956c02605021b6d21da1fd1f0"
+    },
+    {
+      "path": "Maps/ActionConquest/Halloween/Map_ActionConquest_Alpha_Art_01_Fog_Halloween.uexp",
+      "replace": "files/Maps/ActionConquest/Halloween/Map_ActionConquest_Alpha_Art_01_Fog_Halloween.uexp",
+      "baseSha256": null,
+      "sha256": "3161d29614c03573f9441e022e3c99c5cd0f1437b71a26ba17eee906280879fb"
+    },
+    {
+      "path": "Maps/ActionConquest/Halloween/Map_ActionConquest_Alpha_Art_01_Fog_Halloween_BuiltData.uasset",
+      "replace": "files/Maps/ActionConquest/Halloween/Map_ActionConquest_Alpha_Art_01_Fog_Halloween_BuiltData.uasset",
+      "baseSha256": null,
+      "sha256": "7e2001d9ac6750339e68eec45da465ac063e7238254c8f938695afd042fc931e"
+    },
+    {
+      "path": "Maps/ActionConquest/Halloween/Map_ActionConquest_Alpha_Art_01_Fog_Halloween_BuiltData.uexp",
+      "replace": "files/Maps/ActionConquest/Halloween/Map_ActionConquest_Alpha_Art_01_Fog_Halloween_BuiltData.uexp",
+      "baseSha256": null,
+      "sha256": "3fc63eab45bf64baef68d36f565e0be567d0c00ca614c1a8d3c4ccb31aa289bd"
+    },
+    {
+      "path": "Maps/ActionConquest/Halloween/Map_ActionConquest_Alpha_Design_Halloween.umap",
+      "replace": "files/Maps/ActionConquest/Halloween/Map_ActionConquest_Alpha_Design_Halloween.umap",
+      "baseSha256": null,
+      "sha256": "bb611538e6c52508430c74e2b0ee95c0045e95c594ab79fc7cfa122a92f560fa"
+    },
+    {
+      "path": "Maps/ActionConquest/Halloween/Map_ActionConquest_Alpha_Design_Halloween.uexp",
+      "replace": "files/Maps/ActionConquest/Halloween/Map_ActionConquest_Alpha_Design_Halloween.uexp",
+      "baseSha256": null,
+      "sha256": "bb538777bac4dfc9d6a49db32ae85f8779417550a3ab38bfb6ae54776b1af6ab"
+    },
+    {
+      "path": "Maps/ActionConquest/Map_ActionConquest_A1_B2_CharonEvent.umap",
+      "replace": "files/Maps/ActionConquest/Map_ActionConquest_A1_B2_CharonEvent.umap",
+      "baseSha256": null,
+      "sha256": "0cc370adf2ab6af2de953ae96a7e3d49fbcce039515cecf322c5a64138fb9c8e"
+    },
+    {
+      "path": "Maps/ActionConquest/Map_ActionConquest_A1_B2_CharonEvent.uexp",
+      "replace": "files/Maps/ActionConquest/Map_ActionConquest_A1_B2_CharonEvent.uexp",
+      "baseSha256": null,
+      "sha256": "5b43d57ed9a86cf74384af60442689d8e0d62cf5aae7cd97e2d90ea612e9a241"
+    },
+    {
+      "path": "Maps/ActionConquest/Map_ActionConquest_A1_B2_CharonEvent_BuiltData.uasset",
+      "replace": "files/Maps/ActionConquest/Map_ActionConquest_A1_B2_CharonEvent_BuiltData.uasset",
+      "baseSha256": null,
+      "sha256": "8a7331e33f14ded4c450349165c3c4082c9e8786f31fb1cab4bd1fdae6b19562"
+    },
+    {
+      "path": "Maps/ActionConquest/Map_ActionConquest_A1_B2_CharonEvent_BuiltData.uexp",
+      "replace": "files/Maps/ActionConquest/Map_ActionConquest_A1_B2_CharonEvent_BuiltData.uexp",
+      "baseSha256": null,
+      "sha256": "3a51ed201ce1d1f9e3e35447d8f61a6b6fce9075074d6cd1eccee80d10772fde"
+    }
+  ]
+}
