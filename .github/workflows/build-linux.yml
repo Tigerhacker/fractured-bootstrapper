@@ -4,6 +4,7 @@
 # uploaded to the draft GitHub release for the version in package.json, the same draft that
 # `npm run deploy` creates on Windows. Run it BEFORE publishing that draft: Linux copies of the
 # launcher look for latest-linux.yml in the newest release to auto-update.
+# It needs the patch zip on that release (uploaded by `npm run deploy`), see docs/patching.md.
 name: Build Linux
 
 on:
@@ -30,6 +31,17 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y rpm
 
       - run: npm install
+
+      # Patched binaries (data/*.exe, data/*.pak) are not in git. They come from the
+      # patch zip that `npm run deploy` uploads to the same release (postdeploy).
+      - name: Fetch patched game files
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          gh release download "v$VERSION" --pattern 'fractured-space-patch-*.zip' --dir patch-zip --clobber
+          node scripts/release-zip.js unpack patch-zip/*.zip
+          node scripts/check-hashes.js
 
       - name: Build
         env:

@@ -9,3 +9,7 @@ data/*.pak   binary
 
 # Shell scripts run in WSL/Linux and break with CRLF
 *.sh         text eol=lf
+
+# Game binaries anywhere (patch bases in vanilla/, outputs in data/)
+*.exe        binary
+*.pak        binary

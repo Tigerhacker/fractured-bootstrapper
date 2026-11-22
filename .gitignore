@@ -68,3 +68,20 @@ views/login/cache.html
 fractured-bootlegger-v0.1.0/package/.idea/*
 fractured-bootlegger-v0.1.0/package/*
 yarn.lock
+
+# Pak AES key (never commit)
+.pak-key
+# Pristine game files used as patch bases (see docs/patching.md). Ignored, except the
+# source-built exe, which is our primary distribution source and is tracked.
+/vanilla/*
+!/vanilla/spacegame/
+/vanilla/spacegame/*
+!/vanilla/spacegame/Binaries/
+/vanilla/spacegame/Binaries/*
+!/vanilla/spacegame/Binaries/Win64/
+/vanilla/spacegame/Binaries/Win64/*
+!/vanilla/spacegame/Binaries/Win64/spacegame-Win64-Shipping-30.exe
+# Patched game binaries are build outputs (npm run patches:build); releases carry
+# them in the patch zip (npm run release:zip). Text payloads in data/ stay tracked.
+data/*.exe
+data/*.pak

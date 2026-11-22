@@ -48,7 +48,8 @@ if [ "$CLEAN" = "--clean" ]; then
 else
     find "$WORK" -mindepth 1 -maxdepth 1 ! -name node_modules -exec rm -rf {} +
 fi
-(cd "$SRC" && tar --exclude=./node_modules --exclude=./dist --exclude=./.git --exclude=./.claude -cf - .) \
+(cd "$SRC" && tar --exclude=./node_modules --exclude=./dist --exclude=./.git --exclude=./.claude \
+    --exclude=./vanilla --exclude=./.pak-key -cf - .) \
     | tar -xf - -C "$WORK"
 
 cd "$WORK"
@@ -56,6 +57,7 @@ step "npm install"
 npm install --no-audit --no-fund
 
 step "electron-builder --linux"
+node scripts/check-hashes.js
 npx electron-builder build --linux --publish never
 
 step "Copying packages to $OUT"
