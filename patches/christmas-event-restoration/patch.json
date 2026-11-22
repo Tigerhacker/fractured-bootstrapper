@@ -1,0 +1,141 @@
+{
+  "id": "christmas-event-restoration",
+  "title": "Restore Christmas event maps and supporting assets",
+  "status": "testing",
+  "requires": [],
+  "target": "spacegame/Content/Paks/Makichika_XmasEvent_P.pak",
+  "assets": [
+    {
+      "path": "Blueprints/Makichika/Xmas/XmasEventLogic.uasset",
+      "replace": "files/Blueprints/Makichika/Xmas/XmasEventLogic.uasset",
+      "baseSha256": null,
+      "sha256": "02d96e7a63be991269a1ef09bf8a106513463bf29bd3f5b39c8dd24b36ec1e41"
+    },
+    {
+      "path": "Blueprints/Makichika/Xmas/XmasEventLogic.uexp",
+      "replace": "files/Blueprints/Makichika/Xmas/XmasEventLogic.uexp",
+      "baseSha256": null,
+      "sha256": "dda17647381ecc9a8021acc478ad9a718db34b6dd4654f81f361f4f8d0b9146b"
+    },
+    {
+      "path": "Environment/Planets/Zeroed/Materials/Omega/BP_Planet_Omega_A_Atmos.uasset",
+      "replace": "files/Environment/Planets/Zeroed/Materials/Omega/BP_Planet_Omega_A_Atmos.uasset",
+      "baseSha256": null,
+      "sha256": "84776e9dbeaa94bb98e6857279c53734f6354706c69e6f5b2723c9b982e8a1ed"
+    },
+    {
+      "path": "Environment/Planets/Zeroed/Materials/Omega/BP_Planet_Omega_A_Atmos.uexp",
+      "replace": "files/Environment/Planets/Zeroed/Materials/Omega/BP_Planet_Omega_A_Atmos.uexp",
+      "baseSha256": null,
+      "sha256": "b8a8f94d4c59be431dcbef2f06169d11851ad8421faedd6944f420c2fc687e4e"
+    },
+    {
+      "path": "Environment/Planets/Zeroed/Materials/Omega/MI_Moon_Omega_A.uasset",
+      "replace": "files/Environment/Planets/Zeroed/Materials/Omega/MI_Moon_Omega_A.uasset",
+      "baseSha256": null,
+      "sha256": "23d056514c9f54e091fd5f6d530c9327fa26ab74118453d3adc44a1c77bffd1f"
+    },
+    {
+      "path": "Environment/Planets/Zeroed/Materials/Omega/MI_Moon_Omega_A.uexp",
+      "replace": "files/Environment/Planets/Zeroed/Materials/Omega/MI_Moon_Omega_A.uexp",
+      "baseSha256": null,
+      "sha256": "ba400292da5ca813132027f30ed6e848b3bca7d02a2a6639f782bddffccebbbd"
+    },
+    {
+      "path": "Environment/Planets/Zeroed/Materials/Omega/MI_Planet_Omega_A.uasset",
+      "replace": "files/Environment/Planets/Zeroed/Materials/Omega/MI_Planet_Omega_A.uasset",
+      "baseSha256": null,
+      "sha256": "9e8361636f1bb34b89f4fe55978aa3a193e193e946f437d46b34c5dde5497199"
+    },
+    {
+      "path": "Environment/Planets/Zeroed/Materials/Omega/MI_Planet_Omega_A.uexp",
+      "replace": "files/Environment/Planets/Zeroed/Materials/Omega/MI_Planet_Omega_A.uexp",
+      "baseSha256": null,
+      "sha256": "fcdcb94f43a0324f329f3b2ea85918d219d5237e2a51740870afb1195f441ff0"
+    },
+    {
+      "path": "Environment/Planets/Zeroed/Materials/Omega/MI_Planet_Omega_A_Atmos.uasset",
+      "replace": "files/Environment/Planets/Zeroed/Materials/Omega/MI_Planet_Omega_A_Atmos.uasset",
+      "baseSha256": null,
+      "sha256": "8bd38f368ce3a5fb9fa0f980317cbc569d926a92b1adbfc013d2fbce093131a2"
+    },
+    {
+      "path": "Environment/Planets/Zeroed/Materials/Omega/MI_Planet_Omega_A_Atmos.uexp",
+      "replace": "files/Environment/Planets/Zeroed/Materials/Omega/MI_Planet_Omega_A_Atmos.uexp",
+      "baseSha256": null,
+      "sha256": "a7e9425f93b24f35fbd0e0fa0711c94747e3028cb0e780913dcface14be02e67"
+    },
+    {
+      "path": "Maps/ActionConquest/Map_ActionConquest_A1_B2_XmasEvent.uexp",
+      "replace": "files/Maps/ActionConquest/Map_ActionConquest_A1_B2_XmasEvent.uexp",
+      "baseSha256": null,
+      "sha256": "003ee2cdd89f723370b8706c05d0c6fb1a8aee759e36cf0c5ad79cb229ddc24a"
+    },
+    {
+      "path": "Maps/ActionConquest/Map_ActionConquest_A1_B2_XmasEvent.umap",
+      "replace": "files/Maps/ActionConquest/Map_ActionConquest_A1_B2_XmasEvent.umap",
+      "baseSha256": null,
+      "sha256": "45036b2669a682b521fe1e65d7bbb8b46838cef326279f5e33f90d1eb6c1b529"
+    },
+    {
+      "path": "Maps/ActionConquest/Xmas/Map_ActionConquest_Omega_Art.uexp",
+      "replace": "files/Maps/ActionConquest/Xmas/Map_ActionConquest_Omega_Art.uexp",
+      "baseSha256": null,
+      "sha256": "a7e0d0efa1e0cab22824e9476f5a2bff00b1c8805e28ab257d85e48db636f282"
+    },
+    {
+      "path": "Maps/ActionConquest/Xmas/Map_ActionConquest_Omega_Art.umap",
+      "replace": "files/Maps/ActionConquest/Xmas/Map_ActionConquest_Omega_Art.umap",
+      "baseSha256": null,
+      "sha256": "2ac2c256ded3679e2d6b9e12d53f32af1f52d017aab803f0d3d9f9f64b305144"
+    },
+    {
+      "path": "Maps/ActionConquest/Xmas/Map_ActionConquest_Omega_Art_BuiltData.uasset",
+      "replace": "files/Maps/ActionConquest/Xmas/Map_ActionConquest_Omega_Art_BuiltData.uasset",
+      "baseSha256": null,
+      "sha256": "6acd6e6e63997afc870e1f9202c6316748b6f9ff851782aeea6b3de6441a9a4a"
+    },
+    {
+      "path": "Maps/ActionConquest/Xmas/Map_ActionConquest_Omega_Art_BuiltData.ubulk",
+      "replace": "files/Maps/ActionConquest/Xmas/Map_ActionConquest_Omega_Art_BuiltData.ubulk",
+      "baseSha256": null,
+      "sha256": "1e5ac68c0718b5191efb1d06ac80d7faedaedd17a8e5ce9b2d52e8db3ed9002e"
+    },
+    {
+      "path": "Maps/ActionConquest/Xmas/Map_ActionConquest_Omega_Art_BuiltData.uexp",
+      "replace": "files/Maps/ActionConquest/Xmas/Map_ActionConquest_Omega_Art_BuiltData.uexp",
+      "baseSha256": null,
+      "sha256": "83a31eae7e8c74d710eed04bbd7fe122958a529e5bb65c8e995e9f87c0cf6813"
+    },
+    {
+      "path": "Maps/ActionConquest/Xmas/Map_ActionConquest_Omega_Design.uexp",
+      "replace": "files/Maps/ActionConquest/Xmas/Map_ActionConquest_Omega_Design.uexp",
+      "baseSha256": null,
+      "sha256": "fdbd752ac3da456622e36e753f47708eb2efb1e1f62cf2c616bf150b1652f5b3"
+    },
+    {
+      "path": "Maps/ActionConquest/Xmas/Map_ActionConquest_Omega_Design.umap",
+      "replace": "files/Maps/ActionConquest/Xmas/Map_ActionConquest_Omega_Design.umap",
+      "baseSha256": null,
+      "sha256": "22c7b505149971b939c4350de0eafb23b6fc3cf1af9e51062004a38efd167d03"
+    },
+    {
+      "path": "Maps/ActionConquest/Xmas/Map_ActionConquest_T3Jump.ubulk",
+      "replace": "files/Maps/ActionConquest/Xmas/Map_ActionConquest_T3Jump.ubulk",
+      "baseSha256": null,
+      "sha256": "d9eca0f027a33c358db76d55a62f40a1d6ea0f8ecc20c815bb842689e22d80cc"
+    },
+    {
+      "path": "Maps/ActionConquest/Xmas/Map_ActionConquest_T3Jump.uexp",
+      "replace": "files/Maps/ActionConquest/Xmas/Map_ActionConquest_T3Jump.uexp",
+      "baseSha256": null,
+      "sha256": "b96325662b115aa801e1eb744a3bb7104f333c574d411f8a3a23c8551a91fec7"
+    },
+    {
+      "path": "Maps/ActionConquest/Xmas/Map_ActionConquest_T3Jump.umap",
+      "replace": "files/Maps/ActionConquest/Xmas/Map_ActionConquest_T3Jump.umap",
+      "baseSha256": null,
+      "sha256": "3c373b1dc8df00c7d32537ba783639f92b0bbf930e9b0f1864eec0588309ffa7"
+    }
+  ]
+}
