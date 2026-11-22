@@ -1,0 +1,23 @@
+{
+  "id": "draft-player-cache-refresh",
+  "title": "Drafting rebuilds its cached player list when the cache is empty or its count differs from PlayerArray",
+  "status": "testing",
+  "requires": [],
+  "target": "spacegame/Binaries/Win64/Fractured Space.exe",
+  "edits": [
+    {
+      "offset": "0x3B3600",
+      "rva": "0x3B4000",
+      "original": "48 89 5C 24 10",
+      "patched": "E9 4B 23 CC FF",
+      "note": "function entry: replace mov [rsp+10h],rbx with jmp to the guard (cave at file 0x75950)"
+    },
+    {
+      "offset": "0x75950",
+      "rva": "0x76350",
+      "original": "CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC",
+      "patched": "8B 81 58 04 00 00 85 C0 7E 12 3B 81 38 03 00 00 75 0A 48 89 5C 24 10 E9 99 DC 33 00 31 C0 C3",
+      "note": "guard in INT3 padding: eax=[rcx+458h]; if eax<=0 or eax!=[rcx+338h] return 0; else run the displaced mov [rsp+10h],rbx and jmp back to RVA 0x3B4005"
+    }
+  ]
+}
