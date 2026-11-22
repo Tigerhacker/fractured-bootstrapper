@@ -13,3 +13,8 @@ data/*.pak   binary
 # Game binaries anywhere (patch bases in vanilla/, outputs in data/)
 *.exe        binary
 *.pak        binary
+
+# Preserve published payload bytes used by manifest/recipe hashes.
+data/drafting-script.js -text
+data/drafting-style.css -text
+data/mode-selector.js -text
