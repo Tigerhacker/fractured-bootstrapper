@@ -1,0 +1,23 @@
+{
+  "id": "draft-player-cache-refresh",
+  "title": "Refresh the drafting player cache when the roster count changes",
+  "status": "testing",
+  "requires": [],
+  "target": "spacegame/Binaries/Win64/Fractured Space.exe",
+  "edits": [
+    {
+      "offset": "0x3B3600",
+      "rva": "0x3B4000",
+      "original": "48895c2410",
+      "patched": "e94b23ccff",
+      "note": "draft-cache-hook"
+    },
+    {
+      "offset": "0x75950",
+      "rva": "0x76350",
+      "original": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "patched": "8b815804000085c07e123b8138030000750a48895c2410e999dc330031c0c3",
+      "note": "draft-cache-helper"
+    }
+  ]
+}
