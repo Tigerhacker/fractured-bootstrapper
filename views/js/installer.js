@@ -64,18 +64,9 @@ function checkDirectXRedist(){
     if (fs.existsSync('C:\\Windows\\system32\\D3DX9_43.dll')) {
         console.log("Detected DirectX End-User Runtimes (June 2010)")
     } else {
-        (async () => {
-            const response = await ipcRenderer.invoke("showMessageBox", {
-                title: " ",
-                type: "warning",
-                message: "DirectX End-User Runtimes not installed",
-                detail: "Please download and install from https://www.microsoft.com/download/details.aspx?id=8109",
-                buttons: ['Ignore', 'Open link'],
-            });
-            if(response.response == 1){
-                shell.openExternal('https://www.microsoft.com/download/details.aspx?id=8109');
-            }
-        })();
+        // Handled in the main process: the page reloads right after an install, which
+        // would otherwise discard the button click before it could open the link.
+        ipcRenderer.invoke("promptDirectXRedist");
     }
 }
 

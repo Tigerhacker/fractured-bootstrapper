@@ -27,6 +27,20 @@ ipcMain.handle("showMessageBox", async (e, options) => {
     return await dialog.showMessageBox(mainWindow, options);
 });
 
+// Handled entirely in the main process so the "Open link" action still works when the
+// renderer reloads (e.g. after a patch install) while the dialog is open.
+ipcMain.handle("promptDirectXRedist", async () => {
+    const link = 'https://www.microsoft.com/download/details.aspx?id=8109';
+    const response = await dialog.showMessageBox(mainWindow, {
+        title: " ",
+        type: "warning",
+        message: "DirectX End-User Runtimes not installed",
+        detail: "Please download and install from " + link,
+        buttons: ['Ignore', 'Open link'],
+    });
+    if (response.response === 1) shell.openExternal(link);
+});
+
 ipcMain.handle("showOpenDialog", async (e, options) => {
     return await dialog.showOpenDialog(mainWindow, options);
 });
