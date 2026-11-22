@@ -41,6 +41,7 @@ function renderIndex(patches = loadPatches()) {
             for (const { p, t } of parts) {
                 const offs = t.edits.map((e) => e.offset);
                 out.push(`| ${link(p)} | ${p.status} | ${t.edits.length} | ${offs.slice(0, 6).join(', ')}${offs.length > 6 ? ', …' : ''} |`);
+                if (t.append) out.push(`| ${link(p)} | ${p.status} | append ${code(t.append.file)} | ${t.append.baseSize} (end of pristine base) |`);
             }
         } else {
             // One row per asset, so overlapping work on the same asset is visible.

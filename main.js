@@ -139,6 +139,8 @@ if (!gotTheLock) {
 
     // Create myWindow, load the rest of the app, etc...
     app.on('ready', async () => {
+        const avatarServer = require('./views/js/avatar-server.js').start(process.resourcesPath);
+        app.once('will-quit', () => avatarServer.close());
         await createWelcomeWindow();
     })
 

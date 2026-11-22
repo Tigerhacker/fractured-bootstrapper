@@ -1,11 +1,11 @@
-const patchLevel = 33;
+const patchLevel = 34;
 
 const dataMapping = [
     {
         src: "Fractured Space.exe",
         dest: "spacegame/Binaries/Win64/Fractured Space.exe",
-        md5: "394c6525e9c11b35ebe58f7f60b35966",
-        sha256: "4d92ed3b30596c9dbdd5bf112c62050831d044c0eb2ff9aaa525f222a2bbe08a",
+        md5: "da086f69f2d0951085508fcf475a35a7",
+        sha256: "496c2455e24ff3c022b44f3aa34f375d2f01cf5095d4d4f3c9a5cadf5ac7b5c0",
     },
     {
         src: "ClientConfig.json",
@@ -60,10 +60,31 @@ const dataMapping = [
         dest: "Engine/Config/BaseEngine.ini",
         md5: "280bf6a1ea48fa3c536a7a3b20cc150c",
         sha256: "047690ae6ce7ba5c0c7a5c8ab5b786050f02f985f3f8958f4d66f85ad1223dd4",
+    },
+    {
+        src: "Makichika_DiscordAvatars_P.pak",
+        dest: "spacegame/Content/Paks/Makichika_DiscordAvatars_P.pak",
+        sha256: "f2af614ad1feb11c68b0ede267f260cb8f690f88f923009357333ebd195e864e",
+        md5: "f5a86b3f159aa522c55ede0a9124e961",
+    },
+    {
+        src: "common.js",
+        dest: "spacegame/Content/UIResources/frontend/script/common.js",
+        sha256: "42c777e308cbbbb147ad95c9ba84e116f696f8c9c98e800ee1f769a551b37d2c",
+        md5: "3c5a29a9445f053648cbaa7e433710f2",
+    },
+    {
+        src: "player.js",
+        dest: "spacegame/Content/UIResources/frontend/script/player.js",
+        sha256: "8e722a3a5205808fc84cad489c0e9f0c70ccac96bdc43ba58006400429c8ffaa",
+        md5: "4721844f148b0e4cde56d65ae6f1e9f1",
+    },
+    {
+        src: "scoreboard.js",
+        dest: "spacegame/Content/UIResources/frontend/map/scoreboard.js",
+        sha256: "91a4d1342dbee1786421eba7ab138126e599ef5819881ba512f7d77f3d39368b",
+        md5: "18ae3ef4b7753fbbeb95af0cb714482d",
     }
 ];
 
-module.exports = {
-    patchLevel,
-    dataMapping
-}
+module.exports = { patchLevel, dataMapping };
