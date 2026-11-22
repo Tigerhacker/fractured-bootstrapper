@@ -29,8 +29,8 @@ const STATUSES = ['shipped', 'testing', 'disabled'];
 //   multi target:  { targets: [ { target, assets | edits }, ... ], ... }
 // Returns the targets as a list either way.
 function patchTargets(p) {
-    const list = p.targets ? p.targets : [{ target: p.target, assets: p.assets, edits: p.edits }];
-    if (p.targets && (p.target || p.assets || p.edits)) {
+    const list = p.targets ? p.targets : [{ target: p.target, assets: p.assets, edits: p.edits, append: p.append }];
+    if (p.targets && (p.target || p.assets || p.edits || p.append)) {
         throw new Error(`${p.id}: use either "targets" or a top-level "target", not both`);
     }
     if (!list.length) throw new Error(`${p.id}: no targets`);
@@ -40,7 +40,8 @@ function patchTargets(p) {
         if (seen.has(t.target)) throw new Error(`${p.id}: ${t.target} listed twice`);
         seen.add(t.target);
         if (!!t.assets === !!t.edits) throw new Error(`${p.id}: ${t.target} needs exactly one of "assets" (pak) or "edits" (raw file)`);
-        return { target: t.target, assets: t.assets, edits: t.edits };
+        if (t.append && !t.edits) throw new Error(`${p.id}: append requires raw-file edits`);
+        return { target: t.target, assets: t.assets, edits: t.edits, append: t.append };
     });
 }
 

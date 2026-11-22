@@ -13,3 +13,9 @@ data/*.pak   binary
 # Game binaries anywhere (patch bases in vanilla/, outputs in data/)
 *.exe        binary
 *.pak        binary
+
+# Preserve published payload bytes used by manifest/recipe hashes.
+patches/status-effect-game-clock/files/status-clock-sections.bin -text
+
+# Preserve published payload bytes used by manifest/recipe hashes.
+patches/status-effect-game-clock/files/status-clock-sections.bin -text
