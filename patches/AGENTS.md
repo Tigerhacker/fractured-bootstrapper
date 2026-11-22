@@ -37,6 +37,11 @@ Per-file view of what is patched: [INDEX.md](INDEX.md) (generated).
   bytes, and add the RVA and a note per edit. Any code cave you use must be
   named in the README; the build rejects overlaps, but people need to see
   claimed ranges.
+- Exe code that doesn't fit in padding goes in `"section"` claims (fixed RVAs in
+  the `.fspcode`/`.fspdata` windows from `bases.json`), with an `unwind` entry
+  per non-leaf function and a disassembly listing in the folder. Check
+  `INDEX.md` for taken ranges, and never move the windows. See docs/patching.md,
+  "Exe sections".
 - One fix that touches several files uses `"targets": [...]`. Don't split it
   into folders linked by `requires`.
 - Target existing stock files. Changes to assets that live in `BP.pak` go

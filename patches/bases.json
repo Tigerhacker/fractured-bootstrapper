@@ -3,6 +3,11 @@
         "file": "spacegame/Binaries/Win64/spacegame-Win64-Shipping-30.exe",
         "sha256": "fa6288c2d914366e14175c1d9ebbb459f6bd605c348b6148e9eea33d7290bc2a",
         "size": 62232064,
+        "extension": {
+            "note": "Fixed windows for patch-added sections (scripts/lib/pe.js). Code starts at the base's SizeOfImage; data follows. Never move these: patch code embeds these RVAs.",
+            "code": { "rva": "0x3E06000", "size": "0x10000" },
+            "data": { "rva": "0x3E16000", "size": "0x10000" }
+        },
         "source": "Source build spacegame-Win64-Shipping-30.exe (built Jul 25 2019, linked 2019-08-13, PDB GUID 54356d53...), distributed outside Steam. NOT the Steam store exe (08dbf76d..., Jan 2019), which lacks -flhost=/-discord= support."
     },
     "spacegame/Content/Paks/BP.pak": {

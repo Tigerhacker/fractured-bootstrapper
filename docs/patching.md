@@ -186,6 +186,55 @@ Every target needs an entry in `bases.json` and in `patch_manifest.js`
 `mkpatch` stores a same-size asset with up to 128 changed runs as `edits`, and
 anything else as `replace`.
 
+### Exe sections (new code and data)
+
+When a fix needs more than fits in the exe's INT3 padding, the patch adds code
+and data in sections the build appends (`scripts/lib/pe.js`). The patch
+declares what goes where. The build writes every header field: section table,
+NumberOfSections, SizeOfImage, SizeOfCode, SizeOfInitializedData, the exception
+directory and CheckSum.
+
+```jsonc
+{
+  "id": "status-effect-game-clock",
+  "target": "spacegame/Binaries/Win64/Fractured Space.exe",
+  "edits": [ /* hooks into existing code: ordinary byte edits */ ],
+  "section": {
+    "code":   [ { "rva": "0x3E07000", "size": "0x40B", "file": "files/clock-text.bin", "sha256": "…", "note": "…" } ],
+    "data":   [ { "rva": "0x3E16000", "size": "0x18", "note": "zeroed unless \"file\" is given" } ],
+    "unwind": [ { "begin": "0x3E07000", "end": "0x3E0701B", "unwind": "0x3E0810C" } ]
+  }
+}
+```
+
+Layout, after the base image's last section:
+
+| Section | Access | RVA | Holds |
+|---|---|---|---|
+| `.fspcode` | RX | code window, fixed in `bases.json` `extension.code` | `section.code` claims (code and read-only data) |
+| `.fspdata` | RW | data window, directly after | `section.data` claims |
+| `.pdata2` | R | after the data window | the base exception table plus every patch's `unwind` entries |
+
+- **Claims are fixed RVAs.** Patch code embeds them (`rel32` hooks, `rip`-relative
+  loads), so a claim never moves. The windows have a fixed size, so one patch's
+  claims never move another's either. Claims are listed in `INDEX.md`, the same
+  way code caves are named in READMEs.
+- **Never move or resize the windows in `bases.json`** once a patch uses them.
+  When one fills up, the way forward is a new window appended after the data
+  window, with `.pdata2` moved behind it. Nothing references `.pdata2` by a
+  fixed address, so that breaks no patch. `pe.js` doesn't support a second
+  pair of windows yet.
+- **Every function in a code claim needs an `unwind` entry** unless it is a leaf
+  that touches neither the stack nor non-volatile registers. Without one, stack
+  walks and exception unwinding (crash reporting) break through it. Its unwind
+  info must lie inside the same patch's claims.
+- **Payload code must be position-independent** (`rip`-relative, image base
+  computed at run time) and use no imports. The build adds no relocations.
+  Source and a disassembly listing are required; see "Reviewable form" below.
+- **Payload files are `.bin`** with a pinned `sha256`. Every claim needs a
+  `size`. For code, it must equal the file length; for data, the file (if any)
+  can be shorter than `size`, and the rest is zeroed.
+
 ### What the build checks
 - each base in `vanilla/` matches `bases.json`;
 - every edit's `original` bytes are present. A wrong base, or an earlier patch
@@ -194,7 +243,14 @@ anything else as `replace`.
 - no asset is both replaced and edited, or replaced twice;
 - a replace's `baseSha256` matches the vanilla asset, so a replacement made
   against a different base is rejected;
-- `requires` exist and aren't disabled.
+- `requires` exist and aren't disabled;
+- for exe sections: every claim is inside its window, no claims overlap, payload
+  files match their sha256, unwind entries cover only their own patch's code and
+  don't overlap, no byte edit touches the PE header (the build owns it once it
+  adds sections), and the base has header room, no overlay and no signature.
+  The output is then re-parsed: contiguous sections, SizeOfImage, a sorted
+  exception table, every claim written, the checksum, and base bytes unchanged
+  outside the header.
 
 Untouched pak entries are copied byte for byte from the vanilla pak, in vanilla
 order. Changed entries are re-encoded the way UnrealPak does it: zlib blocks of
@@ -240,7 +296,7 @@ Every byte a patch ships has to be reviewable by someone who didn't write it.
 A patch that is only a binary blob may sit as `testing`, but it **won't be
 promoted to `shipped`**, and a maintainer may close it as unreviewable.
 
-**Exe code** (byte edits, and any added code they call):
+**Exe code** (byte edits and `section` payloads):
 - **Source:** the source (C, C++ or assembly) for every `files/*.bin`, in the
   patch folder, with the exact toolchain, version and build command.
   Rebuilding from them must reproduce each `.bin`'s pinned `sha256`.

@@ -29,8 +29,8 @@ const STATUSES = ['shipped', 'testing', 'disabled'];
 //   multi target:  { targets: [ { target, assets | edits }, ... ], ... }
 // Returns the targets as a list either way.
 function patchTargets(p) {
-    const list = p.targets ? p.targets : [{ target: p.target, assets: p.assets, edits: p.edits }];
-    if (p.targets && (p.target || p.assets || p.edits)) {
+    const list = p.targets ? p.targets : [{ target: p.target, assets: p.assets, edits: p.edits, section: p.section }];
+    if (p.targets && (p.target || p.assets || p.edits || p.section)) {
         throw new Error(`${p.id}: use either "targets" or a top-level "target", not both`);
     }
     if (!list.length) throw new Error(`${p.id}: no targets`);
@@ -40,7 +40,15 @@ function patchTargets(p) {
         if (seen.has(t.target)) throw new Error(`${p.id}: ${t.target} listed twice`);
         seen.add(t.target);
         if (!!t.assets === !!t.edits) throw new Error(`${p.id}: ${t.target} needs exactly one of "assets" (pak) or "edits" (raw file)`);
-        return { target: t.target, assets: t.assets, edits: t.edits };
+        if (t.section) {
+            // New exe code/data (see scripts/lib/pe.js). Only for raw (exe) targets.
+            if (t.assets) throw new Error(`${p.id}: ${t.target}: "section" is only for exe targets`);
+            const allowed = ['code', 'data', 'unwind'];
+            for (const k of Object.keys(t.section)) if (!allowed.includes(k)) throw new Error(`${p.id}: section.${k} is not one of ${allowed.join(', ')}`);
+            for (const c of t.section.code || []) if (!c.file || c.size === undefined) throw new Error(`${p.id}: section.code entry ${c.rva} needs "file" and "size"`);
+            for (const d of t.section.data || []) if (d.size === undefined) throw new Error(`${p.id}: section.data entry ${d.rva} needs "size"`);
+        }
+        return { target: t.target, assets: t.assets, edits: t.edits, section: t.section };
     });
 }
 

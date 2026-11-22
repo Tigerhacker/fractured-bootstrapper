@@ -42,6 +42,21 @@ function renderIndex(patches = loadPatches()) {
                 const offs = t.edits.map((e) => e.offset);
                 out.push(`| ${link(p)} | ${p.status} | ${t.edits.length} | ${offs.slice(0, 6).join(', ')}${offs.length > 6 ? ', …' : ''} |`);
             }
+            // Claims in the build-added sections (scripts/lib/pe.js), so parallel
+            // work can see which RVAs are taken.
+            const claims = [];
+            for (const { p, t } of parts) {
+                if (!t.section) continue;
+                const rng = (rva, size) => `${rva}..0x${(Number(rva) + Number(size)).toString(16).toUpperCase()}`;
+                for (const c of t.section.code || []) claims.push([Number(c.rva), `| ${link(p)} | ${p.status} | code | ${code(rng(c.rva, c.size))} |`]);
+                for (const d of t.section.data || []) claims.push([Number(d.rva), `| ${link(p)} | ${p.status} | data | ${code(rng(d.rva, d.size))} |`]);
+                const u = (t.section.unwind || []).length;
+                if (u) claims.push([Infinity, `| ${link(p)} | ${p.status} | unwind | ${u} entr${u === 1 ? 'y' : 'ies'} |`]);
+            }
+            if (claims.length) {
+                out.push('', 'Added sections (RVA ranges claimed in `.fspcode` / `.fspdata`):', '', '| Patch | Status | Kind | RVA range |', '|---|---|---|---|');
+                for (const [, row] of claims.sort((a, b) => a[0] - b[0])) out.push(row);
+            }
         } else {
             // One row per asset, so overlapping work on the same asset is visible.
             const assets = new Map();

@@ -19,6 +19,7 @@ const { openPak, readEntry, writePak } = require('./lib/pak');
 const { ROOT, PATCHES_DIR, loadPatches, applyEdits } = require('./lib/patchfmt');
 const { dataMapping } = require('../views/js/patch_manifest');
 const { writeIndex } = require('./lib/patchindex');
+const pe = require('./lib/pe');
 
 const VANILLA_DIR = path.join(ROOT, 'vanilla');
 const sha256 = (b) => crypto.createHash('sha256').update(b).digest('hex');
@@ -80,10 +81,41 @@ function outputFor(target, opts) {
 }
 
 function buildRaw(target, patches, opts) {
-    const buf = Buffer.from(fs.readFileSync(loadBase(target)));
+    let buf = Buffer.from(fs.readFileSync(loadBase(target)));
     const claims = [];
     for (const p of patches) applyEdits(buf, p.edits, p.id, claims);
+    const withSection = patches.filter((p) => p.section);
+    if (withSection.length) {
+        // The builder owns the PE header once it adds sections.
+        const hdr = pe.headerRange(pe.parse(buf));
+        for (const c of claims) {
+            if (c.start < hdr.end) throw new Error(`${c.by}: edit at 0x${c.start.toString(16)} touches the PE header, which the build rewrites when adding sections`);
+        }
+        const layout = loadBases()[target].extension;
+        if (!layout) throw new Error(`${target}: patches add exe sections, but patches/bases.json has no "extension" layout for it`);
+        const parts = withSection.map((p) => ({
+            who: p.id,
+            code: (p.section.code || []).map((c) => {
+                const bytes = readPayload(p, c);
+                // "size" is what INDEX.md shows, so it must agree with the file.
+                if (Number(c.size) !== bytes.length) throw new Error(`${p.id}: ${c.file} is ${bytes.length} bytes, "size" says ${c.size}`);
+                return { ...c, bytes };
+            }),
+            data: (p.section.data || []).map((d) => ({ ...d, bytes: d.file ? readPayload(p, d) : null })),
+            unwind: p.section.unwind || [],
+        }));
+        const res = pe.extend(buf, layout, parts);
+        buf = res.buf;
+        for (const s of res.sections) console.log(`  section ${s.name} rva ${pe.hex(s.va)} vsize ${pe.hex(s.vsize)} raw ${pe.hex(s.raw.length)}`);
+    }
     return writeOut(target, buf, opts);
+}
+
+function readPayload(p, c) {
+    const data = fs.readFileSync(path.join(p.dir, c.file));
+    if (!c.sha256) throw new Error(`${p.id}: ${c.file} needs a "sha256"`);
+    if (sha256(data) !== c.sha256) throw new Error(`${p.id}: ${c.file} does not match sha256`);
+    return data;
 }
 
 function copyBase(target, opts) {
@@ -148,7 +180,7 @@ function main() {
     for (const p of patches) {
         for (const t of p.targets) {
             if (!byTarget.has(t.target)) byTarget.set(t.target, []);
-            byTarget.get(t.target).push({ id: p.id, dir: p.dir, assets: t.assets, edits: t.edits });
+            byTarget.get(t.target).push({ id: p.id, dir: p.dir, assets: t.assets, edits: t.edits, section: t.section });
         }
     }
     // Every registered base is an output, patched or not, so data/ always

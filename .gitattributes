@@ -13,3 +13,6 @@ data/*.pak   binary
 # Game binaries anywhere (patch bases in vanilla/, outputs in data/)
 *.exe        binary
 *.pak        binary
+
+# Patch payloads (exe code/data added by patches/*/files/*.bin)
+*.bin        binary
