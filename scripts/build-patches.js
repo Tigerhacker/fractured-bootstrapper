@@ -67,6 +67,12 @@ function loadBase(target) {
     const want = base && base.sha256;
     if (!want) throw new Error(`patches/bases.json has no entry for ${target}`);
     const file = path.join(VANILLA_DIR, base.file || target);
+    if (!fs.existsSync(file) && base.emptyPak) {
+        if (!target.endsWith('.pak') || typeof base.emptyPak.mountPoint !== 'string' || base.encrypted !== false) {
+            throw new Error(`${target}: invalid empty unencrypted pak base`);
+        }
+        writePak(file, {mountPoint: base.emptyPak.mountPoint, items: []});
+    }
     if (!fs.existsSync(file)) throw new Error(`missing pristine base ${path.relative(ROOT, file)} (see docs/patching.md)`);
     const buf = fs.readFileSync(file);
     if (sha256(buf) !== want) throw new Error(`${path.relative(ROOT, file)} is not the pristine file (sha256 mismatch)`);
@@ -80,8 +86,22 @@ function outputFor(target, opts) {
 }
 
 function buildRaw(target, patches, opts) {
-    const buf = Buffer.from(fs.readFileSync(loadBase(target)));
+    let buf = Buffer.from(fs.readFileSync(loadBase(target)));
     const claims = [];
+    const additions = patches.filter(p => p.append);
+    if (additions.length > 1) throw new Error(`${target}: multiple append payloads conflict`);
+    if (additions.length) {
+        const p = additions[0], a = p.append;
+        if (!Number.isSafeInteger(a.baseSize) || a.baseSize !== buf.length) throw new Error(`${p.id}: append baseSize mismatch`);
+        if (typeof a.file !== 'string' || path.isAbsolute(a.file)) throw new Error(`${p.id}: invalid append file`);
+        const file = path.resolve(p.dir, a.file);
+        const relative = path.relative(p.dir, file);
+        if (relative.startsWith('..') || path.isAbsolute(relative)) throw new Error(`${p.id}: append file escapes patch directory`);
+        const data = fs.readFileSync(file);
+        if (!data.length || sha256(data) !== a.sha256) throw new Error(`${p.id}: append payload hash mismatch`);
+        claims.push({start: buf.length, end: buf.length + data.length, by: `${p.id}:append`});
+        buf = Buffer.concat([buf, data]);
+    }
     for (const p of patches) applyEdits(buf, p.edits, p.id, claims);
     return writeOut(target, buf, opts);
 }
@@ -92,6 +112,7 @@ function copyBase(target, opts) {
 
 function buildPak(target, patches, opts) {
     const pak = openPak(loadBase(target));
+    const encrypt = loadBases()[target].encrypted !== false;
     const baseEntries = new Map(pak.entries.map((e) => [e.name, e]));
     const assets = new Map(); // name -> { data, by: [ids], replacedBy, claims }
 
@@ -125,13 +146,13 @@ function buildPak(target, patches, opts) {
     // pristine pak. New assets go at the end, sorted.
     const items = pak.entries.map((e) => {
         const st = assets.get(e.name);
-        return st ? { name: e.name, data: st.data, compress: e.compression !== 0 } : { name: e.name, from: { pak, entry: e } };
+        return st ? { name: e.name, data: st.data, compress: e.compression !== 0, encrypt } : { name: e.name, from: { pak, entry: e } };
     });
     for (const name of [...assets.keys()].filter((n) => !baseEntries.has(n)).sort()) {
-        items.push({ name, data: assets.get(name).data });
+        items.push({ name, data: assets.get(name).data, encrypt });
     }
     const out = outputFor(target, opts);
-    writePak(out, { mountPoint: pak.mountPoint, items, key: pak.key || require('./lib/pak').loadKey() });
+    writePak(out, { mountPoint: pak.mountPoint, items, key: encrypt ? (pak.key || require('./lib/pak').loadKey()) : null });
 }
 
 function writeOut(target, buf, opts) {
@@ -148,7 +169,7 @@ function main() {
     for (const p of patches) {
         for (const t of p.targets) {
             if (!byTarget.has(t.target)) byTarget.set(t.target, []);
-            byTarget.get(t.target).push({ id: p.id, dir: p.dir, assets: t.assets, edits: t.edits });
+            byTarget.get(t.target).push({ id: p.id, dir: p.dir, assets: t.assets, edits: t.edits, append: t.append });
         }
     }
     // Every registered base is an output, patched or not, so data/ always
