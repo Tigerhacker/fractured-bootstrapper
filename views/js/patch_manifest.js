@@ -1,4 +1,4 @@
-const patchLevel = 33;
+const patchLevel = 34;
 
 const dataMapping = [
     {
@@ -60,10 +60,13 @@ const dataMapping = [
         dest: "Engine/Config/BaseEngine.ini",
         md5: "280bf6a1ea48fa3c536a7a3b20cc150c",
         sha256: "047690ae6ce7ba5c0c7a5c8ab5b786050f02f985f3f8958f4d66f85ad1223dd4",
+    },
+    {
+        src: "Makichika_MapJamming_P.pak",
+        dest: "spacegame/Content/Paks/Makichika_MapJamming_P.pak",
+        sha256: "e0273cfff2558dee2ac8b424d6b410d493e757c744952db50e51edbb265b3909",
+        md5: "a8d42f34023619149ef422a05d8e8106",
     }
 ];
 
-module.exports = {
-    patchLevel,
-    dataMapping
-}
+module.exports = { patchLevel, dataMapping };

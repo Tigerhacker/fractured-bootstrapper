@@ -9,5 +9,14 @@
         "sha256": "cfa30ee8f3019c5b334f7a83843322e87cedd93e9c90d13b18bc4473bc975a49",
         "size": 71567712,
         "source": "Steam depot (app 310380), unmodified"
+    },
+    "spacegame/Content/Paks/Makichika_MapJamming_P.pak": {
+        "sha256": "130c58ea3ddb91f91c567c734f75ac9e816ce5a387797044e1581908eab43d47",
+        "size": 96,
+        "source": "Generated empty version-4 PAK for an additive Makichika overlay; contains no Steam content.",
+        "emptyPak": {
+            "mountPoint": "../../../spacegame/Content/Blueprints/HUD/"
+        },
+        "encrypted": false
     }
 }

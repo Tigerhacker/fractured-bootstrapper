@@ -1,0 +1,33 @@
+{
+  "id": "map-jamming-display",
+  "title": "Correct map jamming display",
+  "status": "testing",
+  "requires": [],
+  "target": "spacegame/Content/Paks/Makichika_MapJamming_P.pak",
+  "assets": [
+    {
+      "path": "W_MinimapObject.uasset",
+      "replace": "files/W_MinimapObject.uasset",
+      "baseSha256": null,
+      "sha256": "ed5528546edca5d7c18b37c4c61ff018a9f0197c7e6181b46aed75ccc360bbb0"
+    },
+    {
+      "path": "W_MinimapObject.uexp",
+      "replace": "files/W_MinimapObject.uexp",
+      "baseSha256": null,
+      "sha256": "b18b91aa892ea8abe852c647a2e7ded231f97aa18d6cb07b0668fdb2efce1675"
+    },
+    {
+      "path": "W_MinimapSector.uasset",
+      "replace": "files/W_MinimapSector.uasset",
+      "baseSha256": null,
+      "sha256": "5519d7402d1ae2ba0bf4cc2cc2c61779cedc8a4189e790b048c6253a29cef9c3"
+    },
+    {
+      "path": "W_MinimapSector.uexp",
+      "replace": "files/W_MinimapSector.uexp",
+      "baseSha256": null,
+      "sha256": "4b2ccb51b7beebb745c21c3d2197e2c6e78ba895da58a9a935b6a844ed48c53a"
+    }
+  ]
+}
