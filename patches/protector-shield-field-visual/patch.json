@@ -1,0 +1,21 @@
+{
+  "id": "protector-shield-field-visual",
+  "title": "Protector shield-field visual follows the active ability, not the personal Shield Self status",
+  "status": "testing",
+  "requires": [],
+  "target": "spacegame/Content/Paks/BP.pak",
+  "assets": [
+    {
+      "path": "Systems/Subsystems/BP_SYS_ABLTY_SHIELDAOE_01.uasset",
+      "replace": "files/Systems/Subsystems/BP_SYS_ABLTY_SHIELDAOE_01.uasset",
+      "baseSha256": "ac4b6c24eb0b99b7f1ba7654ce7caa68fbc642b9438097b16e11ca8ae4a62998",
+      "sha256": "4a6c6fb50cd57e35fcbb6f1010a99165ce21b572484d3c73258f85492745268d"
+    },
+    {
+      "path": "Systems/Subsystems/BP_SYS_ABLTY_SHIELDAOE_01.uexp",
+      "replace": "files/Systems/Subsystems/BP_SYS_ABLTY_SHIELDAOE_01.uexp",
+      "baseSha256": "c01ca57ed1da629fec3e6ad3690fce95a3fe49c1d347fcb9fcf82a3c1e0c7cc1",
+      "sha256": "539b218fb20ae98b44aee55eca4aa7d966acea0d40c26048fc790d94379f0d08"
+    }
+  ]
+}
