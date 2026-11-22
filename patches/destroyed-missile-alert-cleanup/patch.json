@@ -1,0 +1,37 @@
+{
+  "id": "destroyed-missile-alert-cleanup",
+  "title": "Stop icons and incoming alerts for destroyed or trail-cleanup missiles",
+  "status": "testing",
+  "requires": [],
+  "target": "spacegame/Binaries/Win64/Fractured Space.exe",
+  "edits": [
+    {
+      "offset": "0x33E7E7",
+      "rva": "0x33F1E7",
+      "original": "d1e9f6c101",
+      "patched": "f6c1069090",
+      "note": "missile-icon"
+    },
+    {
+      "offset": "0x3BB1CB",
+      "rva": "0x3BBBCB",
+      "original": "80b86103000000",
+      "patched": "e8b05ecdff9090",
+      "note": "missile-sound-a"
+    },
+    {
+      "offset": "0x3AE98B",
+      "rva": "0x3AF38B",
+      "original": "4038b861030000",
+      "patched": "e8f026ceff9090",
+      "note": "missile-sound-b"
+    },
+    {
+      "offset": "0x91080",
+      "rva": "0x91A80",
+      "original": "cccccccccccccccccccccccccccccccccccccccc",
+      "patched": "f6804806000006750880b86103000000c339c0c3",
+      "note": "missile-helper"
+    }
+  ]
+}
