@@ -1,0 +1,22 @@
+{
+  "id": "firing-range-null-lobby-guard",
+  "title": "Skip the Steam lobby-leave virtual call when the online interface is null (firing-range crash)",
+  "status": "shipped",
+  "requires": [],
+  "target": "spacegame/Binaries/Win64/Fractured Space.exe",
+  "edits": [
+    {
+      "offset": "0x207600F",
+      "rva": "0x2076A0F",
+      "original": "48 8B 48 20 48 8B 01",
+      "patched": "E9 BC F5 F8 FD 90 90",
+      "note": "jmp guard (cave at file 0x55D0); NOP the rest of the replaced mov rcx,[rax+20h] / mov rax,[rcx]"
+    },
+    {
+      "offset": "0x55D0",
+      "original": "CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC",
+      "patched": "48 8B 48 20 48 85 C9 0F 84 3C 0A 07 02 48 8B 01 E9 31 0A 07 02",
+      "note": "guard in INT3 padding: mov rcx,[rax+20h]; test rcx,rcx; jz completion; mov rax,[rcx]; jmp back to the original virtual call"
+    }
+  ]
+}

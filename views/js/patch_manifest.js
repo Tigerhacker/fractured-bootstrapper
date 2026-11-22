@@ -1,11 +1,11 @@
-const patchLevel = 32;
+const patchLevel = 33;
 
 const dataMapping = [
     {
         src: "Fractured Space.exe",
         dest: "spacegame/Binaries/Win64/Fractured Space.exe",
-        md5: "1d69840d9a54de7e85ab04cb30608dca",
-        sha256: "fa6288c2d914366e14175c1d9ebbb459f6bd605c348b6148e9eea33d7290bc2a",
+        md5: "394c6525e9c11b35ebe58f7f60b35966",
+        sha256: "4d92ed3b30596c9dbdd5bf112c62050831d044c0eb2ff9aaa525f222a2bbe08a",
     },
     {
         src: "ClientConfig.json",
