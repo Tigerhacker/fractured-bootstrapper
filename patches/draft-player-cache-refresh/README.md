@@ -10,7 +10,9 @@ Code cave: 0x75950–0x7596E (RVA 0x76350). The recipe records exact file offset
 
 ## What the patch does
 
-Reject an empty cached roster or a cached count different from PlayerArray. The existing native refresh path retains its other readiness and identity checks.
+An empty cached draft roster or a cached count different from PlayerArray now falls back to the existing native refresh path. Original readiness and individual-identity checks remain in place.
+
+The machine-readable recipe preserves the published payload while keeping this fix separately reviewable.
 
 ## Interpretation
 
@@ -19,3 +21,7 @@ The guard addresses stale presentation state without changing the authoritative 
 ## Not established / limitations
 
 Historical user gameplay confirmation exists for the original patch. This V2 recipe has not been tested in a live draft. Equal counts with different identities still depend on native checks. The testing status is intentional. Build/hash checks are not runtime proof.
+
+## Source and review classification
+
+Bug fix. Source: [pinned public package](https://github.com/Makichika/Fractured-space-fixe-/tree/7e43fb70ca660c35ae903fcc1f703b9c0a624cb0), including its installation document. Historical test statements in that document are not fresh V2 runtime proof.
