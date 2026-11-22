@@ -1,0 +1,33 @@
+{
+  "id": "disable-automation-tests",
+  "title": "Remove automation-test hooks from the menu game mode and ship movement test",
+  "status": "shipped",
+  "requires": [],
+  "target": "spacegame/Content/Paks/BP.pak",
+  "assets": [
+    {
+      "path": "GameModes/BP_SpaceMenuGameMode.uasset",
+      "replace": "files/GameModes/BP_SpaceMenuGameMode.uasset",
+      "baseSha256": "1a404c81916544ccff4d06f3867441e6e847948b6a8c2761657422bf69cc58a0",
+      "sha256": "9146d9fd0167cba89878cc0168a726fbffa34967ab6ca85c50a024c565aa016e"
+    },
+    {
+      "path": "Automation/BPT_ShipMovementCost.uasset",
+      "replace": "files/Automation/BPT_ShipMovementCost.uasset",
+      "baseSha256": "840a7123d477891838c02c18d61201e8aaca5b7dd5128a4b4307c2b2690c39eb",
+      "sha256": "d4a1c2c035a475f3a5c8e5d03e09213bd7ee219de7a7d19c75228cb220576613"
+    },
+    {
+      "path": "Automation/BPT_ShipMovementCost.uexp",
+      "replace": "files/Automation/BPT_ShipMovementCost.uexp",
+      "baseSha256": "99379c0179be0f6c37fb1f2d69b39400b98524fcda0365b589c0e4924e762050",
+      "sha256": "2569fbc31c20a2809d2e584350cf3d333685d4b8ca7bdc631eba5a10a06c3674"
+    },
+    {
+      "path": "GameModes/BP_SpaceMenuGameMode.uexp",
+      "replace": "files/GameModes/BP_SpaceMenuGameMode.uexp",
+      "baseSha256": "982843ed6ad9ff4d3dede0b44d06c0130bff92928efd7abedf47c1aa8f9996dd",
+      "sha256": "d7392dd3de7b8e0c0e17795c8678986ac10c0d3718c9b60e27ec85390190eb17"
+    }
+  ]
+}

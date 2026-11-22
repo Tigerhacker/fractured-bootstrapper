@@ -1,0 +1,33 @@
+{
+  "id": "hud-aeromatics-font",
+  "title": "HUD widgets reference the AERO_MATICS_REGULAR font",
+  "status": "shipped",
+  "requires": [],
+  "target": "spacegame/Content/Paks/BP.pak",
+  "assets": [
+    {
+      "path": "HUD/W_MainHUD_01.uasset",
+      "replace": "files/HUD/W_MainHUD_01.uasset",
+      "baseSha256": "dffb3c0700a7fb74216db9fa6057de98926d30fc50c5db77ae5bb0d703adae7f",
+      "sha256": "5f9ba0d75f50d5d319dced02818fcd76facd8dd781093ecbe1ea3e87a11373b4"
+    },
+    {
+      "path": "HUD/W_Killcam.uasset",
+      "replace": "files/HUD/W_Killcam.uasset",
+      "baseSha256": "3035024079f9fe2b39751723d37ec519cd2cc8144b99c691855a0f687d65d0b9",
+      "sha256": "b64d9cdfc533ca6f9e5000e048484395e2d6c493dd802fffdbf07588d09aa9a8"
+    },
+    {
+      "path": "HUD/W_Killcam.uexp",
+      "replace": "files/HUD/W_Killcam.uexp",
+      "baseSha256": "c36bcce17e61f2f11cade34373bf75839bb23f057c16d5c543b0f06ad6255854",
+      "sha256": "d64dbacfffe6a561bfac71e61ed70bdee407eef1f6735ffe0a606ff98483bbfc"
+    },
+    {
+      "path": "HUD/W_MainHUD_01.uexp",
+      "replace": "files/HUD/W_MainHUD_01.uexp",
+      "baseSha256": "2589125495693bbbaef23f5faf296097bb78a03a6ab706334a8cdaafae20bafe",
+      "sha256": "8610c328087a5de3ee7ed4380a12e0d018814fd2fb898a7f3d9970368dc6311a"
+    }
+  ]
+}

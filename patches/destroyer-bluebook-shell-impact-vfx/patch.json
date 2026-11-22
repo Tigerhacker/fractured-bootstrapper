@@ -1,0 +1,21 @@
+{
+  "id": "destroyer-bluebook-shell-impact-vfx",
+  "title": "Destroyer BlueBook shell impact spawns P_Explosion8x8LargeDebris_01_BlueBook",
+  "status": "shipped",
+  "requires": [],
+  "target": "spacegame/Content/Paks/BP.pak",
+  "assets": [
+    {
+      "path": "FX_Weapons/BP_VFX_Impact_Projectile_Destroyer_ShellBlueBook.uasset",
+      "replace": "files/FX_Weapons/BP_VFX_Impact_Projectile_Destroyer_ShellBlueBook.uasset",
+      "baseSha256": "4fcd56e346f0b718ab14165f141e77e8a3088b41e604a5765211efe86853e346",
+      "sha256": "8c4347fbac5968a90917735baf14fd92652b351f120075893e05d18afde1e05a"
+    },
+    {
+      "path": "FX_Weapons/BP_VFX_Impact_Projectile_Destroyer_ShellBlueBook.uexp",
+      "replace": "files/FX_Weapons/BP_VFX_Impact_Projectile_Destroyer_ShellBlueBook.uexp",
+      "baseSha256": "14669c676b2d523a728912c48cfc7d60668bfd735d7cb3fd42e952e5733f9a65",
+      "sha256": "659145d63fdb34f3aabf19166ba00067ede89e3f348809eef119734843a694d6"
+    }
+  ]
+}

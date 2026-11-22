@@ -1,4 +1,4 @@
-const patchLevel = 31;
+const patchLevel = 32;
 
 const dataMapping = [
     {
@@ -40,8 +40,8 @@ const dataMapping = [
     {
         src: "BP.pak",
         dest: "spacegame/Content/Paks/BP.pak",
-        md5: "e665df0cdd50a1522799a12c56bbfc6c",
-        sha256: "cac460fbce8a33e8f155b9a4abd14c15981156978b3a2d420dc2b468399d1681",
+        md5: "14641a1739369176dd70f02c5e0c821a",
+        sha256: "e5a029920f06bc07bd4610c931efae28834d54b10f256c08a6cb550a6fea5b48",
     },
     {
         src: "results-script.js",

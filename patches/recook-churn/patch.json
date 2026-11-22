@@ -1,0 +1,2844 @@
+{
+  "id": "recook-churn",
+  "title": "Byte churn from re-cooking (GUIDs, texture recompression); kept to match shipped BP.pak",
+  "status": "shipped",
+  "requires": [],
+  "target": "spacegame/Content/Paks/BP.pak",
+  "assets": [
+    {
+      "path": "Chameleon/Textures/T_AntiquePaper2.uexp",
+      "edits": [
+        {
+          "offset": "0x14618",
+          "original": "AD",
+          "patched": "AF"
+        },
+        {
+          "offset": "0x23214",
+          "original": "52 DE 94 E6 2A 2A 2A 2A",
+          "patched": "73 E6 32 D6 A0 E0 E0 C0"
+        },
+        {
+          "offset": "0x37314",
+          "original": "71 E6 0F DE DE D7 D5",
+          "patched": "51 E6 0F DE DE 97 95"
+        },
+        {
+          "offset": "0x4D62C",
+          "original": "94 E6 93 E6 FF 73 7B 7B",
+          "patched": "B4 EE 93 E6 FD 7D 7D 5F"
+        },
+        {
+          "offset": "0x62E74",
+          "original": "D5 EE B4 E6 7F 5D DD 5F",
+          "patched": "B4 E6 D5 EE 08 08 08 08"
+        },
+        {
+          "offset": "0x6AB38",
+          "original": "7F 7D 7D EB",
+          "patched": "7B 79 7D FF"
+        },
+        {
+          "offset": "0x8CBBE",
+          "original": "B0 CD B8 0A 8B FA",
+          "patched": "D0 CD B8 2A AB 7A"
+        },
+        {
+          "offset": "0xAA2B8",
+          "original": "EE",
+          "patched": "FE"
+        }
+      ]
+    },
+    {
+      "path": "Chameleon/Textures/T_BlueprintPaper.uexp",
+      "edits": [
+        {
+          "offset": "0xB23C",
+          "original": "2D",
+          "patched": "4D"
+        },
+        {
+          "offset": "0x3B411",
+          "original": "A9",
+          "patched": "AA"
+        },
+        {
+          "offset": "0x5027C",
+          "original": "2D",
+          "patched": "4D"
+        },
+        {
+          "offset": "0xC94B4",
+          "original": "2D 1A 7A 7D AA 00 00 00",
+          "patched": "97 64 2D 1A AA 55 55 55"
+        },
+        {
+          "offset": "0xD556C",
+          "original": "CF 22 15 4C A9 A9 A9 A9",
+          "patched": "76 54 72 33 56 56 56 56"
+        },
+        {
+          "offset": "0xE2AEE",
+          "original": "9E",
+          "patched": "BE"
+        },
+        {
+          "offset": "0xE9C2C",
+          "original": "2D",
+          "patched": "4D"
+        },
+        {
+          "offset": "0x12BFEC",
+          "original": "2D",
+          "patched": "4D"
+        },
+        {
+          "offset": "0x1400FC",
+          "original": "2D 1A 7A 7D AA 00 00 00",
+          "patched": "97 64 2D 1A AA 55 55 55"
+        },
+        {
+          "offset": "0x14AB04",
+          "original": "CF 22 35 4C 55 AA AA AA",
+          "patched": "35 4C 31 2B 00 FF FF FF"
+        },
+        {
+          "offset": "0x14AB84",
+          "original": "CF 22 35 4C 55 AA AA AA",
+          "patched": "35 4C 31 2B 00 FF FF FF"
+        },
+        {
+          "offset": "0x150EAC",
+          "original": "CF 22 35 4C A9 A9 A9 A9",
+          "patched": "35 4C 72 33 D6 54 54 74"
+        },
+        {
+          "offset": "0x16817C",
+          "original": "2D 1A 7A 7D AA 00 00 00",
+          "patched": "97 64 2D 1A AA 55 55 55"
+        },
+        {
+          "offset": "0x173124",
+          "original": "AF 22 F4 4B AA 00 00 00",
+          "patched": "B3 43 AF 22 AA 55 55 55"
+        },
+        {
+          "offset": "0x179538",
+          "original": "BB FB EA",
+          "patched": "FB FB FF"
+        },
+        {
+          "offset": "0x182AFB",
+          "original": "BE",
+          "patched": "9E"
+        },
+        {
+          "offset": "0x1901D4",
+          "original": "2D 1A 7A 7D AA 00 00 00",
+          "patched": "97 64 2D 1A AA 55 55 55"
+        },
+        {
+          "offset": "0x19A25C",
+          "original": "2D",
+          "patched": "4D"
+        },
+        {
+          "offset": "0x1A2B2C",
+          "original": "2D",
+          "patched": "4D"
+        },
+        {
+          "offset": "0x1AF4BC",
+          "original": "AF 2A AB 09 00 FF FF FF",
+          "patched": "6A 01 AF 2A 55 AA AA AA"
+        },
+        {
+          "offset": "0x1E9E2C",
+          "original": "2D",
+          "patched": "4D"
+        }
+      ]
+    },
+    {
+      "path": "Chameleon/Textures/T_Noise.uexp",
+      "edits": [
+        {
+          "offset": "0x7F366",
+          "original": "7D",
+          "patched": "9D"
+        },
+        {
+          "offset": "0xA18CC",
+          "original": "62",
+          "patched": "82"
+        },
+        {
+          "offset": "0xCEF9E",
+          "original": "7D",
+          "patched": "9D"
+        },
+        {
+          "offset": "0xE1C7E",
+          "original": "7D",
+          "patched": "9D"
+        }
+      ]
+    },
+    {
+      "path": "Chameleon/Textures/T_ScreenFX1.uexp",
+      "edits": [
+        {
+          "offset": "0xB1CD6",
+          "original": "B6",
+          "patched": "D6"
+        }
+      ]
+    },
+    {
+      "path": "Chameleon/Textures/T_ScreenFX5.uexp",
+      "edits": [
+        {
+          "offset": "0xB1CD6",
+          "original": "B6",
+          "patched": "D6"
+        }
+      ]
+    },
+    {
+      "path": "Chameleon/Textures/T_ScreenFX6.uexp",
+      "edits": [
+        {
+          "offset": "0x4AE8",
+          "original": "68 E8 E8 AA",
+          "patched": "78 F8 E8 EA"
+        }
+      ]
+    },
+    {
+      "path": "FX_Abilities/BP_VFX_AegisSelfBubble_01.uexp",
+      "edits": [
+        {
+          "offset": "0x1370",
+          "original": "F2 6F 3E EF D5 59 65 43 A5 4F 00 70 3C 29 02 F7",
+          "patched": "51 C6 2A D2 0C 18 5B 40 AA 20 B8 6C 38 88 6D 11"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_ArkainEyeHUD.uexp",
+      "edits": [
+        {
+          "offset": "0x31C11",
+          "original": "70 51 74 B1 90 C9 D5 4C AF C3 AD 16 7F BE 25 D5",
+          "patched": "3B 43 46 9E 91 25 B9 4E A1 39 4B 23 F3 6A 88 29"
+        },
+        {
+          "offset": "0x33701",
+          "original": "25 84 48 2F 36 5F 91 43 B4 13 71 90 38 B0 BF AE",
+          "patched": "0C CE 42 6B E1 46 82 47 94 3A 16 2F EB 78 7C C6"
+        },
+        {
+          "offset": "0x351F1",
+          "original": "D0 FE E8 DF 1C C8 82 41 8C 78 C6 1B 88 A2 E2 3A",
+          "patched": "24 05 AA 87 A5 71 E0 4C A7 93 07 09 A0 04 F9 2E"
+        },
+        {
+          "offset": "0x3981B",
+          "original": "EE 35 A1 2D FB F4 81 48 AE 98 76 1E 4A F3 2E 4B",
+          "patched": "3E 4B 50 1F 3E 44 03 40 9C 74 E2 06 13 7D 43 E9"
+        },
+        {
+          "offset": "0x3C4B6",
+          "original": "8E 68 37 83 04 6D 3B 48 A6 EE 17 17 DC C3 D6 BA",
+          "patched": "77 8E B5 99 5D 25 31 44 B2 C8 5F 48 F0 29 C9 62"
+        },
+        {
+          "offset": "0x3DFA6",
+          "original": "99 19 6B 79 16 3A 2F 4C B4 7A E1 E8 19 65 02 6E",
+          "patched": "3A 72 97 C8 5D 05 0B 46 A5 D9 27 D5 79 F9 C1 85"
+        },
+        {
+          "offset": "0x3FA96",
+          "original": "99 E9 3C A4 90 02 D9 40 BC 41 C2 DC 21 5A 1F B3",
+          "patched": "26 F0 B5 6A C7 A3 24 45 8B 6D 8A C3 41 AF 8F E9"
+        },
+        {
+          "offset": "0x440C0",
+          "original": "E0 5F 79 B0 80 96 DE 4D 88 0C 42 09 B5 AB D5 F9",
+          "patched": "34 CC 7D ED 47 4D E4 47 80 69 BC 61 52 6C 6D A0"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_ArmorStatus01.uexp",
+      "edits": [
+        {
+          "offset": "0x21705",
+          "original": "3F 2C 51 3A A3 33 13 48 B5 14 B6 37 7B EE DC 15",
+          "patched": "5E 55 8F 2C BC 98 E5 49 A6 78 C4 42 A3 9B F0 AD"
+        },
+        {
+          "offset": "0x233BB",
+          "original": "02 19 6A AC 94 3C 65 42 A5 E3 FF 2F B9 C4 57 D2",
+          "patched": "37 D8 7E 2A 1B 41 A8 48 A0 4B 1B 8B 2E D7 0A 38"
+        },
+        {
+          "offset": "0x25071",
+          "original": "7A C9 2F 8B 48 A4 80 45 89 A0 F0 9C ED 99 D4 16",
+          "patched": "CF 5A AC 0D B2 EA 93 4A BF DE FC 49 38 DC 34 DF"
+        },
+        {
+          "offset": "0x26CD6",
+          "original": "F1 6D 92 C4 88 62 1F 40 A1 83 68 A7 42 2E 02 B6",
+          "patched": "1E F8 0D 25 ED 66 6B 4D A1 BE 8F 00 B9 96 6A D8"
+        },
+        {
+          "offset": "0x28920",
+          "original": "E8 9E 75 2C 78 68 C4 44 A0 BA B6 78 0F 88 4D D0",
+          "patched": "9C C6 0C CC 4E 12 CC 46 9F FA C2 5A 4E D5 FD FF"
+        },
+        {
+          "offset": "0x2A6AE",
+          "original": "22 C0 0D F6 D7 D4 A7 4D AD 14 9C 9B 11 8B E2 6E",
+          "patched": "A9 43 37 56 76 93 55 4C B7 22 31 01 2D A0 E6 6D"
+        },
+        {
+          "offset": "0x2C364",
+          "original": "03 02 32 BD 29 F7 20 4B B1 8E 8D BB FA 22 AD 2F",
+          "patched": "CA 14 91 30 AF 39 BF 45 88 87 E4 B2 2A FC 8A 92"
+        },
+        {
+          "offset": "0x2E01A",
+          "original": "50 55 B4 76 46 89 35 4B B9 07 D9 A2 92 AE A3 29",
+          "patched": "86 C7 6D A4 AC 8B 51 49 A9 CD 90 1A 68 E0 78 74"
+        },
+        {
+          "offset": "0x2FC7F",
+          "original": "74 92 31 F9 19 97 A9 4B 83 88 C6 DF 47 55 0E 30",
+          "patched": "0D BE 82 CE F2 BC F2 42 A1 6E 27 6C 0C 61 65 1E"
+        },
+        {
+          "offset": "0x318C9",
+          "original": "02 D6 87 C0 88 AF A9 41 94 67 22 5F 6A 4E 54 A8",
+          "patched": "EC 98 E0 A8 04 1D ED 4F 94 80 90 E5 D0 FC E2 FD"
+        },
+        {
+          "offset": "0x33657",
+          "original": "83 01 D6 C5 B0 77 76 46 A2 A2 26 11 07 D8 93 F6",
+          "patched": "F8 F8 AA F5 D3 83 BE 46 AF F2 38 88 23 D1 8F 20"
+        },
+        {
+          "offset": "0x3530D",
+          "original": "DF AC DB EB E1 EF 48 45 9A A3 91 A3 78 98 B7 BC",
+          "patched": "9A C0 BF 60 23 34 C4 4D 94 13 32 2E 43 52 92 5E"
+        },
+        {
+          "offset": "0x36FC3",
+          "original": "3E B2 99 4D 15 07 45 43 B9 5F 91 8F 8F 82 CC FE",
+          "patched": "18 87 4F 0D 08 62 03 47 84 5B 0A 84 EF 60 A4 8D"
+        },
+        {
+          "offset": "0x38C28",
+          "original": "35 C1 EC 03 0A 6F 48 4A B6 3F 12 8A 2A DB 75 E6",
+          "patched": "78 A6 EF 56 7F 32 DA 48 AE 79 10 34 DD CD E0 77"
+        },
+        {
+          "offset": "0x3A872",
+          "original": "A5 FC 44 56 9A 1D 59 41 AC CB C9 D1 03 4D 31 E1",
+          "patched": "FE 9A 24 0B 8C 8D 0E 4E 84 38 58 84 11 C8 BD 54"
+        },
+        {
+          "offset": "0x3C600",
+          "original": "75 0D 05 60 55 3F 5B 43 B1 AF F9 AB 79 DE A0 12",
+          "patched": "1B DA 06 A7 AD FB 7D 4C A8 0D BE 42 FC 9A 0A C0"
+        },
+        {
+          "offset": "0x3E2B6",
+          "original": "C3 34 91 6D 1C 43 99 43 BB F9 AC FF 18 09 92 42",
+          "patched": "C8 06 5F 5F 62 BD 09 4A B4 92 1B 70 83 49 98 3B"
+        },
+        {
+          "offset": "0x3FF6C",
+          "original": "78 66 08 40 11 00 91 48 87 2B 42 88 4B 4F 08 B4",
+          "patched": "D2 11 E2 0E F8 FA 9F 43 98 DB A1 13 14 4C 9B B2"
+        },
+        {
+          "offset": "0x41BD1",
+          "original": "DA BB 42 BB E1 64 1D 4E 96 EE 97 B1 F7 17 8C 7A",
+          "patched": "12 F9 1F 27 EC C7 F7 4B BF 79 AE 19 5A F7 34 23"
+        },
+        {
+          "offset": "0x4381B",
+          "original": "99 06 FF 1E DD BE 68 44 B0 28 B9 E3 92 81 6E C9",
+          "patched": "33 82 48 1B 6A 73 C6 40 B7 FE 08 A5 E5 8A 7E 34"
+        },
+        {
+          "offset": "0x455A9",
+          "original": "1E 8B 91 C8 B3 31 38 4B B8 E2 83 E2 6D 3D 70 DF",
+          "patched": "1D C4 93 29 26 6A C4 4C B1 43 68 5D 4E 99 63 1A"
+        },
+        {
+          "offset": "0x4725F",
+          "original": "00 77 EC D7 9E 8D 90 4A 94 BC AA E7 53 05 E2 03",
+          "patched": "C0 7F 30 68 5C 7A EA 49 A3 3F 51 E0 7C F9 00 C8"
+        },
+        {
+          "offset": "0x48F15",
+          "original": "DC 58 3D DE 7B A9 5B 44 97 CB 25 65 CE F7 3F 93",
+          "patched": "E8 AD 99 2C 5F 92 36 44 83 63 13 21 8C 33 88 DE"
+        },
+        {
+          "offset": "0x4AB7A",
+          "original": "29 E4 04 E4 60 02 63 4C 8F C5 DC 25 F9 CE BE 5F",
+          "patched": "51 56 A7 3B B9 58 FF 4D 95 62 85 BC DC 5C 88 86"
+        },
+        {
+          "offset": "0x4C7C4",
+          "original": "CF 7A 45 7E 70 8E 37 46 AF 3F AF 50 06 7B 96 32",
+          "patched": "21 7B B2 A3 4E FA C8 49 82 81 3E 87 FC 5D 9F FD"
+        },
+        {
+          "offset": "0x4E552",
+          "original": "88 5B ED BB 9E 5C 6B 49 BA D2 F3 08 70 4A C6 54",
+          "patched": "D9 59 2F 84 52 EF EC 4F 86 32 4B D7 5C 9C A3 4F"
+        },
+        {
+          "offset": "0x50208",
+          "original": "51 60 42 B6 6F B0 5F 4B BF BD 1E 6F 32 38 9F 96",
+          "patched": "A6 6A 54 20 89 2E 31 45 99 1B DD 72 94 DA 6E 6E"
+        },
+        {
+          "offset": "0x51EBE",
+          "original": "FD 8F DA ED FE 78 2F 45 B2 2B 65 E3 22 73 73 9C",
+          "patched": "CD 5D 46 8E 0D C2 0D 4D 99 F2 3E DD 97 18 16 68"
+        },
+        {
+          "offset": "0x53B23",
+          "original": "8B 9C B3 7B 44 35 A5 41 9C 53 1D 84 8C 8F D7 D7",
+          "patched": "F4 94 70 97 A4 88 34 49 92 C3 2A A5 55 EC 25 71"
+        },
+        {
+          "offset": "0x5576D",
+          "original": "7E 5F 33 F5 46 9D 44 42 AB F6 BF 5A EB 81 33 A4",
+          "patched": "12 1F 84 F5 8E 40 BC 40 98 7E 90 27 F9 12 00 34"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_ArmourDamagePulse_01.uexp",
+      "edits": [
+        {
+          "offset": "0x763B",
+          "original": "92 9F E1 FA BB AD E6 44 8F A2 DF 73 BA 88 26 FE",
+          "patched": "34 64 F2 6C B5 90 C3 44 B7 9B F6 2A 16 52 3F BF"
+        },
+        {
+          "offset": "0x92F1",
+          "original": "DA 34 A6 60 E8 C9 B2 43 8C 8A 61 9A D1 35 F5 8B",
+          "patched": "09 78 38 AC AF D9 6A 4D 85 28 1D 06 0F D4 41 DE"
+        },
+        {
+          "offset": "0xAFA7",
+          "original": "21 B4 0C 0F 41 82 82 45 85 14 42 60 BA FD E2 3A",
+          "patched": "04 A3 68 2F 6C 0C D9 49 B0 6C 3E 90 F7 87 7C FF"
+        },
+        {
+          "offset": "0xCC0C",
+          "original": "D4 B8 9A 8F 36 26 60 42 8B 8F E6 8B 0F 0A 67 8F",
+          "patched": "2C 60 8D 31 81 4B 03 49 A1 35 62 66 CF 97 1F 56"
+        },
+        {
+          "offset": "0xE856",
+          "original": "80 E8 49 D5 51 00 FE 4B B9 38 D1 51 26 E5 88 6C",
+          "patched": "61 82 5E 62 59 57 BF 47 BC 7F 46 5B CC 26 4B 0D"
+        },
+        {
+          "offset": "0x105E4",
+          "original": "5F 10 F1 1F 50 59 B0 4A B0 69 22 EE 72 7F EF 5B",
+          "patched": "21 52 3E 25 0D A7 39 48 B5 3E 49 A5 53 26 07 64"
+        },
+        {
+          "offset": "0x1229A",
+          "original": "50 F4 FA 70 05 F9 B1 40 80 F2 5E 4E 4E C2 CF A1",
+          "patched": "BD 2D B0 5B 84 1D 2E 45 9A 7B 7B 4F AE D8 C8 F6"
+        },
+        {
+          "offset": "0x13F50",
+          "original": "14 09 50 27 F9 44 AA 45 88 87 36 C4 5D DD B2 6A",
+          "patched": "92 31 D5 19 78 4F 07 41 B9 10 74 12 89 1C 33 D5"
+        },
+        {
+          "offset": "0x15BB5",
+          "original": "96 8C F4 2A 9A 3F FA 47 A6 B2 DA 05 61 30 56 10",
+          "patched": "88 A4 92 BB 5C A1 DF 45 8E F7 E4 7D 49 D0 DB 39"
+        },
+        {
+          "offset": "0x177FF",
+          "original": "9E FB ED F2 A1 5C 97 44 A9 01 B3 8C B9 D4 12 3A",
+          "patched": "4B CA 75 42 54 EC F5 4A 8B 3A DC 5B 49 DD AA 25"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_AwakeningCinematicOutro.uexp",
+      "edits": [
+        {
+          "offset": "0x4022",
+          "original": "50 FA 87 69 2E A5 4A 45 AB 08 BE DF C9 67 86 EE",
+          "patched": "5E B5 B2 0C 4A 19 21 48 86 AB 47 A6 1D 78 5C 11"
+        },
+        {
+          "offset": "0x57D5",
+          "original": "EB 0D 57 DA 54 B8 79 46 A2 DB 0B E7 A9 93 57 A2",
+          "patched": "B6 70 64 CA 5E BB BA 49 82 F4 06 91 40 2F 72 29"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_ButtonPrompt.uexp",
+      "edits": [
+        {
+          "offset": "0x15AC5",
+          "original": "34 72 34 92 8B C8 69 4F A0 A8 5D 8F 11 FD FF 02",
+          "patched": "17 61 6F F0 9F 9B C1 4B 84 6B 35 52 16 1E F0 82"
+        },
+        {
+          "offset": "0x17D2A",
+          "original": "E1 13 87 FC C7 54 AA 4D A8 E1 CA 66 2C 12 AB 09",
+          "patched": "8D FE 81 F3 6A 88 23 47 A3 67 50 54 28 41 AB 12"
+        },
+        {
+          "offset": "0x19B96",
+          "original": "B6 48 DD 67 9D FA C5 4E BA 06 03 03 D0 1E 9B 50",
+          "patched": "B8 F3 03 B1 02 B4 03 40 AE 1D 3E D1 6F A2 43 0C"
+        },
+        {
+          "offset": "0x1BC17",
+          "original": "D1 8A EF 85 EF 21 01 4B BD C9 20 8A DD FD FC 23",
+          "patched": "37 E1 2F 29 7E 6A 53 4C BD 49 A1 D4 71 45 5C 61"
+        },
+        {
+          "offset": "0x1DBF6",
+          "original": "38 C3 1E DC 9B 6D 37 4C 9C C1 7A 32 78 D8 91 A2",
+          "patched": "6D 5C 8A 10 12 C3 A8 4A 86 C3 02 5F 70 79 19 5C"
+        },
+        {
+          "offset": "0x1FE5B",
+          "original": "F9 BD 4E 82 80 29 02 4D A5 18 8D 90 DE 10 0A F5",
+          "patched": "70 20 64 FE 33 97 CA 4D 9B B5 59 51 6A EB CB 01"
+        },
+        {
+          "offset": "0x21CC7",
+          "original": "B3 9F 7C 6E AE 05 B0 47 9E 4C 5A 82 77 DA 3E D1",
+          "patched": "27 33 E7 13 36 FE 09 4E 8A 29 4A 05 97 AA D8 9C"
+        },
+        {
+          "offset": "0x23D48",
+          "original": "E3 FE EF C7 70 4A 35 4D 8A F8 8E AC E9 17 B3 9D",
+          "patched": "EE 36 AC B3 3C EA 2A 45 81 1D 72 3C 93 10 C0 2E"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_ChallengeUI.uexp",
+      "edits": [
+        {
+          "offset": "0xDE80",
+          "original": "F4 3C B4 80 16 11 14 4C 83 EF 8B 9A 62 FC BD 64",
+          "patched": "58 48 9B 4F 79 7E 48 4E B9 05 66 F5 06 A5 CB 17"
+        },
+        {
+          "offset": "0x10D78",
+          "original": "E6 3C 05 96 07 0F 53 46 90 58 76 E6 2D 70 AC F2",
+          "patched": "35 0C CF 08 9D 25 B5 42 AA FC 8F BE 30 4B AD C9"
+        },
+        {
+          "offset": "0x13C70",
+          "original": "82 ED B8 36 4B 1E 32 47 B1 4B 6F 87 30 70 0E 07",
+          "patched": "59 80 86 C2 CF 24 7B 41 BB DF 36 4F ED E3 37 94"
+        },
+        {
+          "offset": "0x16B68",
+          "original": "5B A5 38 2A 51 C4 70 43 85 43 B7 A2 A2 D3 F4 25",
+          "patched": "C1 2D B6 D8 6D 8C D8 47 9E 74 A4 71 D7 85 37 3E"
+        },
+        {
+          "offset": "0x19A60",
+          "original": "D3 6B A8 02 A2 E1 8B 40 81 B9 AA 89 7E 2D F3 E0",
+          "patched": "20 58 C8 AB E0 C0 CB 44 80 12 B4 CB 35 C0 16 E9"
+        },
+        {
+          "offset": "0x1C958",
+          "original": "59 FB 9C CA 12 28 2A 4B 81 ED CC 12 CA 57 E6 B3",
+          "patched": "19 2B AB EB D0 4E 5F 4A 97 B8 CF 66 1D 55 35 51"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_DiscoveryCinematicIntro.uexp",
+      "edits": [
+        {
+          "offset": "0x4032",
+          "original": "79 0A 2F 56 EB 5E D5 41 91 17 C8 C9 58 93 6D B2",
+          "patched": "E1 C9 7F 7F F1 38 D0 4C AE A9 52 F5 2C D8 7E 8C"
+        },
+        {
+          "offset": "0x57E5",
+          "original": "63 FD 00 60 81 6E 0A 49 96 A4 B2 A1 3B 06 03 CE",
+          "patched": "82 50 0B CD 06 1C 9F 43 A6 A2 D3 56 B6 F2 3A 46"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_EndeavourTurretStatus_01.uexp",
+      "edits": [
+        {
+          "offset": "0x3805",
+          "original": "A8 2B C7 46 B8 F4 71 4B BC F6 25 21 45 28 69 83",
+          "patched": "9A C8 12 89 1C 9C 0B 49 A7 61 98 10 04 B0 8E 08"
+        },
+        {
+          "offset": "0x5434",
+          "original": "C8 0B 18 9C 57 A0 16 44 95 DE 57 AF A5 87 B9 71",
+          "patched": "6D 2F 8D EE 83 3B 54 40 B6 94 2A FE 81 E3 05 52"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_Episode_Intro_Rules.uexp",
+      "edits": [
+        {
+          "offset": "0x4814",
+          "original": "2D E6 39 F4 63 5E D5 4B A4 04 F3 AC 88 25 2F CF",
+          "patched": "3B C6 2A CD 39 E2 73 4D 86 95 02 9C 50 54 9A 7B"
+        },
+        {
+          "offset": "0x5FC7",
+          "original": "62 BF 4B 4A D5 96 BF 45 81 42 9B DA 5D AA B4 1D",
+          "patched": "5C 6A 77 90 1B 3F 21 4C BF 76 53 4B 18 D5 3A 46"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_FinalStand.uexp",
+      "edits": [
+        {
+          "offset": "0x5BB53",
+          "original": "7D E5 E9 49 07 3D 32 4A 9F EE E6 11 B4 1B AF 83",
+          "patched": "BE F7 E9 9E 29 50 BD 47 B6 9A 49 FE E0 A1 63 53"
+        },
+        {
+          "offset": "0x60779",
+          "original": "0C 69 B2 5B B4 74 AA 44 92 C7 47 67 A8 2E 5C B8",
+          "patched": "D3 4F 08 47 98 B3 A5 42 AC 5F 52 C9 C6 63 4A 6A"
+        },
+        {
+          "offset": "0x621FD",
+          "original": "BD 24 63 FF E7 41 6B 40 AE D1 B4 F8 98 8C 53 9F",
+          "patched": "C3 0E 93 91 52 C5 39 49 8E 61 C8 2A 43 36 EC DB"
+        },
+        {
+          "offset": "0x6631A",
+          "original": "C4 B1 74 65 96 7A 1C 4B A6 9E DD AB 27 E4 8C 9A",
+          "patched": "9A 00 55 7E AE 5A 11 4D 94 60 21 F9 E0 60 4B 4B"
+        },
+        {
+          "offset": "0x68421",
+          "original": "47 6F 32 99 76 1A 3F 47 8A 1B 43 09 BC 5B B3 A0",
+          "patched": "39 DC C5 C4 D4 34 DB 49 A5 8F 16 F2 11 41 FD 95"
+        },
+        {
+          "offset": "0x69F2C",
+          "original": "71 50 E7 12 E9 88 6A 43 AE 4D EF BA 45 64 D5 08",
+          "patched": "DE 6F 27 26 6D E7 F9 47 9D 9A 4F 55 63 8D 84 5D"
+        },
+        {
+          "offset": "0x6FAED",
+          "original": "F9 5E 61 94 AF BC 9B 47 B6 C5 5C 4B A1 D8 5F 3C",
+          "patched": "DC B0 42 C4 F1 E4 0D 49 80 17 83 1B D0 2A F1 C1"
+        },
+        {
+          "offset": "0x78AE5",
+          "original": "6A 17 1C CA FA 4C EC 4C A8 6A F6 4F 3A 7A 49 A9",
+          "patched": "28 1A DB 81 A7 AA 0F 4F 97 F4 24 61 61 AD DE 08"
+        },
+        {
+          "offset": "0x88AD7",
+          "original": "36 73 8C 3F AF AC C4 45 B4 51 12 F7 9A CC 7B 30",
+          "patched": "9B 12 C7 68 98 35 00 4B 8A F4 37 7C 84 22 CC 8B"
+        },
+        {
+          "offset": "0x9627B",
+          "original": "3D 5E 02 4D B3 84 D0 4E 98 43 3E 32 DB 4D 6C 8C",
+          "patched": "6C BF EC E8 A2 5B 6E 40 8D 7E 63 0B 31 CB 8A DB"
+        },
+        {
+          "offset": "0x9AEA1",
+          "original": "59 39 7F 53 1B B5 7D 4F 8D FA E6 AA E7 55 DB D9",
+          "patched": "36 E6 AB AB C6 0D 4E 48 BC 51 C8 7C 68 23 E0 26"
+        },
+        {
+          "offset": "0x9C925",
+          "original": "1A B6 02 72 99 91 9A 49 9A 94 E8 BF 4D 36 0B 38",
+          "patched": "1E 70 08 05 57 B8 49 48 80 0D 75 50 35 B1 EA E3"
+        },
+        {
+          "offset": "0xA0A42",
+          "original": "55 48 0A 83 78 6E 27 4F 83 74 0D 6B F8 52 81 3B",
+          "patched": "D7 0D 6F 0F 20 71 49 4A A4 20 2E 81 44 32 16 74"
+        },
+        {
+          "offset": "0xA2B49",
+          "original": "94 55 44 FE E7 89 C2 42 B7 B0 3B 71 E9 9F A6 89",
+          "patched": "A5 43 6A CD CA F0 7D 4A A7 26 10 3B E4 5A C3 7E"
+        },
+        {
+          "offset": "0xA4654",
+          "original": "E3 DE 11 64 C6 FA 12 47 BB 61 8B 97 D3 C5 75 1E",
+          "patched": "B5 59 90 E2 A7 8B 7B 4F BD FC 3D D1 2E 17 AF 17"
+        },
+        {
+          "offset": "0xAA215",
+          "original": "26 26 32 34 72 A0 28 4A AA 88 5B 06 62 D4 88 B5",
+          "patched": "03 16 75 DB 2C 22 B4 4E A7 80 56 9D 31 17 93 78"
+        },
+        {
+          "offset": "0xB320D",
+          "original": "A0 D0 B1 74 1A F7 B8 43 BA 87 62 7F 19 4F F9 D9",
+          "patched": "73 9E 14 E8 51 59 CF 4B A7 E0 E2 87 16 A2 72 C6"
+        },
+        {
+          "offset": "0xC31FF",
+          "original": "AB 65 60 96 2D 83 2F 4F 84 53 27 1B 77 07 E9 40",
+          "patched": "CD A3 30 0D 9D 48 52 44 A4 2B 42 B5 A6 77 26 0F"
+        },
+        {
+          "offset": "0xCDBB1",
+          "original": "71 36 B6 CC 1E 23 A7 4A B3 FC FB 83 AF 37 05 DF",
+          "patched": "36 8C 71 08 23 D0 5A 45 95 AD B4 AE 0E D4 C1 40"
+        },
+        {
+          "offset": "0xDC375",
+          "original": "FD 87 F1 C0 34 BE BB 42 89 5B 91 42 69 52 60 97",
+          "patched": "8A 2A B9 08 03 CD 97 41 B7 5D 3D E3 00 6B AC BB"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_FinalStandCinematicIntro.uexp",
+      "edits": [
+        {
+          "offset": "0x4034",
+          "original": "FA 0C EA B9 3B C5 5E 44 8B FA F1 AC 76 8C DA DB",
+          "patched": "97 4E E2 94 05 4F 17 46 83 B5 76 76 23 1D 81 20"
+        },
+        {
+          "offset": "0x57E7",
+          "original": "7B 4F A3 D3 4B 8B 65 41 AC 4A E0 89 3F 64 45 5A",
+          "patched": "1E 5C 3E 03 80 49 77 4C 81 FB 78 CE 60 43 B2 C0"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_FinalStandCinematicOutro.uexp",
+      "edits": [
+        {
+          "offset": "0x3FEA",
+          "original": "47 90 DF 03 74 B6 B0 40 8A E4 B0 FD A7 33 70 D4",
+          "patched": "36 9E 65 3C 7E 8D 0D 4E 8F A7 C4 91 5C BD 0C F2"
+        },
+        {
+          "offset": "0x579D",
+          "original": "1C 4E FD F6 ED AE BA 42 B0 17 A0 F3 B3 4F EF 65",
+          "patched": "96 BF F1 B3 83 F6 2C 41 9F 46 3B D1 BF 1D 91 CB"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_Generic_Rules_PopUp.uexp",
+      "edits": [
+        {
+          "offset": "0x4ABD",
+          "original": "DD 75 74 BE B7 CA 0D 49 84 5F 5E 5B 08 30 9D 60",
+          "patched": "55 14 25 21 DA 7A DB 4F A0 9A 6D 37 D6 7B 2F 02"
+        },
+        {
+          "offset": "0x5F24",
+          "original": "0B DA 83 3F AF 61 84 49 86 3F 4E 73 59 64 83 D7",
+          "patched": "85 13 0C E7 EC 51 72 44 95 4D 84 5D 1B B1 62 9B"
+        },
+        {
+          "offset": "0x738B",
+          "original": "8D F3 7D 4A 4F 46 AF 42 AB 8C 32 C4 16 EE A1 12",
+          "patched": "35 89 89 48 8D 21 42 40 92 9B 81 88 2C 72 2F B5"
+        },
+        {
+          "offset": "0x87F2",
+          "original": "75 8E 66 5D DE 6D 29 43 B0 7E DD 8F 64 F9 35 76",
+          "patched": "21 20 06 49 7A B1 49 4D B8 A2 44 06 B6 46 12 30"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_HordeEndScreen.uexp",
+      "edits": [
+        {
+          "offset": "0x26A16",
+          "original": "0C 6F 64 26 66 4C C8 40 AA 09 4B 4B 46 32 11 3B",
+          "patched": "3C 8C 29 28 F1 C2 FC 4A 85 F7 6D F9 7A 8D 9C 75"
+        },
+        {
+          "offset": "0x351DA",
+          "original": "FF FB 66 11 77 5F 1A 43 9A 37 B5 CD BF 13 D3 CF",
+          "patched": "17 45 8C BF 8C C9 B4 4D 87 04 3A A6 97 15 2A 29"
+        },
+        {
+          "offset": "0x3FE8A",
+          "original": "FE E0 14 C3 03 8E AB 4E A9 F4 F7 BA 3D E3 82 C6",
+          "patched": "E4 2A 0B D7 AB 15 A3 44 8B 7F 99 C5 8C AC 7D 56"
+        },
+        {
+          "offset": "0x4E64E",
+          "original": "B6 8A D8 20 00 6A 4C 49 9E B0 DC 31 10 4F D6 0E",
+          "patched": "28 CA 74 DC 84 24 70 4F 86 82 B0 37 79 95 33 AD"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_HUDTag.uexp",
+      "edits": [
+        {
+          "offset": "0x333B4",
+          "original": "3F 21 09 A3 CD B9 9E 49 8F CF 48 CD 88 FE B4 83",
+          "patched": "A9 16 A1 F8 F3 91 C7 4F B7 7D FC 83 10 49 AD D6"
+        },
+        {
+          "offset": "0x36D10",
+          "original": "34 36 13 6A 9E FD 45 4C 94 20 F4 E4 77 9B A4 73",
+          "patched": "01 95 33 DC 47 09 DC 4E 80 1A A4 E1 BC 64 1D BD"
+        },
+        {
+          "offset": "0x37E53",
+          "original": "9E 46 B3 5B 59 3E 9E 4F BF 2C 2C CB DE 4D 6D AD",
+          "patched": "9C CD 7E B3 F2 74 0C 47 A5 51 41 FD 58 1D 28 C8"
+        },
+        {
+          "offset": "0x3A618",
+          "original": "EE 49 71 92 92 4B F7 41 80 24 C0 9D 5B FE E4 30",
+          "patched": "B9 82 C8 E3 9A A9 94 42 BE 59 73 AC AE 4C C9 C8"
+        },
+        {
+          "offset": "0x3FB55",
+          "original": "82 25 3D CA D3 4E 07 4D 93 EF 9B 1E D0 1E F0 AA",
+          "patched": "D3 9A DC 69 9E F3 35 48 AC 78 21 0B D8 6D 0D 62"
+        },
+        {
+          "offset": "0x4326E",
+          "original": "99 F3 AD 31 32 E2 8F 42 B0 21 61 88 C2 9E 75 D6",
+          "patched": "55 D9 03 51 3D 35 6B 47 BB 91 4B B3 14 66 12 83"
+        },
+        {
+          "offset": "0x461F6",
+          "original": "48 35 95 C5 6A 7E 69 48 A8 74 21 DF 74 66 88 8C",
+          "patched": "AC A8 77 39 92 C6 8F 4D BE EB 8D 73 A1 30 BE CF"
+        },
+        {
+          "offset": "0x4B733",
+          "original": "56 1E 92 11 56 00 48 42 A7 AD 6B E1 26 2D 07 40",
+          "patched": "79 0D 0E 78 B7 02 C6 45 91 5F B4 0E 55 0B A6 28"
+        },
+        {
+          "offset": "0x4EE4C",
+          "original": "D9 AE 97 2C C0 A6 72 47 9C 4F 58 2B BC 58 9C 3B",
+          "patched": "38 97 55 CB 68 85 91 44 A0 72 5B AB DA 4E 3F DF"
+        },
+        {
+          "offset": "0x51DD4",
+          "original": "A3 74 1A 1D 68 C0 69 43 80 BB 93 0C 1B 59 2B F7",
+          "patched": "DC 30 B1 24 0B 0C 0E 47 92 E3 20 3C 32 83 9C 2B"
+        },
+        {
+          "offset": "0x57311",
+          "original": "7C E6 2F 2A 0D F9 90 4F AF B3 CD A9 EC 8C 1C 4D",
+          "patched": "25 74 5B A5 FC 0B E1 4A 8B 49 15 4C 11 18 CF ED"
+        },
+        {
+          "offset": "0x5AA2A",
+          "original": "BB 4A 48 57 67 7A CE 48 9F A6 95 7C 18 CB E1 75",
+          "patched": "E6 8C 1F 8B AD 61 7F 46 BF D4 2E A5 7C B4 DE 78"
+        },
+        {
+          "offset": "0x5D9B2",
+          "original": "A2 08 DA 1C 98 D9 01 4A BB 5E A1 11 C4 F6 DD CD",
+          "patched": "C2 63 F0 7B 88 AB 01 45 BA 2B BD 07 DE 7E 77 5E"
+        },
+        {
+          "offset": "0x62EEF",
+          "original": "06 A2 7D 5B 48 2F 3A 48 AB 72 42 D9 D5 FD 70 C6",
+          "patched": "1A 0C DB 25 1B 55 7A 4B A3 6A D0 A9 E5 F6 12 B6"
+        },
+        {
+          "offset": "0x66608",
+          "original": "75 1A 27 86 2B 2F E5 48 81 33 B7 DB 0E 81 11 7F",
+          "patched": "80 12 30 26 2E 88 4A 47 87 4D 66 40 8D E4 CD 4F"
+        },
+        {
+          "offset": "0x69590",
+          "original": "ED 22 3D 12 84 09 BA 4B 91 65 69 E6 73 DF D8 DE",
+          "patched": "47 ED 6A 80 B7 26 37 47 B6 0F 4B C4 B4 9B D3 66"
+        },
+        {
+          "offset": "0x6EACD",
+          "original": "34 6A 22 CE 8B 11 52 43 A3 68 A7 2E 1A C6 E5 DE",
+          "patched": "6A 3C 84 56 38 E1 F3 46 BB A5 0D 02 8E 05 CC 59"
+        },
+        {
+          "offset": "0x721E6",
+          "original": "FC 93 CB 1E B6 3C 38 47 9F 3A 1C BD 90 44 29 2A",
+          "patched": "A7 AA 83 F2 14 66 85 4A 80 2E 74 67 CE 9B 96 DA"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_HUDTag_Brackets.uexp",
+      "edits": [
+        {
+          "offset": "0x1EBC",
+          "original": "17 CB 03 E5 32 93 07 42 83 91 01 34 17 BF 8D 54",
+          "patched": "4E 98 47 14 F8 68 4B 40 90 77 50 6D 52 06 11 90"
+        },
+        {
+          "offset": "0x23BF",
+          "original": "1B A6 63 C8 4F F9 3B 4A 90 F8 C7 13 F4 33 22 1B",
+          "patched": "5A 94 AF 05 16 D3 AD 4F A7 A8 31 EE 32 7A 83 CA"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_InfectionCinematicOutro.uexp",
+      "edits": [
+        {
+          "offset": "0x419D",
+          "original": "53 F2 44 6E 85 7B 38 40 AB 4E 3C 43 54 FA 53 7C",
+          "patched": "F6 11 22 82 87 BF A9 49 89 6B ED F3 43 04 F6 9F"
+        },
+        {
+          "offset": "0x5950",
+          "original": "4D D7 C3 27 5A B7 67 42 A4 00 AB 92 00 49 75 89",
+          "patched": "22 C8 09 78 15 D5 06 4F 90 E1 66 7A E5 5F B4 55"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_NewObjectiveNotification.uexp",
+      "edits": [
+        {
+          "offset": "0x19C3A",
+          "original": "23 8C 79 8A 5B 45 4A 44 B4 DF 36 7C 28 AD FB 99",
+          "patched": "F0 B5 DA 78 DD A2 F1 43 A8 42 70 F5 C4 E4 1A ED"
+        },
+        {
+          "offset": "0x20DCA",
+          "original": "DA 32 9D 26 C7 66 30 4D 96 40 B7 46 59 0C 5D BC",
+          "patched": "54 DB 5A 3A 9D 54 44 44 99 72 EB 17 04 30 EE A2"
+        },
+        {
+          "offset": "0x25508",
+          "original": "1B BA E1 D2 70 A5 1B 4D 8D 2F A0 07 77 27 E3 B3",
+          "patched": "EA 87 61 BB B2 30 D4 41 8C 8D AE 3A 8E 89 38 C9"
+        },
+        {
+          "offset": "0x285DD",
+          "original": "56 75 97 8E F7 79 84 4F B3 9E ED EA F9 BF 57 0C",
+          "patched": "17 5F 9E 99 86 83 10 49 9E DC 70 09 4D E2 10 41"
+        },
+        {
+          "offset": "0x2E384",
+          "original": "DE 55 CF CB B2 E4 82 4B 8D A3 77 AB A3 A8 CA 65",
+          "patched": "56 EA 5E F4 71 CC 9F 42 80 49 0A 28 1C 9A 84 2D"
+        },
+        {
+          "offset": "0x356FB",
+          "original": "7A 36 3D 72 FF 48 52 4C 95 6C 5D 18 EE 1F DE 61",
+          "patched": "86 BA 0B 37 7E 2B 50 45 82 BE 48 24 9A 8F AC C5"
+        },
+        {
+          "offset": "0x3C88B",
+          "original": "C6 56 76 09 DD 1D 7D 4B 80 4E 38 57 38 D7 9F B7",
+          "patched": "28 9B 2A DD F6 1F 41 4A 85 7C 21 BE C6 37 05 CF"
+        },
+        {
+          "offset": "0x40FC9",
+          "original": "67 8D E2 38 0F C8 58 4D 80 EB F5 71 B5 32 6B B6",
+          "patched": "1D D2 D4 FE 45 42 3E 43 BF 98 7B E8 46 B3 88 E5"
+        },
+        {
+          "offset": "0x4409E",
+          "original": "DD 4C 03 7B C3 77 F1 4C 83 CA F3 63 29 8B 5A AB",
+          "patched": "50 0D 8E E3 F4 79 10 4B BE 2C D5 07 A7 0F 88 CB"
+        },
+        {
+          "offset": "0x49E45",
+          "original": "B4 3B 45 91 EE 63 55 46 90 78 4E E1 99 24 34 16",
+          "patched": "97 3F 7F 5D 67 D6 5D 49 93 90 D2 97 A4 0C AE 3E"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_OptionsPreviewHUDTags.uexp",
+      "edits": [
+        {
+          "offset": "0xC580A",
+          "original": "C0 34 6C 87 35 26 C9 46 96 51 63 77 AF D9 95 5F",
+          "patched": "AC 15 06 52 E1 87 62 44 86 CD 31 D9 F5 2A C9 C3"
+        },
+        {
+          "offset": "0xC694D",
+          "original": "D8 29 2B E2 01 E0 C4 4B BA 3E 3F DF A3 51 C6 6C",
+          "patched": "E6 FE 78 77 09 46 2B 4D 85 8A A6 DE 5E DF 7D F3"
+        },
+        {
+          "offset": "0xC9112",
+          "original": "62 1C 4F 59 D0 76 4B 4E AD 56 3C 1C 77 43 41 1B",
+          "patched": "DE F6 BF 24 96 51 21 44 B5 E4 FF 06 43 67 89 33"
+        },
+        {
+          "offset": "0xCE64F",
+          "original": "6B 0B 54 5C 59 EB C5 44 9D 79 81 0C 6D 94 43 CC",
+          "patched": "02 13 79 61 D7 92 B0 4C A2 9B B3 0C 7F E0 E1 DF"
+        },
+        {
+          "offset": "0xD1D68",
+          "original": "14 9A E9 D9 AE 72 22 42 8F 94 08 09 B5 B4 61 D7",
+          "patched": "D4 0D 06 50 74 C5 EA 4C B5 32 4F 5E A1 9E 66 5E"
+        },
+        {
+          "offset": "0xD4CF0",
+          "original": "DC 7B FF 0C 88 47 2F 46 A3 E9 B8 B2 50 9D 63 B5",
+          "patched": "5E F9 8A 8F E0 D2 51 47 BF BB 42 0F B2 75 BB 8D"
+        },
+        {
+          "offset": "0xDA22D",
+          "original": "ED D9 15 64 9A 12 03 40 B6 34 55 A3 65 CF 93 B2",
+          "patched": "60 88 FF B0 26 D5 AE 4C 8A EA B4 5E E1 C8 79 89"
+        },
+        {
+          "offset": "0xDD946",
+          "original": "A5 97 7C 8B B1 3B 23 40 92 9F 16 0F 36 4A A3 E6",
+          "patched": "9F 89 53 5E 9F E6 6C 42 B8 C2 97 38 AB B4 C5 BF"
+        },
+        {
+          "offset": "0xE08CE",
+          "original": "BC 57 8F F5 13 E5 E0 4A 9F 92 B5 53 2B AE 55 DE",
+          "patched": "0D FC 99 1E 1B F9 1F 4D 93 5B AC AF 9C 38 07 A4"
+        },
+        {
+          "offset": "0xE5E0B",
+          "original": "55 F8 AC E6 DA 82 D0 4F 8D 58 86 B6 27 B8 B0 22",
+          "patched": "52 76 46 CD 6F B6 BC 4A A6 58 97 F4 88 55 C4 F3"
+        },
+        {
+          "offset": "0xE9524",
+          "original": "0B 6B BB 36 F0 5B E0 46 AC F4 7D 2F E6 65 F5 25",
+          "patched": "F5 CB 13 58 A6 91 7B 4D A8 2E 08 8E C8 16 70 C2"
+        },
+        {
+          "offset": "0xEC4AC",
+          "original": "54 0C 8E C2 D8 2B 4E 48 9F AF 00 BE C9 82 6F DF",
+          "patched": "59 A2 EA DD E6 96 C2 43 AE FB 46 71 E1 43 A7 40"
+        },
+        {
+          "offset": "0xF19E9",
+          "original": "15 A7 4C 6F 13 F0 46 44 9C 1D FA 88 D9 DC 75 4D",
+          "patched": "75 9C 30 7D C2 20 35 44 BC 13 87 C2 B3 63 BD EB"
+        },
+        {
+          "offset": "0xF5102",
+          "original": "EC 6F 17 36 A6 EC 56 4D AF BB C1 29 F3 26 B5 98",
+          "patched": "DA FB EF 2D BF 34 08 4F 8C 0F FB A4 27 B0 79 65"
+        },
+        {
+          "offset": "0xF808A",
+          "original": "EC 35 70 14 CF FA 26 43 B4 62 C4 40 D3 5B F2 DE",
+          "patched": "0C E0 17 8A A3 52 9F 41 96 34 C5 1C 9C 5E 81 27"
+        },
+        {
+          "offset": "0xFD5C7",
+          "original": "4A D9 9B EE F4 73 0C 4B 91 A6 66 92 B2 E0 77 A3",
+          "patched": "86 8F 3C E1 B2 1F BD 43 8A 0A 5C 76 8A F1 4F 7A"
+        },
+        {
+          "offset": "0x100CE0",
+          "original": "19 15 C3 42 6D 5E 23 4A AA E8 21 17 D0 56 DE 4B",
+          "patched": "46 CF 21 C2 E5 3E 26 4C A7 37 02 A2 AA A4 1D D6"
+        },
+        {
+          "offset": "0x1041BF",
+          "original": "5C 4D 84 41 93 26 BD 46 B4 99 66 78 46 62 E3 37",
+          "patched": "8E 11 3A DC E4 A2 29 44 93 E5 DE 5B A5 DF 24 F1"
+        },
+        {
+          "offset": "0x105302",
+          "original": "DA 59 37 90 C7 20 D1 4F A5 8F 79 99 44 8C 73 F6",
+          "patched": "6E 63 FA F8 14 C0 44 40 8C 8F C4 5C DC 33 E4 4B"
+        },
+        {
+          "offset": "0x107AC7",
+          "original": "70 BD D6 71 EB C0 69 46 8E A4 4B 52 5C 90 50 AD",
+          "patched": "03 78 47 8E EE 78 3F 45 A1 77 FF 2B 59 20 A7 F1"
+        },
+        {
+          "offset": "0x10D004",
+          "original": "05 B2 9B 8C F5 F1 B2 49 B9 A5 99 27 60 A9 AE C7",
+          "patched": "12 BB 61 47 9E 9D 63 4C 8A C4 5D FE 2B AD C4 45"
+        },
+        {
+          "offset": "0x11071D",
+          "original": "EF 7C 2E 1E DC 1A DE 4A A3 0E 2E 78 9A C4 E6 19",
+          "patched": "37 23 B8 F6 C0 D6 69 45 B8 90 FA CD CF 81 1E 6B"
+        },
+        {
+          "offset": "0x1136A5",
+          "original": "46 97 69 FE 88 58 42 44 98 A0 13 0F 5D 6A 04 EA",
+          "patched": "41 42 A9 64 21 B1 A3 44 B0 BA 81 4C 6C 13 6D 65"
+        },
+        {
+          "offset": "0x118BE2",
+          "original": "FA 93 FC 9A 10 7E B3 43 87 A3 42 3B 47 03 9B 72",
+          "patched": "98 B3 1C 40 D3 24 86 4D BA 8D 9A 31 4F D6 52 DB"
+        },
+        {
+          "offset": "0x11C2FB",
+          "original": "C3 B8 94 F2 C7 25 6D 47 87 D0 C6 75 29 EB B4 12",
+          "patched": "2A E9 6A 95 15 9D 31 40 81 9E 23 42 D6 EB F1 CD"
+        },
+        {
+          "offset": "0x11F283",
+          "original": "A3 55 14 75 B7 1C CA 4B 80 8E 22 07 CA 1A 30 60",
+          "patched": "B6 3B 37 01 A7 1D AB 4D A2 21 02 80 B4 B1 9A 0C"
+        },
+        {
+          "offset": "0x1247C0",
+          "original": "0C 4E 64 CE E9 5C 96 41 9D FF F1 F2 FB A7 E4 E7",
+          "patched": "2F 91 E6 02 1F 34 0B 47 B8 72 6B 4A 7F E1 EE FC"
+        },
+        {
+          "offset": "0x127ED9",
+          "original": "49 F1 90 49 EF BC 9A 42 A9 66 C0 78 40 E9 9F 3B",
+          "patched": "E7 6C 91 69 38 7E C9 41 B2 C1 FC 1C DF D7 98 95"
+        },
+        {
+          "offset": "0x12AE61",
+          "original": "E8 AD D0 59 3F CB 89 40 93 87 E3 72 6A 94 64 38",
+          "patched": "D7 40 1B 83 10 61 29 4D BA A2 1D 01 56 61 CF BD"
+        },
+        {
+          "offset": "0x13039E",
+          "original": "53 60 1E F7 28 25 6A 40 95 1A 32 7D 5A 8D 05 CE",
+          "patched": "CB 77 0A A9 90 05 87 43 B6 77 E5 C7 FE 04 ED 88"
+        },
+        {
+          "offset": "0x133AB7",
+          "original": "CE F1 C7 A7 86 0C EB 4C A2 B8 D9 39 A9 61 8D C9",
+          "patched": "D1 5A FD F1 56 85 5B 45 B4 10 B0 78 30 E3 15 BA"
+        },
+        {
+          "offset": "0x136A3F",
+          "original": "25 D8 B3 BE 61 82 AE 4D 87 7E 3D F6 7F 39 6A A8",
+          "patched": "7A B3 90 BF 5A B4 E8 4A 96 3E AC F3 77 A5 87 D5"
+        },
+        {
+          "offset": "0x13BF7C",
+          "original": "05 FC F1 88 5B 1A 6E 48 91 CB BA 4C 0F AA DB 09",
+          "patched": "C6 2E 08 AA 44 9D 80 47 AD A6 33 2C D4 42 92 FB"
+        },
+        {
+          "offset": "0x13F695",
+          "original": "0C 25 91 64 39 85 34 45 B2 74 58 5A 0E BA CA 3C",
+          "patched": "BF 68 D2 86 D6 F6 DC 48 BA 5D C5 0E FE 17 55 0A"
+        },
+        {
+          "offset": "0x142B74",
+          "original": "11 63 A0 DF B1 8B 07 43 8A 80 46 28 5B 26 8D D1",
+          "patched": "C2 5A 49 7C 1C 6D EE 4A 93 F1 1A E6 C4 0A FE 9E"
+        },
+        {
+          "offset": "0x143CB7",
+          "original": "81 A4 57 67 56 BC 1E 40 96 EB 77 A5 C2 B1 9D 72",
+          "patched": "73 AA 8E 36 F1 15 86 4A 90 74 B2 21 75 97 B0 75"
+        },
+        {
+          "offset": "0x14647C",
+          "original": "97 1F D1 DF A3 3D A3 42 A2 1B 9C 1F 3F 7D 2D CC",
+          "patched": "87 9C 1B 31 74 05 6C 41 8A 1E 57 74 7C 90 62 57"
+        },
+        {
+          "offset": "0x14B9B9",
+          "original": "DB 9D 63 F9 2C 11 04 40 9B DB 08 1F 19 51 0A 58",
+          "patched": "73 29 F6 FE 2B 22 BC 41 8C BD 88 44 C6 53 23 09"
+        },
+        {
+          "offset": "0x14F0D2",
+          "original": "C4 33 9D D7 85 66 4F 40 BC 24 B8 B7 56 47 9D 8A",
+          "patched": "19 94 34 D4 9A 50 54 40 AD 89 45 2B F3 CD DC 8E"
+        },
+        {
+          "offset": "0x15205A",
+          "original": "4A 1B BA 8E F9 71 EC 40 95 61 2F 3B 22 C3 E1 92",
+          "patched": "09 AC 59 EC 8C C7 66 44 8A E8 28 B9 9E 73 24 2B"
+        },
+        {
+          "offset": "0x157597",
+          "original": "60 D0 08 EE 14 0B 88 41 B5 08 64 CF 56 02 32 DD",
+          "patched": "38 54 64 25 D8 5D 18 4A 88 76 CB 7B 81 7B E6 CA"
+        },
+        {
+          "offset": "0x15ACB0",
+          "original": "67 C1 AA D3 0E 9F A0 45 86 39 F7 45 89 2F BD 5E",
+          "patched": "C1 C7 C6 1C 3D A5 D8 44 A1 45 A6 93 9E B0 5D 7B"
+        },
+        {
+          "offset": "0x15DC38",
+          "original": "0A 16 F6 B9 19 85 D1 48 9C 1A 22 83 A3 E5 FE 80",
+          "patched": "8D B8 4A 68 13 47 CA 4C 8E AC 69 7D 36 50 34 FE"
+        },
+        {
+          "offset": "0x163175",
+          "original": "C6 23 1D 5B 44 DE D3 47 BC D3 39 0D 83 EC 39 8F",
+          "patched": "86 BB B3 61 E4 14 A9 46 89 5B 4C 8C 88 D1 81 BB"
+        },
+        {
+          "offset": "0x16688E",
+          "original": "63 3E 60 D2 C1 49 F1 44 A0 B4 B5 87 1F 82 2E C2",
+          "patched": "B2 55 6D A3 51 09 3C 47 BB 43 21 4E 64 8D D0 4E"
+        },
+        {
+          "offset": "0x169816",
+          "original": "3A 4D D8 6C 29 12 B4 44 B4 6C 2F 7B 83 E6 82 E6",
+          "patched": "37 2E 8B 38 29 53 F5 44 90 34 DE 10 25 07 B3 CF"
+        },
+        {
+          "offset": "0x16ED53",
+          "original": "4C 8E 44 73 87 A0 30 48 A3 E5 33 87 FE C7 6B 78",
+          "patched": "D0 3D BB D6 0B C2 E6 44 AF 9B 16 F8 87 81 40 AA"
+        },
+        {
+          "offset": "0x17246C",
+          "original": "39 D7 DC 67 48 1F 0D 41 83 D9 70 E0 04 37 B5 B6",
+          "patched": "BF 09 6F EF DA D8 06 4D 85 CA 09 DB F5 B4 BF 58"
+        },
+        {
+          "offset": "0x1753F4",
+          "original": "41 3B B1 C9 8E 1D 1F 43 8D E6 8D 66 D2 F6 45 B0",
+          "patched": "19 23 A4 67 39 56 9C 43 93 2D 79 31 43 0E 21 39"
+        },
+        {
+          "offset": "0x17A931",
+          "original": "F6 14 46 5B C8 06 94 45 86 EF D2 C0 F5 43 37 41",
+          "patched": "65 F9 62 6C 81 51 C6 43 8B 00 9F F7 20 11 90 4C"
+        },
+        {
+          "offset": "0x17E04A",
+          "original": "10 34 6D EA CC 4F FD 4F 9A 36 1E D6 B5 3D D3 17",
+          "patched": "4E 1F 22 B9 E9 CC 7F 44 9C 78 1D B6 56 BA F0 2E"
+        },
+        {
+          "offset": "0x181529",
+          "original": "45 4D 0E 5D 11 AA DF 41 85 DD AD 17 8C 60 8C 07",
+          "patched": "D1 15 2A BF 38 26 79 40 98 00 8C 41 B1 25 9A CA"
+        },
+        {
+          "offset": "0x18266C",
+          "original": "B1 0F EA D3 97 5E 0E 41 81 18 0C DB 37 EB AF 7C",
+          "patched": "25 6E AE 61 62 11 82 46 BA E6 07 DB 73 58 6C 66"
+        },
+        {
+          "offset": "0x184E31",
+          "original": "2A C0 0F 19 8E 0F B0 47 B1 E0 4D 64 63 00 3A 0B",
+          "patched": "92 D5 73 4C 16 8C D9 4A A7 44 D2 FE 05 3B C8 1D"
+        },
+        {
+          "offset": "0x18A36E",
+          "original": "C9 0D 08 C8 39 00 CF 4A 9D 2A F5 92 90 83 5D 9D",
+          "patched": "1C 08 31 31 1E ED 07 42 A4 67 1B 59 3A 70 B7 6E"
+        },
+        {
+          "offset": "0x18DA87",
+          "original": "1F 92 24 0A BB F0 D6 40 87 DB 4F B1 44 2D 33 3E",
+          "patched": "55 53 B1 55 CD EF 68 43 82 5C B8 D8 97 D0 AB 4E"
+        },
+        {
+          "offset": "0x190A0F",
+          "original": "EF 3B 18 2D E0 3E 29 47 81 DF AD BF 25 E3 98 19",
+          "patched": "53 E2 A2 B0 74 D0 85 47 A7 6C 52 8B 3A C6 E1 48"
+        },
+        {
+          "offset": "0x195F4C",
+          "original": "60 5A EB 44 B3 43 28 4F A8 B2 39 74 99 1A 9A 8F",
+          "patched": "F2 C7 B0 F8 A4 84 1E 40 96 D8 10 0E AD 95 B1 EF"
+        },
+        {
+          "offset": "0x199665",
+          "original": "07 36 8D A4 EC 47 99 42 8F B9 1B 9B 98 BA 95 55",
+          "patched": "42 4F BB CD 3C 39 6D 4A AA 18 AB A2 C9 78 55 9B"
+        },
+        {
+          "offset": "0x19C5ED",
+          "original": "39 A2 7D D8 2A 4D C2 4E 83 A7 E0 CD CD 3B 08 B4",
+          "patched": "BE 67 B8 80 AC 0C 17 41 94 1C A8 B7 81 E4 36 4E"
+        },
+        {
+          "offset": "0x1A1B2A",
+          "original": "5B 13 73 9E 77 DC 09 40 9A 78 58 B8 53 81 A1 58",
+          "patched": "6A AD 30 52 68 57 A3 4A 89 E7 9F F3 15 56 5B DB"
+        },
+        {
+          "offset": "0x1A5243",
+          "original": "0B 37 90 5C D1 65 EB 41 84 2E C9 BF F5 1A 28 79",
+          "patched": "86 C5 58 0B DC 26 B5 40 92 E5 7B 6B 56 AE 4F AB"
+        },
+        {
+          "offset": "0x1A81CB",
+          "original": "93 D4 33 2D D1 3F 59 43 8C 57 9F 8B 4F DA B7 2C",
+          "patched": "1C 7A 25 81 1B F3 DF 45 BE 65 0E FD A5 CE 9C F0"
+        },
+        {
+          "offset": "0x1AD708",
+          "original": "40 82 E6 3D 4A 5A F8 48 AB 75 83 0A 4F 7F 27 46",
+          "patched": "C6 9E 2F DF 4D 3B 09 47 A2 A9 C4 A3 9E C2 F3 7A"
+        },
+        {
+          "offset": "0x1B0E21",
+          "original": "6F 45 31 52 0D 2E AF 4F AB C8 48 34 0D 73 88 D9",
+          "patched": "87 68 3B 77 6C 5A 3E 45 85 1B EE 3B 4D C7 8E 67"
+        },
+        {
+          "offset": "0x1B3DA9",
+          "original": "3A 1D 19 AC 58 82 16 4D A6 08 A3 2A 53 4A 07 4D",
+          "patched": "BE A4 20 41 C2 4F 16 40 B5 BB 63 18 C3 EF 86 37"
+        },
+        {
+          "offset": "0x1B92E6",
+          "original": "FD 5B 83 5A 45 1E 2D 44 B2 ED F9 78 48 0F 26 68",
+          "patched": "B9 88 60 F2 1E 4F 89 42 91 EA 94 CE B9 2A 59 26"
+        },
+        {
+          "offset": "0x1BC9FF",
+          "original": "E3 C6 54 A9 25 CC 13 44 8F D2 88 53 AC 8A E5 40",
+          "patched": "BB D6 DA 00 2D F6 13 4A AD F5 7F 44 B4 5E E9 94"
+        },
+        {
+          "offset": "0x1BFEDE",
+          "original": "4F 63 69 86 81 3F 75 42 94 1F FF 37 D9 D4 81 9C",
+          "patched": "92 0F D1 66 B0 16 C9 4D AA 59 EC BD 9F 0D 5B 15"
+        },
+        {
+          "offset": "0x1C1021",
+          "original": "9F 1F 09 46 1B 8D 54 49 8C FF 93 22 46 95 9B 4E",
+          "patched": "FF E1 07 9D B0 70 27 41 BD 76 CD 6F D2 86 84 AC"
+        },
+        {
+          "offset": "0x1C37E6",
+          "original": "08 2A 53 BC 1D C5 68 43 AD 14 36 65 B3 1B 58 0F",
+          "patched": "1D EB 46 7D 32 37 7A 41 AC 5A 57 4C 2E B3 6E 31"
+        },
+        {
+          "offset": "0x1C8D23",
+          "original": "FD 38 AE C3 57 CE 6D 44 8B F7 DF 2E ED 88 71 AB",
+          "patched": "15 36 33 F9 D3 14 6B 4E 90 C7 32 C4 9B A1 07 B1"
+        },
+        {
+          "offset": "0x1CC43C",
+          "original": "D8 57 F2 C5 DB 39 9F 40 AD 97 66 3B F0 A7 8D 32",
+          "patched": "E8 4C A1 B8 3A 90 74 46 8C AA BB 47 EB F3 08 71"
+        },
+        {
+          "offset": "0x1CF3C4",
+          "original": "A0 41 E3 98 65 46 0D 4B A3 D3 A9 C7 0B 4C 47",
+          "patched": "F0 FF 6C EB E5 C8 8A 46 A6 7A CB FD 76 38 65"
+        },
+        {
+          "offset": "0x1D4901",
+          "original": "A3 62 A9 54 70 69 45 45 9C 21 68 D1 08 20 75 AB",
+          "patched": "93 89 FC 86 A6 09 0E 46 BC 97 C6 FD ED 4E C0 44"
+        },
+        {
+          "offset": "0x1D801A",
+          "original": "96 8C C6 4C DD E4 67 4D BC 1F 93 69 D1 7B 50 1C",
+          "patched": "9A EB 64 62 CA D7 0A 44 AA A5 B8 43 5F FE 3B 1F"
+        },
+        {
+          "offset": "0x1DAFA2",
+          "original": "A4 94 C7 14 83 34 72 4E 80 C3 C0 2D 64 2A 15 D1",
+          "patched": "96 16 E0 0A 34 1F E1 4A B1 B1 CE 44 22 D4 99 B5"
+        },
+        {
+          "offset": "0x1E04DF",
+          "original": "77 44 5B 3D 19 FF 1B 42 B9 33 05 10 20 52 D2 EE",
+          "patched": "D9 2A 25 C2 71 90 4C 49 8C 7B 5F AF DA 0A 2A B9"
+        },
+        {
+          "offset": "0x1E3BF8",
+          "original": "12 EA 5D D7 BA 1F 4A 4B B2 02 95 B5 45 C1 E3 3C",
+          "patched": "C2 1F 4D 66 E3 3F A2 40 86 EE B6 42 9B 7D D7 35"
+        },
+        {
+          "offset": "0x1E6B80",
+          "original": "05 F0 A1 1E 85 A1 05 40 90 1A AE 92 CD C0 08 2D",
+          "patched": "42 67 FA 4B 71 25 AD 4C 90 3E 59 F9 99 F6 96 B8"
+        },
+        {
+          "offset": "0x1EC0BD",
+          "original": "FE 24 79 CC 21 32 4F 45 94 28 ED 05 4C 93 F6 A6",
+          "patched": "94 A0 E4 55 7C 6A 02 46 AD 5D 09 1E D3 8E 4D D8"
+        },
+        {
+          "offset": "0x1EF7D6",
+          "original": "21 45 14 F1 68 7C 52 48 B3 56 F9 C4 38 D4 33 0F",
+          "patched": "B2 BF 48 47 71 60 59 43 A0 BF 6B A1 31 33 4D 4F"
+        },
+        {
+          "offset": "0x1F275E",
+          "original": "D3 65 96 40 28 E4 78 4C 8B 2E 3A 88 36 48 4A 81",
+          "patched": "EA D1 F6 A4 B7 16 47 43 BF 69 3C C6 D5 68 8C EC"
+        },
+        {
+          "offset": "0x1F7C9B",
+          "original": "AB 9D 83 6D 3D 24 6F 4F BC BA 85 8F CF 3F 0B 36",
+          "patched": "35 55 FB 40 2B A1 26 40 96 2C EB 1C 3B 5A 33 7E"
+        },
+        {
+          "offset": "0x1FB3B4",
+          "original": "93 17 47 EB AC B5 72 45 8B 83 54 38 B9 89 92 68",
+          "patched": "78 18 DE 31 88 76 BF 43 A5 FF 1A C5 97 E5 79 12"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_Payload.uexp",
+      "edits": [
+        {
+          "offset": "0x17B99",
+          "original": "BF 69 10 30 A1 31 14 42 A9 E1 9D E6 51 2E 0A 42",
+          "patched": "16 C5 AE D9 CF 77 29 43 B1 BD 8E F3 AA 03 E7 D3"
+        },
+        {
+          "offset": "0x19689",
+          "original": "30 A9 3D 6D 19 5A B1 41 B8 41 B0 0B B3 A7 80 98",
+          "patched": "FE 42 05 20 B3 B6 E8 41 B2 06 8C E9 6F 61 7A F0"
+        },
+        {
+          "offset": "0x1DCB3",
+          "original": "9F EE AC D5 14 25 96 4D 8E 99 87 9C 11 ED E6 1E",
+          "patched": "77 71 07 1C 56 75 1A 43 96 77 29 72 E6 96 C7 7D"
+        },
+        {
+          "offset": "0x2094E",
+          "original": "F7 22 94 BA 36 CC 95 4D A2 76 AF 49 96 05 B2 9F",
+          "patched": "5C 88 7E 2D 54 81 61 4C AE 83 9D DC 41 08 50 C0"
+        },
+        {
+          "offset": "0x2243E",
+          "original": "79 BF D9 3F 17 AA EC 4B B8 33 E7 B5 D9 32 89 F2",
+          "patched": "6E 09 65 0B 43 97 DD 45 A4 1C D0 11 F0 86 D5 38"
+        },
+        {
+          "offset": "0x26A68",
+          "original": "ED E5 C2 6C 73 F5 15 48 A7 DC E2 D5 F0 95 FA 22",
+          "patched": "90 00 A2 27 1B AC FC 45 81 97 88 F4 87 9D 66 E4"
+        },
+        {
+          "offset": "0x29703",
+          "original": "17 4A 89 87 4A 08 AC 46 84 96 39 D0 7B 8C C3 68",
+          "patched": "A9 F4 6C 2E ED 48 43 4A 89 D3 EB BE DF A4 02 DD"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_PayloadCinematicOutroLose.uexp",
+      "edits": [
+        {
+          "offset": "0x4022",
+          "original": "B4 70 E8 23 CB AA 34 4E 9F CF 2E 59 39 4E BD BC",
+          "patched": "52 37 6E A2 9A C0 A4 4C A7 DB AE 7D F6 D6 0D 08"
+        },
+        {
+          "offset": "0x57D5",
+          "original": "96 2A B0 97 6E AC 08 48 B0 3B 4A 44 FE 40 FF F0",
+          "patched": "23 9C 10 E6 47 A7 5A 49 AB 69 14 83 2A B8 97 34"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_PayloadCinematicOutroWin.uexp",
+      "edits": [
+        {
+          "offset": "0x4022",
+          "original": "29 D4 73 25 D1 B6 B5 4F AB 96 C6 AB 46 FA F6 7B",
+          "patched": "B1 BE DE BF B4 36 65 44 99 0A 49 AE 0A F1 B4 2A"
+        },
+        {
+          "offset": "0x57D5",
+          "original": "D9 53 C9 48 E3 B4 1D 40 A2 AE 51 26 CA 62 70 1D",
+          "patched": "EF 48 9D 60 5F D0 84 4F B6 F1 DA D4 49 41 2C BA"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_PlayerStatus_02.uexp",
+      "edits": [
+        {
+          "offset": "0x10E95",
+          "original": "9F 82 48 53 2F 39 AD 4C 8B B8 4C 83 1E A1 65 41",
+          "patched": "02 45 C9 7E 52 DA FB 49 AA A2 15 16 BB 2D F9 28"
+        },
+        {
+          "offset": "0x12B66",
+          "original": "A6 AB 36 8E D6 3E 17 49 B1 3E A5 6E 42 C1 F8 8F",
+          "patched": "9A 1D EF 2A 15 E2 BB 46 BF E2 87 5F D9 09 11 5F"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_PointDefense.uexp",
+      "edits": [
+        {
+          "offset": "0x2E94",
+          "original": "A3 84 88 A7 3A 05 6D 49 9D D7 0E 50 76 47 90 E1",
+          "patched": "A7 01 44 54 23 29 E8 4F AB F6 50 4F F5 34 CB 9A"
+        },
+        {
+          "offset": "0x4316",
+          "original": "FC B6 55 90 09 31 71 4C 9E 91 03 F0 B4 39 0F BF",
+          "patched": "7D F4 DB 31 7B 5B 9C 45 84 E5 44 5E 9E FD 1E B1"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_Push_GameHUD.uexp",
+      "edits": [
+        {
+          "offset": "0x203A8",
+          "original": "99 6A 3B DB 92 EA E8 4F 9E 90 90 8B 3D CE 1D C7",
+          "patched": "0C C0 23 A4 8F 1C 03 4E 93 C1 7D A9 92 1B C5 F6"
+        },
+        {
+          "offset": "0x21C81",
+          "original": "F9 41 B5 D5 A0 9F 50 45 B9 D1 B2 0E 12 94 27 2C",
+          "patched": "58 90 DC A4 CA F7 5C 41 8D F0 DD F2 A9 55 61 29"
+        },
+        {
+          "offset": "0x2373B",
+          "original": "52 C9 5C A2 44 A9 AD 4D 95 64 86 FF A7 6F DF 4F",
+          "patched": "95 64 49 CB C0 23 5D 40 9D FF A9 D4 23 1C 3E 42"
+        },
+        {
+          "offset": "0x2610B",
+          "original": "D1 FC 10 51 C6 49 58 4B BD E2 35 11 7C F3 6A A9",
+          "patched": "F0 FB 32 9F E5 CC 2A 41 96 8B 5A F7 18 F7 07 B1"
+        },
+        {
+          "offset": "0x293B1",
+          "original": "EC B8 1A 3A F0 31 74 4C A8 00 69 D1 46 16 4B 20",
+          "patched": "D9 46 15 76 42 91 DD 47 81 75 3D 12 10 70 44 27"
+        },
+        {
+          "offset": "0x2B167",
+          "original": "FB 84 A8 00 C1 09 B5 4C 96 8B F9 C9 9F 89 63 DE",
+          "patched": "2B 7C 65 E1 74 A3 CF 45 92 45 73 94 50 28 8C DB"
+        },
+        {
+          "offset": "0x2C647",
+          "original": "7B 12 AF CC 87 10 71 48 81 FE 6C 9A 00 3A EB FC",
+          "patched": "CA 50 B9 F8 FF 5D 2E 4C AD 7C A6 6F C5 C7 01 70"
+        },
+        {
+          "offset": "0x2DF20",
+          "original": "1C 98 F1 35 45 9E C9 42 85 A8 A3 AB 47 84 7B 11",
+          "patched": "B3 FF 73 03 B7 18 AF 4A A7 31 D0 90 D4 A2 4E 60"
+        },
+        {
+          "offset": "0x2F7F9",
+          "original": "B3 5E AE 95 2A 33 D9 47 9B 0D 6F 2E D4 59 47 22",
+          "patched": "B4 C7 B3 5C BB D4 57 4C 8D 84 67 2A CD 9B E8 9E"
+        },
+        {
+          "offset": "0x312B3",
+          "original": "3B CE E9 12 2B 2E 76 44 BF D8 1F 5D 29 53 BF F6",
+          "patched": "DF 50 46 A4 DE D4 76 47 B6 EB 77 C0 0E F2 9A 1A"
+        },
+        {
+          "offset": "0x33C83",
+          "original": "D2 51 78 AB E6 AF 3B 4E A9 62 80 31 DA 58 83 39",
+          "patched": "C4 98 D4 4B 48 1E BF 48 80 65 25 49 F4 E9 67 26"
+        },
+        {
+          "offset": "0x36F29",
+          "original": "DF 1D 2E B8 B7 D6 06 44 B5 27 10 B4 AB 23 8D 70",
+          "patched": "18 F7 8D 7D 2E ED C6 4C 8E 92 8A 4A 17 00 6E 3C"
+        },
+        {
+          "offset": "0x38CDF",
+          "original": "74 95 4D 21 A2 C9 ED 43 AC B9 49 74 96 81 F7 C6",
+          "patched": "C3 A2 E3 E7 5C 5D F9 4F A7 91 26 00 54 F1 6B 1F"
+        },
+        {
+          "offset": "0x3A1BF",
+          "original": "5F A8 17 94 86 30 FC 47 85 FC 04 91 C6 05 B1 06",
+          "patched": "F2 5F 6D E2 09 8C C5 4B B0 62 28 3F C5 22 6D 57"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_Push_Rules.uexp",
+      "edits": [
+        {
+          "offset": "0x4ED7",
+          "original": "CD 3C 6C 8C BA 83 2A 46 9F 12 3C 02 45 DB CE 80",
+          "patched": "B3 BC D9 BC AA 70 51 46 97 EE 41 9B 80 03 18 95"
+        },
+        {
+          "offset": "0x633E",
+          "original": "BF 15 E9 87 68 65 09 42 84 04 21 32 7F 9A D8 AA",
+          "patched": "CC 31 33 21 18 A9 07 40 BB 12 4E B8 14 CD C4 1A"
+        },
+        {
+          "offset": "0x77A5",
+          "original": "49 BB DA BF A5 F4 DD 47 B7 8F 61 CE E4 91 30 B7",
+          "patched": "D8 EC 84 DF 2C 89 FE 41 A8 F4 EE 8D 35 E3 71 C6"
+        },
+        {
+          "offset": "0x8C0C",
+          "original": "D1 06 C6 F7 A9 48 53 4E 91 60 42 16 D1 00 95 2B",
+          "patched": "09 A4 DC 83 AC 38 7C 4F 80 4B CE A9 63 58 C6 DD"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_Push_Score.uexp",
+      "edits": [
+        {
+          "offset": "0x6DC2",
+          "original": "C1 7D BE 0C 22 36 CF 47 AC B3 20 97 54 AF 0E 18",
+          "patched": "D1 44 A2 62 CC CA E5 44 93 92 F0 59 56 92 7C D7"
+        },
+        {
+          "offset": "0xBA0D",
+          "original": "DC C1 E8 58 8E 28 1C 43 BD 36 7B F3 67 C0 70 EE",
+          "patched": "8F B1 64 BA DF 15 27 48 9D 68 A9 D9 F4 F8 00 3D"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_Push_Score2.uexp",
+      "edits": [
+        {
+          "offset": "0x18C7A",
+          "original": "AF 34 78 1B 96 F1 80 4B 83 63 E9 58 53 40 EC 4C",
+          "patched": "97 57 0C BE CF 0C D9 46 A4 38 F9 3C 5A C8 7D E7"
+        },
+        {
+          "offset": "0x1D99F",
+          "original": "5C CB 9A F1 8F D1 E9 48 AE 6F D9 06 51 EB 73 E2",
+          "patched": "51 E4 46 38 9B FC FB 41 83 2A 8F 93 A3 E6 D9 7F"
+        },
+        {
+          "offset": "0x260BC",
+          "original": "83 D9 4B 83 D7 CE 4F 44 87 7F 66 92 D9 EF DD B6",
+          "patched": "46 EF 62 34 4B A7 24 40 B9 A2 5F 65 51 BD D0 C2"
+        },
+        {
+          "offset": "0x2ADE1",
+          "original": "E4 2D 97 BB C8 44 03 47 A1 75 DE 5E B1 85 A9 D3",
+          "patched": "7F E8 A2 EF D1 37 2B 41 AD DA E4 76 91 48 85 7A"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_RadialChatMenu.uexp",
+      "edits": [
+        {
+          "offset": "0x1F820",
+          "original": "8D DA 88 1E A6 C4 8D 47 87 DF 31 48 D1 2D D5 E8",
+          "patched": "C9 75 02 51 AB 31 4D 42 94 A8 32 E3 46 5B 1E 7E"
+        },
+        {
+          "offset": "0x236C4",
+          "original": "37 3F 87 1B A4 2E 32 48 BE 7C 34 7C E1 DE 2A 8D",
+          "patched": "9B 0A 82 D5 F0 EE DE 47 BE 3E 1C DC 21 A9 1E FB"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_ScoreGamma.uexp",
+      "edits": [
+        {
+          "offset": "0x1786A",
+          "original": "06 B9 27 2C 0B 3B 05 4C 8B 2C 8E D4 53 10 52 9D",
+          "patched": "F6 B0 1D A1 D1 A0 C7 42 B6 C9 A5 47 C7 6C 3C D4"
+        },
+        {
+          "offset": "0x1D37C",
+          "original": "E6 04 17 C1 A3 36 E4 4A AD 53 94 13 CE 5C 49 4A",
+          "patched": "2A 0F 61 F3 9A 57 A7 4F A8 25 4F EC 80 8D 74 64"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_ShieldHealthBar_01.uexp",
+      "edits": [
+        {
+          "offset": "0x7AA4",
+          "original": "D9 85 BE 1D D1 01 BE 48 87 07 E0 6D 6D 6B 5A 55",
+          "patched": "24 55 05 3E 74 5E 44 42 9C 68 08 C1 DC 11 DC 76"
+        },
+        {
+          "offset": "0x96D3",
+          "original": "65 D8 41 58 FE 26 E4 4F 8A 2E 7D 0E 60 F6 91 F5",
+          "patched": "A1 BF DC 52 67 B7 CE 40 B6 05 7D 96 7A D9 07 BF"
+        },
+        {
+          "offset": "0xAEE9",
+          "original": "EF C1 7C D9 D6 DB E7 4A A4 F0 50 FF DD 47 1E E0",
+          "patched": "7E 39 2D 5B 05 6D 32 49 9F 31 2D AE 54 50 3E CC"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_SkillItem.uexp",
+      "edits": [
+        {
+          "offset": "0x15504",
+          "original": "B9 03 62 F4 53 2C 0F 4B 9E 38 70 8D E5 F6 2A 3F",
+          "patched": "3B B8 81 FF 85 50 1D 44 B0 F5 3B 9F E9 BB 47 7C"
+        },
+        {
+          "offset": "0x1AA41",
+          "original": "CF DF 18 B9 E8 67 42 43 B6 4E 7C D4 D5 6E 9F 78",
+          "patched": "2E D2 6A 00 B4 26 1B 46 A5 EE 05 82 64 9D BF 6C"
+        },
+        {
+          "offset": "0x1E15A",
+          "original": "9B F3 7C FE AD 70 DD 4C B7 78 2F 90 6D 14 8B 33",
+          "patched": "0D 69 FD C5 5C 73 6D 45 93 48 9A 35 BE 18 19 53"
+        },
+        {
+          "offset": "0x210E2",
+          "original": "BA 73 EE 99 72 C1 7D 4B BF A9 EF 07 80 C8 87 CE",
+          "patched": "2F B5 FF 52 74 56 3C 4F A2 63 5C C8 4B F1 77 CC"
+        },
+        {
+          "offset": "0x2661F",
+          "original": "82 F7 43 C8 96 72 38 47 99 74 67 C5 D4 93 A2 FE",
+          "patched": "6D 39 67 FF F6 A3 CE 43 AA 7E 5C 68 0C 7B AA A3"
+        },
+        {
+          "offset": "0x29D38",
+          "original": "EF 23 CF CB A6 64 E6 47 99 0A B3 20 3C 46 BC 18",
+          "patched": "85 D1 20 43 A5 2B 80 4D BB 31 25 82 4B 99 03 7A"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_TargetSkills.uexp",
+      "edits": [
+        {
+          "offset": "0x22E51",
+          "original": "B7 98 E0 8C 9E 74 37 4B 88 EF 86 CE C3 DA 59 03",
+          "patched": "3C F8 F8 01 41 10 03 4F 88 A0 7A 44 83 CF 80 C6"
+        },
+        {
+          "offset": "0x2838E",
+          "original": "06 89 07 13 FC 42 E6 41 9C DE A0 BE 62 58 EE 34",
+          "patched": "F4 08 49 50 7B C8 92 40 9B 89 40 01 DF 5B 8A 26"
+        },
+        {
+          "offset": "0x2BAA7",
+          "original": "9D FA B9 98 E4 F7 D7 4B 89 02 F9 C0 FF 67 B8 A1",
+          "patched": "61 AA F5 D9 20 19 37 46 93 CB 03 54 EB B8 E4 A7"
+        },
+        {
+          "offset": "0x2EA2F",
+          "original": "52 46 C2 EC AE 0F 83 42 A4 CD 22 C8 C2 FC 65 32",
+          "patched": "4B B6 10 72 59 7F CD 42 8B B4 D4 C7 C3 2D CC FE"
+        },
+        {
+          "offset": "0x33F6C",
+          "original": "84 DA 35 82 3C A3 3A 45 90 FC 38 5C 3B 73 11 53",
+          "patched": "8F B3 7A ED A8 3C 11 46 B4 0A CC DA 6E 28 A1 CB"
+        },
+        {
+          "offset": "0x37685",
+          "original": "4C A9 0E A0 9D 2B BC 45 B8 47 9B 7E F0 9C 30 F3",
+          "patched": "13 22 68 F0 FC D5 19 47 B8 CB 4B E1 EC 13 7D A9"
+        },
+        {
+          "offset": "0x3A60D",
+          "original": "6E EA EE 7A BE CE AA 43 A2 91 F9 11 64 9A C1 94",
+          "patched": "7E EA 03 AD 19 49 4A 47 9E 3E F5 93 F1 3E 8A 55"
+        },
+        {
+          "offset": "0x3FB4A",
+          "original": "24 18 85 C9 7C 81 CA 40 B3 90 2C B9 11 6D 84 F8",
+          "patched": "00 96 EA 80 F5 86 D3 4E BB 1C 2D 78 0B 95 DC CC"
+        },
+        {
+          "offset": "0x43263",
+          "original": "85 8A 8E 79 EB 84 E6 4C A8 D0 5F 24 83 B5 66 BA",
+          "patched": "AE 28 19 BE AB A1 FD 4B BA BE 8C 26 D9 4B D5 76"
+        },
+        {
+          "offset": "0x461EB",
+          "original": "BA 2B DB 1C C4 B6 24 40 9D 46 A5 7E 55 06 B6 60",
+          "patched": "FE 39 3E C3 78 90 2A 4C 85 8F 7A 3F E3 40 C4 43"
+        },
+        {
+          "offset": "0x4B728",
+          "original": "F8 98 41 8B 65 9F 27 47 AF 58 66 1C 1E DF BD 0A",
+          "patched": "A6 C0 26 DF B2 3D 29 46 92 4D 6E DD 69 FE 20 50"
+        },
+        {
+          "offset": "0x4EE41",
+          "original": "47 1B C8 EB 97 88 1B 4D A4 F0 B3 1F 35 83 D8 80",
+          "patched": "7E BC 0C 44 56 E9 57 4C 8D 46 53 85 63 24 6A 37"
+        },
+        {
+          "offset": "0x51DC9",
+          "original": "3B AD 05 39 4A E8 79 48 A9 E1 51 F0 E5 7C 56 12",
+          "patched": "B8 00 B5 5A FA 19 D5 4B B9 BF 0A 86 EF 53 68 90"
+        },
+        {
+          "offset": "0x57306",
+          "original": "9F F7 26 C2 8A 07 7E 4B A7 67 22 F2 AB 09 A7 1B",
+          "patched": "7C A8 DA 34 33 45 46 45 B0 3A 9B D8 6A 5B 26 6A"
+        },
+        {
+          "offset": "0x5AA1F",
+          "original": "35 FD F6 30 C5 48 31 4B 89 EA 71 EA B7 AF 63 44",
+          "patched": "1E A0 D2 71 CD F1 CE 4E AA 3E 1E 83 2D FB 19 CE"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_Tutorial_PvE.uexp",
+      "edits": [
+        {
+          "offset": "0xC515",
+          "original": "4C B6 3E 88 8E 20 12 46 A3 E1 6D 70 66 2F 9B 40",
+          "patched": "92 45 D7 D8 B5 2B 97 4A 91 FC C3 11 76 7E 2F 43"
+        },
+        {
+          "offset": "0xF787",
+          "original": "A0 6E 59 DC D8 E7 20 49 BE A7 D9 2B EC 56 D5 2F",
+          "patched": "44 25 BC D7 11 3E AF 47 AF 0D D4 7D BC 89 38 3F"
+        },
+        {
+          "offset": "0x1293C",
+          "original": "EA 94 78 77 44 E8 7C 49 A0 B0 C6 9D 9D 4C 67 79",
+          "patched": "DF C7 26 28 EE D0 CC 43 BD D5 C6 C9 0C E5 CB 15"
+        },
+        {
+          "offset": "0x15BAE",
+          "original": "55 3D 43 0C 37 C8 01 4C 91 F1 A1 63 4B EF D0 86",
+          "patched": "3B 36 2A 3F C3 78 BA 4F 99 87 37 8C 30 E3 FE AE"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_UpgradeIndicator.uexp",
+      "edits": [
+        {
+          "offset": "0x82DC",
+          "original": "23 0B 07 F5 E4 BC 9B 4A BF 61 D7 B4 73 97 F3 DF",
+          "patched": "79 DC 06 9D F5 F4 A0 44 A2 1E 1D DF 91 D1 EB CD"
+        },
+        {
+          "offset": "0x9382",
+          "original": "BF EC 22 AF 01 7F 29 4E AD 73 B6 95 19 DE A2 14",
+          "patched": "B4 A8 2A 62 DD 01 44 43 AD A6 A8 27 C5 FC CE FD"
+        },
+        {
+          "offset": "0xA048",
+          "original": "FD 58 F7 F2 3C BB 19 4D 87 11 EB 83 34 B7 3C 7C",
+          "patched": "01 49 96 DD 16 A8 E4 42 BB 7B 08 67 86 FA 81 5A"
+        },
+        {
+          "offset": "0xB0EE",
+          "original": "6B 02 5A 3A D0 2E 11 47 80 CA 46 77 30 3D 54 A8",
+          "patched": "86 BA B6 39 C6 D9 26 42 B2 E5 28 1B 6D A8 53 C7"
+        },
+        {
+          "offset": "0xBDB4",
+          "original": "D8 D5 22 F2 B5 9D 8B 4A 9B 5C 70 09 D3 14 37 E9",
+          "patched": "D2 3B 0F 7D 38 A5 22 4F BD FF 43 3C 45 7E 6B A3"
+        },
+        {
+          "offset": "0xCE5A",
+          "original": "5B 27 0C 9C 71 0B 57 49 86 FE 93 A5 9D 34 9B D6",
+          "patched": "43 13 89 C9 81 27 12 40 90 E3 2F 59 14 F4 00 73"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_UpgradeItem.uexp",
+      "edits": [
+        {
+          "offset": "0x3EC9",
+          "original": "0A 6A D4 14 10 FC 5D 4C 98 61 A7 9E BB 3E F5 F7",
+          "patched": "7B 18 26 1E 71 2C 85 47 A2 92 5C 6D D5 A6 A0 29"
+        },
+        {
+          "offset": "0x4F6F",
+          "original": "EA F4 56 86 E2 D9 EC 47 8F 17 D1 7E 0C 13 80 E7",
+          "patched": "5D 63 D9 BF 24 C4 E0 4E 8F 36 56 1A 18 07 28 4D"
+        },
+        {
+          "offset": "0x5C35",
+          "original": "DE F0 02 01 76 9F 7E 42 A3 16 86 BD 62 C2 9C 52",
+          "patched": "52 FD 9E E7 BA DF 91 44 8A 1E 50 1F 6F E9 CC 2C"
+        },
+        {
+          "offset": "0x6CDB",
+          "original": "95 5E 36 4B FC 00 C3 4E A1 CE B9 6F 32 72 30 0A",
+          "patched": "D5 42 B3 04 10 7E 9B 48 93 A5 27 3F B8 3D F3 06"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_VictoryDefeat.uexp",
+      "edits": [
+        {
+          "offset": "0x18B76",
+          "original": "C4 05 1B 80 70 72 14 4C 92 B4 6D 01 CC 2F 82 31",
+          "patched": "A7 81 EF 11 82 19 C1 49 96 ED E9 5B 66 3E 8B 82"
+        },
+        {
+          "offset": "0x1D89B",
+          "original": "7E 90 7E 4C C7 0C A7 46 98 B1 07 2D F0 10 48 41",
+          "patched": "1E B6 B0 7E AF 8F 14 4D 82 58 D9 62 A4 4D F7 01"
+        },
+        {
+          "offset": "0x25FB8",
+          "original": "54 59 C5 77 57 A4 97 4F 83 98 D4 B0 D4 9C E1 6F",
+          "patched": "B4 EF 32 13 E8 96 C0 42 BB A3 D2 00 98 1A DD 95"
+        },
+        {
+          "offset": "0x2ACDD",
+          "original": "65 3A 1F 35 68 B3 EF 48 96 B0 7F DA 0A 41 69 5A",
+          "patched": "7A 59 E5 3B 2B 64 38 47 83 06 FD 74 03 2A C3 FE"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_VIP_CollectorField.uexp",
+      "edits": [
+        {
+          "offset": "0x55B8",
+          "original": "CB A1 9A B8 F5 A9 1C 44 AE 40 94 32 6D EE 38 A1",
+          "patched": "E8 A5 EC D4 24 E5 C0 4E AC F5 8D 94 2B 2A 56 1E"
+        },
+        {
+          "offset": "0x790C",
+          "original": "28 EB AE 1B 30 72 3E 40 BB 92 5B A0 CD 0C CA 78",
+          "patched": "DB EA A3 75 DD 58 A2 43 AD 4B 69 7E D0 19 61 F8"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_VIP_GameHUD.uexp",
+      "edits": [
+        {
+          "offset": "0x15C83",
+          "original": "95 04 5E 32 CA B1 82 46 BE DF DA 3D 3C B9 23 22",
+          "patched": "F4 46 22 B1 9B DF 96 4A BE 0B 5F 54 73 CE BE 81"
+        },
+        {
+          "offset": "0x175C4",
+          "original": "20 40 F3 00 CE EE 79 46 B1 24 00 52 13 E8 BF D9",
+          "patched": "9B 61 E2 FC D9 39 E0 42 BD 48 F5 7C 2C AC 6E 59"
+        },
+        {
+          "offset": "0x18FDD",
+          "original": "C4 6F 7D CD A4 CF 64 43 8B C5 12 CB C5 7E DC 2F",
+          "patched": "C8 A7 2B CE B4 91 5D 42 84 B2 0A 5B 2F FE 24 AF"
+        },
+        {
+          "offset": "0x1A91E",
+          "original": "0C BB 0B F6 8A DF EA 4D B0 0F 4C 41 C0 BC B0 A2",
+          "patched": "4C 36 D1 2A 1C 3B 38 40 A1 52 E5 CE B9 E3 43 A6"
+        },
+        {
+          "offset": "0x1C31C",
+          "original": "B8 02 7B AA 3F 53 10 41 94 E6 E4 7B ED 0E 53 AB",
+          "patched": "27 F5 5D 25 F9 79 42 47 A4 00 78 78 FA 6E F8 78"
+        },
+        {
+          "offset": "0x1DC5D",
+          "original": "C2 4D A9 89 BA CB EF 45 A6 E8 7D A9 23 A4 52 18",
+          "patched": "9E DD 89 75 6B D1 CC 49 89 AF 24 E5 BC B4 43 20"
+        },
+        {
+          "offset": "0x1F676",
+          "original": "68 98 06 2D 37 2A 57 4E 9B A3 3E 57 07 68 87 6F",
+          "patched": "DF 03 76 00 AD 9B 1E 48 B3 C1 30 56 10 26 36 25"
+        },
+        {
+          "offset": "0x20FB7",
+          "original": "CD DF 72 3D 02 D5 45 42 90 9A 1F A9 27 D2 3A DE",
+          "patched": "7B 19 B5 3E 02 BE CA 4A 9E DB 11 4C A7 96 8B E0"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_VIP_ResourceHUD.uexp",
+      "edits": [
+        {
+          "offset": "0xD8AA",
+          "original": "A9 8F 9F 05 A0 CF F6 45 91 9A FF AB 5E 28 B8 18",
+          "patched": "20 A3 4C 24 4A 2A 98 4D B3 4E EC 0E 51 66 63 A3"
+        },
+        {
+          "offset": "0xF1BA",
+          "original": "81 7E FA 6A 5D 3A 9D 40 86 0E D9 4A 1E 63 2A 7F",
+          "patched": "63 27 D0 A9 98 78 DE 43 92 CD 41 CB CB 9F 23 43"
+        },
+        {
+          "offset": "0x10A23",
+          "original": "5B 1D B5 EE ED 9A A6 41 A6 C8 D9 44 B2 8B 41 8D",
+          "patched": "D3 23 FE 1F 7D 23 3B 42 A5 F4 B9 45 D7 D8 E7 89"
+        },
+        {
+          "offset": "0x12B88",
+          "original": "C4 39 89 7B 48 66 F6 45 B5 C5 97 EC D5 FD 2E E7",
+          "patched": "BA D3 76 38 20 43 E8 47 84 D7 94 2D C7 65 A3 04"
+        },
+        {
+          "offset": "0x14498",
+          "original": "75 67 3E D7 28 E4 F4 4B 97 39 C9 BE 50 33 3D AE",
+          "patched": "45 0E F5 EE C8 17 ED 4B 9C 51 76 E8 2F E6 D7 9D"
+        },
+        {
+          "offset": "0x15D01",
+          "original": "C2 74 33 99 F1 E1 3B 41 8A C0 A2 1E A8 AC 04 B0",
+          "patched": "2A 66 1D 60 78 57 00 4B 9C 15 1E B5 2E 06 94 5A"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_VIP_Rules.uexp",
+      "edits": [
+        {
+          "offset": "0x4B9D",
+          "original": "B6 F8 90 F3 6E AA 1C 48 AD B4 17 7E 42 3F 0C F4",
+          "patched": "29 A2 60 B2 CF CF F8 47 AB F4 87 CB 3C 4C 49 54"
+        },
+        {
+          "offset": "0x6004",
+          "original": "3E E0 81 AE E0 04 B2 4E AD 51 CF 44 E9 C7 61 00",
+          "patched": "CF 9F 8D 40 65 26 E2 44 93 D8 BD 71 71 38 F5 AF"
+        },
+        {
+          "offset": "0x746B",
+          "original": "1C 77 46 65 5B 38 D8 42 A0 B8 19 0C 42 9E 75 EB",
+          "patched": "DE 4F DA DC D7 8C 1C 47 B6 65 28 05 90 86 88 93"
+        },
+        {
+          "offset": "0x88D2",
+          "original": "EA 38 71 9F 09 8D D9 4A A9 F6 F5 92 47 E5 A9 C5",
+          "patched": "C9 7E E7 C8 7C DC D6 43 93 52 55 0B C3 02 37 C8"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_WhizbangTutorialFinishBarox.uexp",
+      "edits": [
+        {
+          "offset": "0xB996",
+          "original": "EB BC CE 2E 75 6F 71 4A 99 5E 36 57 B9 02 3B 45",
+          "patched": "6B 1B 3D 9E 01 35 B3 47 91 C2 72 2D F5 72 0F 91"
+        },
+        {
+          "offset": "0xF4DE",
+          "original": "9A 9B 21 95 E1 44 AF 4D AA A7 B1 4F 6F 1B 64 95",
+          "patched": "40 43 D3 D1 2C F7 35 44 AC 62 E8 A2 09 1D C0 01"
+        },
+        {
+          "offset": "0x13026",
+          "original": "CD E1 7A 98 D8 12 32 47 A3 3A F2 EE 44 1F FE 57",
+          "patched": "21 9A 30 C9 F7 C0 BD 4E 81 C9 E1 03 E0 5F D6 16"
+        },
+        {
+          "offset": "0x16B6E",
+          "original": "83 5C 39 82 E3 9B 8D 4C 81 B7 D2 8D 1F B9 DC EF",
+          "patched": "21 2B 02 A2 E2 49 98 41 B5 71 79 4C E2 55 85 7C"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_WhizbangTutorialIntro.uexp",
+      "edits": [
+        {
+          "offset": "0x1253F",
+          "original": "9D DF E0 BF 01 6F E2 4C A9 CE 1D FF 27 B2 62 12",
+          "patched": "54 4B 3F F2 98 5C E8 48 BD A4 8E ED A2 8B 54 8E"
+        },
+        {
+          "offset": "0x16087",
+          "original": "A5 B3 2F 9E E0 94 74 40 85 21 02 6C 5A D8 76 35",
+          "patched": "5E 56 30 F8 DB 6A 59 49 91 62 4A 59 BE 34 7B A1"
+        },
+        {
+          "offset": "0x17CB7",
+          "original": "F1 9E 85 51 08 89 AA 4D B0 82 47 7B 02 2C 1E F0",
+          "patched": "2A 2D 9E C6 62 21 5A 4E BD F4 07 92 3D 94 32 E6"
+        },
+        {
+          "offset": "0x1946A",
+          "original": "0E 1D 94 AB 49 73 9E 47 B8 3A DB F7 0E 6F 6C FF",
+          "patched": "CB 8A 55 68 86 88 93 47 B4 74 E6 22 0E 29 6C 05"
+        },
+        {
+          "offset": "0x1CB35",
+          "original": "09 58 0A D9 82 92 CF 4F B8 6B CD 9B 97 E7 1A 3A",
+          "patched": "2E 9E 0C DF 34 FA 7B 40 94 07 2A F2 DD 04 CE 20"
+        },
+        {
+          "offset": "0x2067D",
+          "original": "6B 1E 50 B1 9B 36 96 45 BE 02 40 74 30 82 C1 83",
+          "patched": "1B 6F 76 95 5C B9 2B 4E 9D 37 7E 8F 53 6F 3F 56"
+        },
+        {
+          "offset": "0x222AD",
+          "original": "CE 42 E3 DF C3 BA 3A 4E 8A 5C 9C 00 FE E2 18 29",
+          "patched": "19 A7 EE 18 86 96 84 4E 87 CC B5 6A 85 FB 1D 9C"
+        },
+        {
+          "offset": "0x23A60",
+          "original": "0E 48 3E B4 EB 2E 3D 45 98 F1 77 6E 25 9C 9A F2",
+          "patched": "85 53 20 82 AF F6 AE 47 B3 36 A5 95 83 8F F8 B6"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_WhizbangTutorialOutroE.uexp",
+      "edits": [
+        {
+          "offset": "0xB996",
+          "original": "A5 46 01 5F 7C 07 B5 49 8F F6 79 C9 BF D9 E0 A5",
+          "patched": "66 51 A0 E4 BB 36 3C 48 86 F9 88 94 34 DF 6F 5D"
+        },
+        {
+          "offset": "0xF4DE",
+          "original": "F5 72 48 61 91 A1 1B 41 9E 5E E9 B9 64 0F C5 21",
+          "patched": "A8 42 02 0F 07 D3 B9 41 B9 1F 73 7B 5E AB 68 9D"
+        },
+        {
+          "offset": "0x13026",
+          "original": "53 8F BB F8 79 84 73 46 B2 2D E3 46 11 1B C0 98",
+          "patched": "B9 21 5A 75 10 41 B4 4D A8 A4 EF 15 67 71 BF 6B"
+        },
+        {
+          "offset": "0x16B6E",
+          "original": "E9 1F A4 D4 55 D3 C8 47 BE 53 4D 86 FC 4C BE 32",
+          "patched": "62 6B 6A DB 3F 53 3D 4D 99 A3 68 96 4A 76 D2 CD"
+        }
+      ]
+    },
+    {
+      "path": "Systems/Subsystems/TestProjectedShield_Centurion.uexp",
+      "edits": [
+        {
+          "offset": "0xB3E",
+          "original": "84 CC 1D 35 FE 51 B0 45 83 90 AB 31 89 1D AE 0F",
+          "patched": "ED 3A 2D 77 19 04 83 41 BB 02 AD 57 B3 C9 2C AA"
+        }
+      ]
+    },
+    {
+      "path": "Tutorials/W_ACDMY_PilotFacing.uexp",
+      "edits": [
+        {
+          "offset": "0xA196",
+          "original": "2E 32 12 F6 EE 8F 90 41 8B C0 D6 21 98 65 FB 5A",
+          "patched": "68 E3 D5 6C 2F E0 EC 49 9E 94 48 F8 D0 49 AF 0B"
+        },
+        {
+          "offset": "0x12272",
+          "original": "04 BE D9 F8 4A C8 5E 4F AF AD FA 94 BA 3A 4E 37",
+          "patched": "4F 10 C0 EA 4F 2F D7 4B 99 CE 50 B5 3B 5B 5E BC"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_ChargeOverheat_01.uexp",
+      "edits": [
+        {
+          "offset": "0x7E75",
+          "original": "5B 7C 6C 3D B0 D6 AD 40 A6 F9 8B 76 D4 4F E7 F2",
+          "patched": "98 4C 61 5B 27 ED 78 41 88 0B 53 5A E9 7D 08 C3"
+        },
+        {
+          "offset": "0xABC1",
+          "original": "DA 61 80 34 C9 A9 0F 41 96 40 56 6B 81 B2 E8 EB",
+          "patched": "6A 67 73 7B AE FC 33 4A 8B 67 21 6F 2A 79 D4 19"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_HealthBar.uexp",
+      "edits": [
+        {
+          "offset": "0xF479",
+          "original": "D1 E1 F1 73 89 C0 CF 4A B8 0B 8F 39 91 73 A3 63",
+          "patched": "FC 2F 2B 6B 1D 12 35 44 80 A5 B3 5B 1F 2D 54 09"
+        },
+        {
+          "offset": "0x110DE",
+          "original": "4F 26 E2 4B 82 02 AA 4D 8C 6C 81 01 89 92 DE 51",
+          "patched": "7B FF FA 1D 8A F7 36 4A 94 1D D9 CD F8 F0 20 1D"
+        },
+        {
+          "offset": "0x126CA",
+          "original": "C0 11 20 C9 3B 2F 93 45 A4 5C EA C2 BD F7 5D 94",
+          "patched": "16 AD 0E B3 84 90 EC 4E 8D 92 15 6D 95 40 B4 8B"
+        },
+        {
+          "offset": "0x12F45",
+          "original": "1D DE 78 4C E3 AD 00 4E A7 ED 42 3E 36 AC AC 63",
+          "patched": "24 5E 9B 0E 8E C7 1C 4F 9E 9B 4C 4C 68 16 BE CC"
+        },
+        {
+          "offset": "0x13543",
+          "original": "E5 0E F4 B8 C7 3E 4A 49 A1 87 3B 25 36 F4 EE 74",
+          "patched": "FA E5 8F 95 6F 65 24 46 A0 77 8B 0F 5A 72 FC 01"
+        },
+        {
+          "offset": "0x14651",
+          "original": "E3 5B 0D 41 5F 56 B4 41 8C 62 A5 09 F4 67 36 37",
+          "patched": "46 D8 D3 86 21 9C 70 49 BD 9B 2E D1 63 D7 3E 17"
+        },
+        {
+          "offset": "0x162B6",
+          "original": "AC B5 EF E5 29 4C 4A 45 80 2E CA 13 C4 87 48 D5",
+          "patched": "B6 B8 B6 EA E4 6D 85 40 84 F1 26 A8 9E 2B F7 65"
+        },
+        {
+          "offset": "0x17F1B",
+          "original": "59 1B 22 31 BB 3D D0 4F A4 02 E5 E2 1B CF D1 D3",
+          "patched": "BD 09 7F 15 C1 04 74 49 87 92 C3 E5 7C 92 2D D7"
+        },
+        {
+          "offset": "0x19507",
+          "original": "02 94 A8 4E 44 D6 EF 42 AB 3B 06 5C 0F B3 E3 91",
+          "patched": "52 1A 57 CB 1E F4 1B 49 9C E2 CE CA 90 F8 AA 15"
+        },
+        {
+          "offset": "0x19D82",
+          "original": "8C F2 21 7D AB B7 08 4A 93 83 D4 53 ED DF 92 05",
+          "patched": "6A 96 AB 50 8A 8F 7B 45 81 7C 42 C7 12 58 65 82"
+        },
+        {
+          "offset": "0x1A380",
+          "original": "64 41 A6 2D F0 09 0C 49 84 7C BE 30 10 35 F2 F5",
+          "patched": "2E C4 A6 CA 59 78 75 48 AD 9E 04 4A 40 3F 93 C1"
+        },
+        {
+          "offset": "0x1B48E",
+          "original": "C1 69 14 C6 76 BF 13 4F 9A AA BB D8 02 25 9F 8C",
+          "patched": "3F 93 0E 40 C2 76 85 48 9E 7B F9 3B 99 66 0D F5"
+        },
+        {
+          "offset": "0x1CCA4",
+          "original": "35 23 76 93 71 B5 68 49 A3 44 88 4D 28 EE D9 A6",
+          "patched": "D2 3E D9 CF 2F 41 0A 46 83 C8 2C 8C 67 EC 8B BF"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_Notifications.uexp",
+      "edits": [
+        {
+          "offset": "0x7B3C9",
+          "original": "0F 25 4A 47 D9 CE 8F 4B 8A EE 6C 2B C2 37 62 57",
+          "patched": "13 40 8C 98 FA 58 DF 46 9E AE D0 00 B4 19 CA F9"
+        },
+        {
+          "offset": "0x7E4EC",
+          "original": "1D 41 C6 30 74 FC E0 49 B1 68 EC 7C BA 92 FC 9C",
+          "patched": "99 27 EE 3C 68 9A 81 4C B9 76 A4 19 D9 B5 04 00"
+        },
+        {
+          "offset": "0x844A6",
+          "original": "03 80 24 78 51 4F E3 45 9F 8E 6F 79 B1 E9 12 AD",
+          "patched": "91 A6 CA 39 F6 75 A3 47 9F 08 CA CB 0D 4C 5C E9"
+        },
+        {
+          "offset": "0x914CC",
+          "original": "CD 6C 28 0D 5F 82 11 4C 8D 2E 75 B4 21 BA 5F 41",
+          "patched": "38 E0 06 AD DA 1D 1F 44 80 73 64 99 5B 8D 2A 21"
+        },
+        {
+          "offset": "0xA2BD7",
+          "original": "FB C7 FA 59 03 86 0B 49 88 F0 D4 E7 EA 49 25 06",
+          "patched": "93 1D 29 C0 8E 8A 8B 4E 99 75 BC D7 1F EA 79 29"
+        },
+        {
+          "offset": "0xA57A9",
+          "original": "C1 CA 49 96 9E FC C4 4E 98 DB AA 3B FA 1B 8D 60",
+          "patched": "44 FB 23 69 B3 9C 41 41 B9 C9 14 C4 63 77 FA 2E"
+        },
+        {
+          "offset": "0xA8938",
+          "original": "16 B3 2C 5E DA 3E 95 4B AA 5F 6E C9 63 D8 FC 85",
+          "patched": "BE 24 66 81 0C 03 7E 45 85 B9 77 31 A9 2C 5E 1D"
+        },
+        {
+          "offset": "0xB0CAA",
+          "original": "EA 7F 5A D6 4B 88 55 4E A5 D6 E5 62 7F 94 04 78",
+          "patched": "F3 0A 52 AF F9 0B A5 41 BF 05 46 33 AA F6 35 2F"
+        },
+        {
+          "offset": "0xBA9E5",
+          "original": "15 E8 03 AB 34 B8 ED 40 9B 8F 9C AE 06 B3 62 60",
+          "patched": "41 0C 95 C1 FE 70 6B 4C 99 64 DA 3F 80 63 01 B5"
+        },
+        {
+          "offset": "0xBDB74",
+          "original": "F9 11 DC 07 AE 99 F8 4A A9 B0 C6 F4 B8 45 2D 3C",
+          "patched": "1B B3 30 4E 15 8B 1C 48 AA 27 7A CE 57 FB E7 FF"
+        },
+        {
+          "offset": "0xC0D1E",
+          "original": "36 8C 89 09 C0 A1 DA 4E 88 47 53 48 CD DE 89 7C",
+          "patched": "A2 D5 F2 F1 1F 3B 76 47 A5 C5 BF 51 01 74 DB 65"
+        },
+        {
+          "offset": "0xC82F6",
+          "original": "D0 92 CE 43 8B 9F 4D 45 A0 7C D4 37 AB 71 7F AC",
+          "patched": "1D 77 A6 17 50 9B C1 40 A1 5C 49 DB E6 40 0D 06"
+        },
+        {
+          "offset": "0xD34F4",
+          "original": "AD DF 87 03 2E 96 1C 4A 9D CE CB F0 DE 6D 25 F8",
+          "patched": "FF 4A 48 42 D9 FC 54 4B 8D C0 39 03 41 7D AE 5D"
+        },
+        {
+          "offset": "0xD6F2E",
+          "original": "D9 A8 EA 39 5D CD C5 45 86 99 15 4B 66 54 72 27",
+          "patched": "08 C6 5B F3 E3 B0 EC 44 BF B1 62 49 73 8E 65 7D"
+        },
+        {
+          "offset": "0xDB79B",
+          "original": "DF 2D 0C 7A 43 43 68 47 BE ED D8 4A FF 78 61 66",
+          "patched": "A2 36 D9 F8 FA 4D 82 4F A3 5B 0E DC 7A 0B 0D 3B"
+        },
+        {
+          "offset": "0xE0154",
+          "original": "48 56 6A DA 90 A1 79 4E 84 AE 8B 61 32 00 82 13",
+          "patched": "79 30 51 B3 E6 EE 38 4A A6 BF 77 DD 3F EA 5C 70"
+        },
+        {
+          "offset": "0xE46A5",
+          "original": "9D C1 54 46 C0 51 F2 47 98 9C DF BA 92 05 73 2B",
+          "patched": "4E C6 5F 1E 8F 92 DC 4F BA 75 ED C7 A8 0F FC CA"
+        },
+        {
+          "offset": "0xE8DF8",
+          "original": "9B CD 6B F4 8C FD 20 45 AF DF 4B 25 01 F8 D2 FA",
+          "patched": "3E C6 79 E1 7F 14 BC 45 BA 2D C6 1D 94 A2 DE 21"
+        },
+        {
+          "offset": "0xEC274",
+          "original": "00 D8 4F 6D 57 84 FF 4C 93 71 4F 22 10 08 55 A1",
+          "patched": "69 E9 B7 B2 7E 58 D0 49 A2 6D EC F1 F8 D7 EC DF"
+        },
+        {
+          "offset": "0xF0F3D",
+          "original": "84 A7 DB 99 6B 89 BC 42 8D 27 59 7E 10 E1 DD 07",
+          "patched": "3A 72 B8 30 D1 BC BD 47 AF B2 0C 89 5C 4C 32 9D"
+        },
+        {
+          "offset": "0xF5FCA",
+          "original": "1A 6D 56 19 16 D3 0B 44 86 BA 51 31 CA 91 02 D6",
+          "patched": "3B 44 A7 25 3E 0A 5A 4B 98 C4 CE E1 0A 10 2B BE"
+        },
+        {
+          "offset": "0xF90ED",
+          "original": "D6 F2 83 BE 4C 06 79 4F 93 B7 44 F6 ED E2 A4 63",
+          "patched": "97 C3 3A 2D BF 88 AE 46 91 22 D2 6F 4E F5 B8 17"
+        },
+        {
+          "offset": "0xFF0A7",
+          "original": "79 C5 44 40 A2 8F A4 47 83 1A 49 31 E7 92 84 F7",
+          "patched": "D3 11 36 56 31 7D C0 43 A1 B8 02 89 E7 FB ED A7"
+        },
+        {
+          "offset": "0x10C0CD",
+          "original": "D0 34 8E E2 5F D4 A2 4F 88 1B 4C A5 A2 90 02 E3",
+          "patched": "EC 19 A0 E4 F9 3A C0 40 8C 72 55 51 B9 CC 75 72"
+        },
+        {
+          "offset": "0x11D7D8",
+          "original": "FD 37 7C 87 1F F1 42 47 85 C2 6B 8C 56 52 1B 38",
+          "patched": "6F 9B 2E 68 55 40 B3 46 B2 1F F3 9A FD 6F 56 35"
+        },
+        {
+          "offset": "0x1203AA",
+          "original": "64 FB 95 47 D4 C4 AB 4C 82 52 81 90 42 70 E8 F3",
+          "patched": "A2 E1 4E 93 CB D0 90 4E A5 5F 33 69 5A 6E EF 89"
+        },
+        {
+          "offset": "0x123539",
+          "original": "D8 21 8D C9 9B 26 D2 44 81 0A 1D B4 2A 27 65 C2",
+          "patched": "5D 4C 82 02 66 21 C4 49 82 E2 8E E2 F8 4B 53 99"
+        },
+        {
+          "offset": "0x12B8AB",
+          "original": "F2 FD AC F7 ED 16 77 4B 84 24 19 2F 98 42 15 51",
+          "patched": "AD 09 E3 8A D9 16 81 4C 97 B0 4D 99 93 A6 4C 8D"
+        },
+        {
+          "offset": "0x1355E6",
+          "original": "0B 83 18 C4 D5 17 D2 49 AA C8 CC B6 05 DA B0 7B",
+          "patched": "C2 B8 5D 81 E2 AE 40 46 92 5D 54 78 E0 33 C6 1E"
+        },
+        {
+          "offset": "0x138775",
+          "original": "64 CA 6D 16 93 3F 50 4C B6 2F C3 E8 A3 C9 7A D9",
+          "patched": "01 BC 37 73 CC 48 44 47 AF F3 86 B2 31 71 FC F1"
+        },
+        {
+          "offset": "0x13B91F",
+          "original": "D8 3E D8 3D B6 D1 4A 47 89 4F A8 8E AA 14 2B 9F",
+          "patched": "C7 F3 47 16 EC 6C F9 49 88 6C DC CE CF 48 59 FB"
+        },
+        {
+          "offset": "0x142EF7",
+          "original": "6E 99 7C 12 9A 5C 48 4D A3 9E A8 47 DE 28 62 83",
+          "patched": "D8 65 74 FA 09 48 3E 4A 8F A1 0B D3 47 F3 CC ED"
+        },
+        {
+          "offset": "0x14E0F5",
+          "original": "F7 16 28 73 87 84 77 42 8D 1E A7 DF C9 60 A2 68",
+          "patched": "37 E1 FD 39 04 9B 65 4E B8 7C A4 0B 9B 9C 47 63"
+        },
+        {
+          "offset": "0x151B2F",
+          "original": "2B 6C F7 C3 CF DD 78 48 A8 D9 EA AC C9 F8 3B A9",
+          "patched": "A3 C5 29 97 6F 89 13 4D AE E8 17 01 1C 6D 06 75"
+        },
+        {
+          "offset": "0x15639C",
+          "original": "1F C2 F5 6F 50 43 4C 40 9B 14 1C 73 32 EA D1 48",
+          "patched": "B1 C7 17 92 80 6B 5B 4E B3 12 8D D4 48 58 39 FF"
+        },
+        {
+          "offset": "0x15AD55",
+          "original": "B1 D0 72 F1 FA 90 EE 47 83 7C 5F 25 B1 A9 6D 4D",
+          "patched": "4E DD D3 D7 4F 1F A1 44 B8 54 35 76 F4 91 A3 3A"
+        },
+        {
+          "offset": "0x15F2A6",
+          "original": "EB 7C AD EC 1B 03 0C 4F B1 C2 96 95 02 C0 98 AB",
+          "patched": "22 3A 16 52 77 9B 46 4D BB 72 95 C2 75 AA 6B 16"
+        },
+        {
+          "offset": "0x1639F9",
+          "original": "8D C6 CE C8 AE 90 2B 49 87 36 83 D0 36 1E 27 4D",
+          "patched": "91 61 56 1B 8D 7A 90 4C 9A 76 68 2A 78 CA CA B5"
+        },
+        {
+          "offset": "0x166E75",
+          "original": "2F 2E EC DC 6B 3B 97 4E 9A FB FB 29 54 2F 64 A8",
+          "patched": "13 AC A9 6E 41 CF 52 4F 90 BC 33 BA 7C 7B 4E 69"
+        },
+        {
+          "offset": "0x16BB3E",
+          "original": "18 33 3A 44 8D DC BE 4F B0 9C 62 9B 09 94 FE 86",
+          "patched": "8C D4 AA 47 D7 5C B8 42 B7 0D 45 17 EF 8B D3 09"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_PlayerStatus_01.uexp",
+      "edits": [
+        {
+          "offset": "0xFD78",
+          "original": "03 84 6B B9 0E EB 41 44 9B 01 4B CB 4F ED C2 30",
+          "patched": "E5 A1 BB 7E 78 23 DE 47 AE 37 59 BA 85 47 50 04"
+        },
+        {
+          "offset": "0x13074",
+          "original": "99 E8 6F BA 8B 1D CD 4B 8A 58 EC 17 8C 7D F2 B2",
+          "patched": "AD 4C 34 0F 4E 7C 13 4A BA A6 52 98 BF 2B EE 8C"
+        }
+      ]
+    },
+    {
+      "path": "HUD/W_ReticuleCentre.uexp",
+      "edits": [
+        {
+          "offset": "0x1591E",
+          "original": "71 6E 7C C9 40 AF D6 4C B3 95 0A AE 66 26 4B 84",
+          "patched": "45 C2 61 8A 4A A7 45 4C B5 94 68 FB B8 13 16 86"
+        },
+        {
+          "offset": "0x179D8",
+          "original": "81 40 C4 8D 51 F6 76 43 85 E3 5D 04 E9 62 47 77",
+          "patched": "6E 76 45 FC D5 C5 0B 45 95 D4 D4 A9 36 E0 31 A4"
+        },
+        {
+          "offset": "0x1A3D9",
+          "original": "6B DD BC EF 6A 39 F0 43 B0 84 72 48 82 C1 63 64",
+          "patched": "7B 5B 79 FC 5B 36 CD 44 87 60 8D 2C 25 2B 89 69"
+        },
+        {
+          "offset": "0x1D22F",
+          "original": "C2 66 EE 20 EA 3A 98 4D 89 D8 4A 7F 6F 4C DD A2",
+          "patched": "9B 14 EF 43 8D 9C E2 41 AD 7A 53 C0 93 7D 52 AB"
+        },
+        {
+          "offset": "0x20085",
+          "original": "32 72 CC 58 6E 50 BF 40 BF 46 4D B2 01 96 EA BA",
+          "patched": "62 30 F1 56 E5 96 F9 48 B0 31 1E B6 8A 73 EC 50"
+        },
+        {
+          "offset": "0x22EDB",
+          "original": "D7 75 DD 68 15 DC C4 4C 8E 1E 95 79 AB 8C CC 8B",
+          "patched": "BF 2A C8 64 42 EF F3 4E 9E 3E 8C 88 EA 0D 31 9E"
+        },
+        {
+          "offset": "0x25CE0",
+          "original": "A9 56 19 C5 7B 6E 20 4A B9 9D A9 A9 31 88 0D 74",
+          "patched": "0D A8 4B 90 4B 74 08 42 91 AE 38 CB 3D FD 47 46"
+        },
+        {
+          "offset": "0x28AE5",
+          "original": "2C 15 8C BB 82 AE 38 47 AD 2F E9 9F 1B C8 71 E2",
+          "patched": "AF 5F 57 35 B0 59 F1 4B 98 45 A6 09 23 20 F5 C2"
+        },
+        {
+          "offset": "0x2B9A7",
+          "original": "CF 69 46 BF 25 D5 62 49 AA F7 FA 68 8A 04 F2 C5",
+          "patched": "87 53 22 02 AE E3 2B 49 90 A4 59 DF 69 30 D8 36"
+        },
+        {
+          "offset": "0x2E7AC",
+          "original": "10 40 EB 19 1E 6D 2F 45 91 C5 DE DE CF D6 72 D3",
+          "patched": "B0 0C 17 B0 ED 8B 09 45 98 97 C8 ED F4 9B 79 A5"
+        },
+        {
+          "offset": "0x31602",
+          "original": "17 64 D8 A1 94 9D 4C 42 90 18 00 EE 94 A2 2A A6",
+          "patched": "5E 49 1E 44 ED A7 6B 4C B6 50 C5 34 4A 52 24 7A"
+        },
+        {
+          "offset": "0x336BC",
+          "original": "1F 2A 88 15 17 86 90 43 94 93 F8 65 DA B3 B7 06",
+          "patched": "AF 67 31 BC 44 26 F9 4F B2 BD B0 91 20 6C E6 30"
+        },
+        {
+          "offset": "0x360BD",
+          "original": "24 0F BD 91 CD CA 27 47 93 15 6E A5 19 CE 6F 72",
+          "patched": "A6 DC 3E 07 A8 F1 12 4F 8C CE C1 6F 15 10 BA EE"
+        },
+        {
+          "offset": "0x38F13",
+          "original": "45 8A 46 29 79 F2 11 4A A5 D4 A3 64 34 16 21 32",
+          "patched": "47 40 0E 17 19 70 A3 46 82 F6 CB BF F4 A2 7E 79"
+        },
+        {
+          "offset": "0x3BD69",
+          "original": "51 FD ED 8F 8D 8E 97 4F 9C ED D3 FD 37 4D BE 35",
+          "patched": "02 E6 BD D3 7B E6 C1 48 A3 45 AD 2C 10 44 E7 E4"
+        },
+        {
+          "offset": "0x3EBBF",
+          "original": "7A A5 5C 40 98 B0 8F 43 AB 8B C2 CE 03 86 11 C7",
+          "patched": "4B BC 6A 86 90 D3 B5 40 81 38 6B 2C 27 3C 06 71"
+        },
+        {
+          "offset": "0x419C4",
+          "original": "6A 81 49 B8 C8 C6 D0 4B 9C 2B 29 EE CC 81 72 DA",
+          "patched": "8E EA 84 EB 03 93 D0 41 A1 36 E2 12 6C BC 57 7C"
+        },
+        {
+          "offset": "0x447C9",
+          "original": "EB EC DE 7B 24 C8 90 48 BE 5D 54 33 EE C3 3E 96",
+          "patched": "83 B8 CB 93 87 4A 05 4D AA EC D3 24 73 67 B2 9F"
+        },
+        {
+          "offset": "0x4768B",
+          "original": "65 BE EF FF CC DA 83 44 81 A2 E0 91 09 28 39 60",
+          "patched": "57 26 5B FE F6 EA 29 4C A1 2D C1 00 70 4B 46 61"
+        },
+        {
+          "offset": "0x4A490",
+          "original": "E9 D3 31 1E 7E A5 44 4F A8 31 23 DA 21 EB 04 AC",
+          "patched": "89 AB 3B 66 31 35 39 4B AF E7 61 CA E7 4F 2C BA"
+        }
+      ]
+    },
+    {
+      "path": "BP_LoadingScreenManager.uexp",
+      "edits": [
+        {
+          "offset": "0x6078",
+          "original": "DE 16 B6 B8 E5 9C 42 46 BF 8A F2 99 5D 35 34 5B",
+          "patched": "DC 2B C8 19 16 80 09 44 97 54 04 8C 6C 7C AD 72"
+        }
+      ]
+    },
+    {
+      "path": "Chameleon/Textures/T_MossyWood.ubulk",
+      "edits": [
+        {
+          "offset": "0xB660",
+          "original": "28 42 A5 31 60 C0 C0 EB",
+          "patched": "48 42 C6 31 62 60 C0 7F"
+        },
+        {
+          "offset": "0x157EA",
+          "original": "64",
+          "patched": "44"
+        },
+        {
+          "offset": "0x2A6AA",
+          "original": "43",
+          "patched": "63"
+        }
+      ]
+    },
+    {
+      "path": "Chameleon/Textures/T_ShadowRocks1.ubulk",
+      "edits": [
+        {
+          "offset": "0x11FD0",
+          "original": "11 84",
+          "patched": "F1 83"
+        },
+        {
+          "offset": "0x1C298",
+          "original": "87 31 65 29 FF AA AA 00",
+          "patched": "A7 39 65 29 FF FF AA AA"
+        },
+        {
+          "offset": "0x1FF30",
+          "original": "11 84",
+          "patched": "F1 83"
+        },
+        {
+          "offset": "0x2F190",
+          "original": "11 84",
+          "patched": "F1 83"
+        },
+        {
+          "offset": "0x3C343",
+          "original": "73 00 00 AA AA",
+          "patched": "7B 00 00 AA AF"
+        },
+        {
+          "offset": "0x3C5D8",
+          "original": "11 84",
+          "patched": "F1 83"
+        },
+        {
+          "offset": "0x3CDD8",
+          "original": "11 84",
+          "patched": "F1 83"
+        },
+        {
+          "offset": "0x3D5D8",
+          "original": "11 84",
+          "patched": "F1 83"
+        },
+        {
+          "offset": "0x62450",
+          "original": "11 84 D0 7B FF FF 55 55 11 84",
+          "patched": "F1 83 D0 7B FF FF 55 55 F1 83"
+        },
+        {
+          "offset": "0x7DCDB",
+          "original": "83",
+          "patched": "7B"
+        },
+        {
+          "offset": "0x7ECD0",
+          "original": "11 84 D0 7B FF FF 55 55 11 84",
+          "patched": "F1 83 D0 7B FF FF 55 55 F1 83"
+        }
+      ]
+    },
+    {
+      "path": "Chameleon/Textures/T_ShadowRocks2.ubulk",
+      "edits": [
+        {
+          "offset": "0x290B",
+          "original": "83",
+          "patched": "7B"
+        },
+        {
+          "offset": "0x2918",
+          "original": "11 84",
+          "patched": "F1 83"
+        },
+        {
+          "offset": "0xBBE8",
+          "original": "11 84",
+          "patched": "F1 83"
+        },
+        {
+          "offset": "0xC9F8",
+          "original": "11 84",
+          "patched": "F1 83"
+        },
+        {
+          "offset": "0x223C0",
+          "original": "11 84 D0 7B 55 55 FF FF 11 84 D0 7B 55 55 FF FF 11 84",
+          "patched": "F1 83 D0 7B 55 55 FF FF F1 83 D0 7B 55 55 FF FF F1 83"
+        },
+        {
+          "offset": "0x327DB",
+          "original": "83",
+          "patched": "7B"
+        },
+        {
+          "offset": "0x327E8",
+          "original": "11 84",
+          "patched": "F1 83"
+        },
+        {
+          "offset": "0x32FE8",
+          "original": "11 84",
+          "patched": "F1 83"
+        },
+        {
+          "offset": "0x3A620",
+          "original": "11 84",
+          "patched": "F1 83"
+        },
+        {
+          "offset": "0x3AE20",
+          "original": "11 84",
+          "patched": "F1 83"
+        },
+        {
+          "offset": "0x4BBC3",
+          "original": "73 A0 A0 A0 A0",
+          "patched": "7B A0 A0 E0 E0"
+        },
+        {
+          "offset": "0x4F220",
+          "original": "11 84 D0 7B 55 55 FF FF 11 84",
+          "patched": "F1 83 D0 7B 55 55 FF FF F1 83"
+        },
+        {
+          "offset": "0x65AB0",
+          "original": "11 84",
+          "patched": "F1 83"
+        },
+        {
+          "offset": "0x66AF0",
+          "original": "11 84",
+          "patched": "F1 83"
+        },
+        {
+          "offset": "0x69F48",
+          "original": "11 84",
+          "patched": "F1 83"
+        },
+        {
+          "offset": "0xA5950",
+          "original": "E8 41 66 29 A8 FA 7F 57",
+          "patched": "08 42 46 29 A8 FA 7F 5F"
+        }
+      ]
+    },
+    {
+      "path": "Chameleon/Textures/T_ShadowRocks3.ubulk",
+      "edits": [
+        {
+          "offset": "0x2EE0",
+          "original": "11 84",
+          "patched": "F1 83"
+        },
+        {
+          "offset": "0x2EF3",
+          "original": "83",
+          "patched": "7B"
+        },
+        {
+          "offset": "0xBC10",
+          "original": "11 84",
+          "patched": "F1 83"
+        },
+        {
+          "offset": "0xCE00",
+          "original": "11 84",
+          "patched": "F1 83"
+        },
+        {
+          "offset": "0x22428",
+          "original": "11 84 D0 7B 55 55 FF FF 11 84 D0 7B 55 55 FF FF 11 84",
+          "patched": "F1 83 D0 7B 55 55 FF FF F1 83 D0 7B 55 55 FF FF F1 83"
+        },
+        {
+          "offset": "0x32010",
+          "original": "11 84",
+          "patched": "F1 83"
+        },
+        {
+          "offset": "0x32023",
+          "original": "83",
+          "patched": "7B"
+        },
+        {
+          "offset": "0x32810",
+          "original": "11 84",
+          "patched": "F1 83"
+        },
+        {
+          "offset": "0x3A1D8",
+          "original": "11 84",
+          "patched": "F1 83"
+        },
+        {
+          "offset": "0x3A9D8",
+          "original": "11 84",
+          "patched": "F1 83"
+        },
+        {
+          "offset": "0x4BC3B",
+          "original": "73 0A 0A 0A 0A",
+          "patched": "7B 0A 0A 0B 0B"
+        },
+        {
+          "offset": "0x4F5D0",
+          "original": "11 84 D0 7B 55 55 FF FF 11 84",
+          "patched": "F1 83 D0 7B 55 55 FF FF F1 83"
+        },
+        {
+          "offset": "0x65D48",
+          "original": "11 84",
+          "patched": "F1 83"
+        },
+        {
+          "offset": "0x66D08",
+          "original": "11 84",
+          "patched": "F1 83"
+        },
+        {
+          "offset": "0x698B0",
+          "original": "11 84",
+          "patched": "F1 83"
+        },
+        {
+          "offset": "0xA58A8",
+          "original": "E8 41 66 29 2A AF FD D5",
+          "patched": "08 42 46 29 2A AF FD F5"
+        }
+      ]
+    }
+  ]
+}
