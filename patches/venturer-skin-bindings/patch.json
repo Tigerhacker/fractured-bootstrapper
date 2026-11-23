@@ -1,7 +1,7 @@
 {
   "id": "venturer-skin-bindings",
   "title": "Venturer skins bind their palettes to the current mesh material slots on all four LODs",
-  "status": "testing",
+  "status": "shipped",
   "requires": [],
   "target": "spacegame/Content/Paks/BP.pak",
   "assets": [

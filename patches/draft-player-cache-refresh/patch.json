@@ -1,7 +1,7 @@
 {
   "id": "draft-player-cache-refresh",
   "title": "Drafting rebuilds its cached player list when the cache is empty or its count differs from PlayerArray",
-  "status": "testing",
+  "status": "shipped",
   "requires": [],
   "target": "spacegame/Binaries/Win64/Fractured Space.exe",
   "edits": [

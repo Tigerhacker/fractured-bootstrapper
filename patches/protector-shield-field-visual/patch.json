@@ -1,7 +1,7 @@
 {
   "id": "protector-shield-field-visual",
   "title": "Protector shield-field visual follows the active ability, not the personal Shield Self status",
-  "status": "testing",
+  "status": "shipped",
   "requires": [],
   "target": "spacegame/Content/Paks/BP.pak",
   "assets": [

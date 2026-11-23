@@ -1,7 +1,7 @@
 {
   "id": "destroyed-missile-alert-cleanup",
   "title": "Incoming-missile HUD icon and warning sound ignore destroyed / trail-cleanup missiles",
-  "status": "testing",
+  "status": "shipped",
   "requires": [],
   "target": "spacegame/Binaries/Win64/Fractured Space.exe",
   "edits": [

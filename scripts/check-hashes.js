@@ -63,7 +63,8 @@ for (const entry of manifest.dataMapping) {
     if (!m) { console.log(`  could not locate entry for ${entry.src} in the file`); bad++; continue; }
     let block = m[1];
     for (const k of stale) {
-        block = block.replace(new RegExp(`(${k}:\\s*")[0-9a-fA-F]+(")`), `$1${actual[k]}$2`);
+        // '*', not '+': a new entry starts with empty hashes ("") and must be filled in too
+        block = block.replace(new RegExp(`(${k}:\\s*")[0-9a-fA-F]*(")`), `$1${actual[k]}$2`);
     }
     text = text.replace(m[1], () => block);
     changed++;

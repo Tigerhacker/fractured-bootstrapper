@@ -1,7 +1,7 @@
 {
   "id": "minimap-jamming-display",
   "title": "Minimap objects and sectors show jamming state (Destroyer / Interceptor map jamming)",
-  "status": "testing",
+  "status": "shipped",
   "requires": [],
   "target": "spacegame/Content/Paks/BP.pak",
   "assets": [

@@ -4,8 +4,8 @@ const dataMapping = [
     {
         src: "Fractured Space.exe",
         dest: "spacegame/Binaries/Win64/Fractured Space.exe",
-        md5: "394c6525e9c11b35ebe58f7f60b35966",
-        sha256: "4d92ed3b30596c9dbdd5bf112c62050831d044c0eb2ff9aaa525f222a2bbe08a",
+        md5: "cf0343ba8e3c6f235efbec46cadafd0f",
+        sha256: "432144749c867c9bb423e6970cd7a09de0672790bd2c727b4bef3ab596cad406",
     },
     {
         src: "ClientConfig.json",
@@ -46,8 +46,8 @@ const dataMapping = [
     {
         src: "BP.pak",
         dest: "spacegame/Content/Paks/BP.pak",
-        md5: "14641a1739369176dd70f02c5e0c821a",
-        sha256: "e5a029920f06bc07bd4610c931efae28834d54b10f256c08a6cb550a6fea5b48",
+        md5: "e93cc6c7560fd91527e5e7ae5a90131c",
+        sha256: "51fd7ea2aa695fb8761b245845c8bc8241c0fd1f6439f5136e86e0b630ee5245",
     },
     {
         src: "results-script.js",
