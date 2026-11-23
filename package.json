@@ -74,6 +74,7 @@
                 "rpm"
             ],
             "category": "Game",
+      "icon": "build/icons",
             "executableName": "fractured-space-bootstrapper",
             "artifactName": "FracturedSpaceBootstrapper-${arch}.${ext}",
             "maintainer": "Tigerhacker <2382883+Tigerhacker@users.noreply.github.com>",
