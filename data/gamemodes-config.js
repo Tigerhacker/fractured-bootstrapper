@@ -268,7 +268,21 @@
       'IsBeta': false,
       'IsNew': false,
       'IsLegacy': true
-    } 
+    },
+    // Solo vs AI Frontline (from ThaumicTheory's PR #2). The stock gamemodes-script.js
+    // already handles Config.GAME_MODE_IDS.SOLO_VS_AI_FRONTLINE in modeSelect by calling
+    // engine.call('LaunchProvingGroundsFrontline'); the game just never listed a panel for it.
+    'svaFrontline': {
+      'Id': 'soloVsAiFrontline',
+      'Name': 'GameModeFrontlineLabel',
+      'Image': 'views/gamemodes/images/{{Folder}}/solo-frontline.png',
+      'Description': 'GameModeSoloFrontlineDescription',
+      'RecommendedStatus': false,
+      'IsLocked': false,
+      'IsBeta': true,
+      'IsNew': false,
+      'IsLegacy': false
+    }
   };
 
   function GameModeConfig() {
@@ -307,7 +321,8 @@
       Object.assign({}, panels.svaDiscovery),
       Object.assign({}, panels.svaRift),
       Object.assign({}, panels.svaPayload),
-      Object.assign({}, panels.svaArkain)
+      Object.assign({}, panels.svaArkain),
+      Object.assign({}, panels.svaFrontline)
     ];
 
     this.updateImages();

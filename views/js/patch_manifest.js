@@ -1,4 +1,4 @@
-const patchLevel = 33;
+const patchLevel = 34;
 
 const dataMapping = [
     {
@@ -28,8 +28,8 @@ const dataMapping = [
     {
         src: "gamemodes-config.js",
         dest: "spacegame/Content/UIResources/frontend/views/gamemodes/gamemodes-config.js",
-        md5: "340ca6e5129e331e3990d6b10345015c",
-        sha256: "7d864d2985f05b81cd37199c4150652c4becf9c5cc253f160c2f38d7db7509bd",
+        md5: "7e814ac748d1a7b42ed2c4fc0b5f83db",
+        sha256: "33260c42326b2aac01eea3df4af41b0d137ee2e6d82abe1f7d20874afde98f32",
     },
     {
         src: "nsloctext.js",
