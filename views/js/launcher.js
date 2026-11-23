@@ -24,6 +24,36 @@ function showLaunchError(error) {
 const ONLINE_BACKEND = 'https://lifeline.returnvector.net';
 const OFFLINE_NAME = 'Captain';
 
+// Read by the patched gamemodes-config.js (async requests that fail safe), so the game's mode
+// picker can lock the Online tile when the game is talking to the offline emulator.
+// Overwritten before every launch (online launches write {offline: false}) and removed once
+// the game exits. An offline flag also names the running emulator's launch-check URL and a
+// per-run nonce; the game only locks Online if that URL answers with the same nonce, so a file
+// left behind by a crash or hard reboot (dead port, old nonce) can never block online play.
+// Not in patch_manifest.js: it isn't validated.
+const LAUNCH_FLAG = 'spacegame/Content/UIResources/frontend/views/gamemodes/bootstrapper-launch.json';
+
+function writeLaunchFlag(folder, emulator) {
+    const { path: flagPath, error } = resolveGamePath(folder, LAUNCH_FLAG);
+    if (error) {
+        console.log('Could not write the launch flag:', error);
+        return () => {};
+    }
+    const flag = emulator && emulator.launchCheck && emulator.nonce
+        ? { offline: true, check: emulator.launchCheck, nonce: emulator.nonce }
+        : { offline: false };
+    try {
+        fs.writeFileSync(flagPath, JSON.stringify(flag));
+    } catch (e) {
+        // Not fatal: the game just shows its normal (online) mode list
+        console.log('Could not write the launch flag:', e.message);
+        return () => {};
+    }
+    return () => {
+        try { fs.unlinkSync(flagPath); } catch (e) { /* already gone */ }
+    };
+}
+
 // options: { accessToken, lang, offline }
 // Offline: the local Fireline emulator (main process) is started first and the game is pointed at
 // it; it is stopped again once the game has exited.
@@ -47,9 +77,10 @@ module.exports = function (options, callback) {
 
         let backend = ONLINE_BACKEND;
         let done = callback;
+        let emulator = null;
         if (options.offline) {
             try {
-                const emulator = await ipcRenderer.invoke('fireline_start');
+                emulator = await ipcRenderer.invoke('fireline_start');
                 backend = emulator.url;
                 console.log('Offline mode: local Fireline emulator at', backend, `(${emulator.entries} recordings)`);
             } catch (e) {
@@ -62,6 +93,13 @@ module.exports = function (options, callback) {
                 callback();
             };
         }
+
+        const removeLaunchFlag = writeLaunchFlag(folder, emulator);
+        const finish = done;
+        done = () => {
+            removeLaunchFlag();
+            finish();
+        };
 
         // Arguments are passed directly (no shell), so the token/language can't inject commands.
         // Offline: the real token and name are never sent anywhere. The emulator ignores the value,

@@ -28,14 +28,20 @@ const dataMapping = [
     {
         src: "gamemodes-config.js",
         dest: "spacegame/Content/UIResources/frontend/views/gamemodes/gamemodes-config.js",
-        md5: "7e814ac748d1a7b42ed2c4fc0b5f83db",
-        sha256: "33260c42326b2aac01eea3df4af41b0d137ee2e6d82abe1f7d20874afde98f32",
+        md5: "98ef75a070c63ade15da66dbb187a6b8",
+        sha256: "3c4faf4289b6cff79c4a7af42fd0d027b26ee8cde8b273da6ffdee9e095c5067",
+    },
+    {
+        src: "gamemodes-styles.css",
+        dest: "spacegame/Content/UIResources/frontend/views/gamemodes/gamemodes-styles.css",
+        md5: "a77c0549eef2a7ec86c47d00c24658ea",
+        sha256: "51b2eddc2dc7193bb954bc19f8706994ba7070d13fe2f7eedd079403a08e3a4d",
     },
     {
         src: "nsloctext.js",
         dest: "spacegame/Content/UIResources/frontend/data/translations/nsloctext.js",
-        md5: "b675dee54c669f24093571a322fc98ea",
-        sha256: "c1d43e513deb470d763b5d023db9275d3cde6bb689c45f1da110eb14ddd091af",
+        md5: "322cedd955cd2b720967dda851164140",
+        sha256: "d677ad0f5d8efa53b7f24ef6574fa348d469de33e96033ad95c0f39316a71c0b",
     },
     {
         src: "BP.pak",

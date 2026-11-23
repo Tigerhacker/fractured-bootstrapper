@@ -9,14 +9,21 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 const BANNER = 'Fireline Emulator for Fractured Space (fractured-bootstrapper)';
 // The recordings were captured against this host; everything after it is the request path
 const RECORDED_ORIGIN = 'https://api.fireteam.net/';
 
+// The game's patched mode picker (gamemodes-config.js) only treats a launch as offline when this
+// answers with the nonce the launcher wrote into bootstrapper-launch.json. A flag file left over
+// from a crash then points at a dead port or carries the wrong nonce, so Online stays available.
+const LAUNCH_CHECK_PATH = 'bootstrapper/launch-check';
+
 let server = null;
 let routes = null;
 let starting = null;
+let nonce = null;
 
 // Packaged: <install>/resources/data (electron-builder extraResources). Dev: <repo>/data
 function defaultResponsesFile() {
@@ -90,6 +97,19 @@ function handleRequest(req, res) {
         return;
     }
 
+    if (requestPath === LAUNCH_CHECK_PATH) {
+        // Requested from the game's UI pages (coui://), hence the CORS header
+        const body = Buffer.from(JSON.stringify({ nonce }), 'utf8');
+        res.writeHead(200, {
+            'Content-Type': 'application/json',
+            'Content-Length': body.length,
+            'Access-Control-Allow-Origin': '*',
+            'Cache-Control': 'no-store',
+        });
+        res.end(body);
+        return;
+    }
+
     const canned = routes && lookup(routes, method, requestPath, parsed.search);
     if (canned) {
         send(res, canned.status, canned.body);
@@ -126,6 +146,7 @@ function start(options = {}) {
         });
         s.listen(options.port || 0, '127.0.0.1', () => {
             server = s;
+            nonce = crypto.randomBytes(16).toString('hex');
             console.log(`[fireline] offline emulator on ${info().url} (${routes.count} recordings from ${file})`);
             resolve(info());
         });
@@ -137,6 +158,7 @@ function stop() {
     const s = server;
     server = null;
     routes = null;
+    nonce = null;
     if (!s) return Promise.resolve();
     return new Promise((resolve) => {
         s.close(() => resolve());
@@ -153,6 +175,8 @@ function info() {
         port,
         entries: routes ? routes.count : 0,
         file: routes ? routes.file : null,
+        launchCheck: `http://127.0.0.1:${port}/${LAUNCH_CHECK_PATH}`,
+        nonce,
     };
 }
 

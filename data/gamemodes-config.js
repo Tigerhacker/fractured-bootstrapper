@@ -210,7 +210,7 @@
       'RecommendedStatus': false,
       'IsLocked': false,
       'IsBeta': false,
-      'IsNew': true,
+      'IsNew': false,
       'headerL10n': 'GameModeLegacyGameMode',
       'IsLegacy': false
     },
@@ -279,14 +279,109 @@
       'Description': 'GameModeSoloFrontlineDescription',
       'RecommendedStatus': false,
       'IsLocked': false,
-      'IsBeta': true,
+      'IsBeta': false,
       'IsNew': false,
       'IsLegacy': false
     }
   };
 
+  // The bootstrapper writes views/gamemodes/bootstrapper-launch.json before each launch and
+  // removes it when the game exits: {"offline": false}, or for an offline launch
+  // {"offline": true, "check": "http://127.0.0.1:<port>/bootstrapper/launch-check", "nonce": "..."}.
+  // Offline only counts if that check URL (the bootstrapper's local emulator) is up and answers
+  // with the same nonce, so a file left behind by a crash or hard reboot can't block online play.
+  // Every failure (no file, bad JSON, emulator down, wrong nonce, timeout) keeps the stock list.
+  // Async requests only: a <script> that fails to load would stall the whole view (Load.js only
+  // waits for 'load').
+  const LAUNCH_FLAG_URL = 'views/gamemodes/bootstrapper-launch.json';
+
+  // Strings the bootstrapper added to nsloctext.js. The UI asks the engine for every key in
+  // nsloctext.js (GetTranslations); for a key missing from the engine's own localisation tables
+  // the engine answers with the key itself, and l10n.js prefers that answer over the default
+  // ('value || defaultValue'), so the raw key would be shown. Put the English default back
+  // whenever the engine only echoed the key (a real translation is left alone).
+  const BOOTSTRAPPER_STRINGS = ['GameModeOnlineUnavailableOffline'];
+
+  function restoreBootstrapperStrings() {
+    var l10n = window.utils && utils.l10n;
+    if (!l10n || !l10n.defaults || !l10n.strings) {
+      return;
+    }
+    var fixed = {};
+    var count = 0;
+    for (var i = 0; i < BOOTSTRAPPER_STRINGS.length; i++) {
+      var key = BOOTSTRAPPER_STRINGS[i];
+      var value = l10n.strings[key];
+      if (l10n.defaults[key] && (!value || value === key)) {
+        fixed[key] = l10n.defaults[key];
+        count++;
+      }
+    }
+    if (count) {
+      // Saves into l10n.strings and updates every element already bound to these keys
+      l10n.applyStrings(fixed, null, true);
+    }
+  }
+
+  restoreBootstrapperStrings();
+  if (window.engine && typeof engine.on === 'function') {
+    engine.on('SetTranslations', function onSetTranslations() {
+      // After l10n.js has applied the engine's (echoed) values
+      setTimeout(restoreBootstrapperStrings, 0);
+    });
+  }
+  const LAUNCH_CHECK_PREFIX = 'http://127.0.0.1:';
+  const LAUNCH_CHECK_TIMEOUT_MS = 5000;
+
+  function getJSON(url, timeout, onData) {
+    try {
+      var request = new XMLHttpRequest();
+      request.open('GET', url, true);
+      if (timeout) {
+        request.timeout = timeout;
+      }
+      request.onload = function onJSONLoaded() {
+        if (request.status && request.status !== 200) {
+          return;
+        }
+        var data;
+        try {
+          data = JSON.parse(request.responseText);
+        } catch (e) {
+          return;
+        }
+        if (data) {
+          onData(data);
+        }
+      };
+      request.send();
+    } catch (e) {
+      // Unreachable: behave as stock
+    }
+  }
+
+  function requestLaunchMode(onOffline) {
+    getJSON(LAUNCH_FLAG_URL, 0, function onLaunchFlag(flag) {
+      if (flag.offline !== true || typeof flag.nonce !== 'string' || !flag.nonce ||
+          typeof flag.check !== 'string' || flag.check.indexOf(LAUNCH_CHECK_PREFIX) !== 0) {
+        return;
+      }
+      getJSON(flag.check, LAUNCH_CHECK_TIMEOUT_MS, function onLaunchCheck(check) {
+        if (check.nonce === flag.nonce) {
+          onOffline();
+        }
+      });
+    });
+  }
+
   function GameModeConfig() {
     this.gameModeObjects = {};
+    this.offline = false;
+
+    requestLaunchMode(function onOffline() {
+      this.offline = true;
+      this.applyLaunchMode();
+    }.bind(this));
   }
 
   GameModeConfig.prototype.update = function update() {
@@ -302,11 +397,14 @@
     ];
 
     // Stage Two Solo Options
+    // Legacy Episodes as a one-row banner over a 2x2 grid (layout in gamemodes-styles.css,
+    // [data-game-mode="Training"][data-panels="5"]). 'Folder' picks the image size per tile.
     this.gameModeObjects["stage-two-Training"] = [
-      Object.assign({}, panels.legacy),
-      Object.assign({}, panels.svaConquest),
-      Object.assign({}, panels.ftue),
-      Object.assign({}, panels.firingRange)
+      Object.assign({}, panels.legacy, { 'Folder': 'wide' }),
+      Object.assign({}, panels.svaConquest, { 'Folder': 'large' }),
+      Object.assign({}, panels.svaFrontline, { 'Folder': 'large' }),
+      Object.assign({}, panels.ftue, { 'Folder': 'large' }),
+      Object.assign({}, panels.firingRange, { 'Folder': 'large' })
     ];
 
     // Stage Two Co-op Options
@@ -317,16 +415,71 @@
 
     // Stage Three Legacy Episode Options
     this.gameModeObjects["stage-three-legacy"] = [
-      Object.assign({}, panels.svaHorde),
+      // Numbered episodes first (1-4 fill the 2x2 grid), Last Stand last
       Object.assign({}, panels.svaDiscovery),
       Object.assign({}, panels.svaRift),
       Object.assign({}, panels.svaPayload),
       Object.assign({}, panels.svaArkain),
-      Object.assign({}, panels.svaFrontline)
+      Object.assign({}, panels.svaHorde)
     ];
 
     this.updateImages();
     this.legacyEpisodeLockedState();
+    this.applyLaunchMode();
+  };
+
+  // Offline (local emulator): there is nobody to play against, so lock the Online tile and
+  // recommend Solo instead. Runs on every rebuild, and once more when the flag arrives in case
+  // stage one was already rendered by then.
+  GameModeConfig.prototype.applyLaunchMode = function applyLaunchMode() {
+    if (!this.offline) {
+      return;
+    }
+
+    restoreBootstrapperStrings();
+
+    var stageOne = this.gameModeObjects['stage-one'] || [];
+    for (var i = 0; i < stageOne.length; i++) {
+      var gameMode = stageOne[i];
+      if (gameMode.Id === panels.pvp.Id) {
+        gameMode.IsLocked = true;
+        gameMode.RecommendedStatus = false;
+        gameMode.Description = 'GameModeOnlineUnavailableOffline';
+      } else if (gameMode.Id === panels.solo.Id) {
+        gameMode.RecommendedStatus = true;
+      }
+    }
+
+    var els = document.querySelectorAll('.view-gamemodes .stage-one .gamemode');
+    for (var j = 0; j < els.length; j++) {
+      var el = els[j];
+      if (el.dataset.badgeName === panels.pvp.Id) {
+        el.classList.remove('locked-is-false');
+        el.classList.add('locked-is-true');
+        el.classList.remove('recommended-true');
+        el.classList.add('recommended-false');
+
+        var description = el.querySelector('.gamemode-description span');
+        if (description && description.dataset.l10n !== 'GameModeOnlineUnavailableOffline') {
+          // Rendered before the flag arrived: rebind the element from the stock description key
+          // to ours, so a later translation update can't put the online text back
+          var l10n = utils.l10n;
+          if (l10n.keysToElements) {
+            for (var key in l10n.keysToElements) {
+              l10n.keysToElements[key] = l10n.keysToElements[key].filter(function (entry) {
+                return entry.el !== description;
+              });
+            }
+          }
+          description.dataset.l10n = 'GameModeOnlineUnavailableOffline';
+          l10n.add('GameModeOnlineUnavailableOffline', description, 'innerHTML');
+          description.innerHTML = l10n.get('GameModeOnlineUnavailableOffline') || 'Not available in offline mode';
+        }
+      } else if (el.dataset.badgeName === panels.solo.Id) {
+        el.classList.remove('recommended-false');
+        el.classList.add('recommended-true');
+      }
+    }
   };
 
   GameModeConfig.prototype.updateImages = function updateImages() {
@@ -335,7 +488,9 @@
       for (var i = 0; i < this.gameModeObjects[key].length; i++) {
         var gameMode = this.gameModeObjects[key][i];
 
-        if (this.gameModeObjects[key].length === 1 || this.gameModeObjects[key].length === 4) {
+        if (gameMode.Folder) {
+          gameMode.Image = gameMode.Image.format({ 'Folder': gameMode.Folder }, false);
+        } else if (this.gameModeObjects[key].length === 1 || this.gameModeObjects[key].length === 4) {
           gameMode.Image = gameMode.Image.format({ 'Folder': i === 0 ? 'large' : 'small' }, false);
         } else if (this.gameModeObjects[key].length === 2) {          
           gameMode.Image = gameMode.Image.format({ 'Folder': 'medium' }, false);
