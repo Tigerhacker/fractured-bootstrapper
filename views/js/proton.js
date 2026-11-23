@@ -11,6 +11,7 @@ const child_process = require('child_process');
 const settings = require('./settings.js');
 const steamPaths = require('./steam-paths.js');
 const { linuxDataDir } = require('./platform.js');
+const { GAME_EXE, resolveGamePath } = require('./game-folder.js');
 
 const KEYS = {
     runner: 'linux_runner',              // { type: 'proton'|'wine', path, name }
@@ -255,7 +256,10 @@ function buildLaunch(gameFolder, gameArgs) {
         throw new Error(`The selected runner no longer exists:\n${runner.path}\n\nPick another one under "Linux settings".`);
     }
 
-    const exePath = path.join(gameFolder, 'spacegame', 'Binaries', 'Win64', 'Fractured Space.exe');
+    // Matched case-insensitively, like Wine does (see resolveGamePath)
+    const resolvedExe = resolveGamePath(gameFolder, GAME_EXE);
+    if (resolvedExe.error) throw new Error(resolvedExe.error);
+    const exePath = resolvedExe.path;
     const compatData = getPrefixDir();
     const steamRoot = steamPaths.linuxSteamRoots()[0] || '';
     const log = getProtonLog();

@@ -63,7 +63,14 @@ const dataMapping = [
     }
 ];
 
+// Folders (relative to the game folder) the patch may create. The patcher never creates any
+// other folder: a dest whose folder is missing from the install is an error, since it means
+// the install is broken or not the one we expect. List every new folder on its own, including
+// new parents (both "spacegame/Content/New" and "spacegame/Content/New/Sub").
+const createDirs = [];
+
 module.exports = {
     patchLevel,
-    dataMapping
+    dataMapping,
+    createDirs
 }

@@ -4,6 +4,8 @@ const path = require('path');
 const { ipcRenderer } = require('electron');
 const steam = require('./find-steam.js');
 const { isLinux } = require('./platform.js');
+const { GAME_EXE, resolveGamePath, resolveGamePaths } = require('./game-folder.js');
+const { dataMapping, createDirs } = require('./patch_manifest.js');
 
 function redact(text) {
     return String(text).replace(/-discord=[^\s"]+/g, "-discord=<removed>");
@@ -29,6 +31,16 @@ module.exports = function (options, callback) {
     steam(async (folder) => {
         if (!folder) {
             showLaunchError("Could not find the Fractured Space install folder");
+            callback();
+            return;
+        }
+
+        // A missing (or, on Linux, case-duplicated) folder means the game would start without
+        // its content and quit on a black screen, so stop here with the reason instead.
+        // createDirs folders are allowed to be missing here; the validation step catches their files.
+        const { errors } = resolveGamePaths(folder, [GAME_EXE, ...dataMapping.map((v) => v.dest)], { createDirs });
+        if (errors.length) {
+            showLaunchError(`${errors.join("\n\n")}\n\nThe game install looks incomplete or damaged. Verify the game files in Steam (Properties > Installed Files), then install the patch again.`);
             callback();
             return;
         }
@@ -69,7 +81,7 @@ module.exports = function (options, callback) {
 };
 
 function launchWindows(folder, args, callback) {
-    const exePath = path.join(folder, 'spacegame', 'Binaries', 'Win64', 'Fractured Space.exe');
+    const exePath = resolveGamePath(folder, GAME_EXE).path || path.join(folder, GAME_EXE);
     console.log("Launching", exePath);
 
     let reported = false;

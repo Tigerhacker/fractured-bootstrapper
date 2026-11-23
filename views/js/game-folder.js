@@ -32,4 +32,106 @@ function checkGameFolder(dir) {
     return { ok: false, missing, suggestion };
 }
 
-module.exports = { REQUIRED, checkGameFolder };
+// Finds the real on-disk path of `rel` (e.g. "spacegame/Content/Paks/BP.pak") inside the
+// game folder. Returns { path, create, error }; on error, path is null. `create` lists the
+// absolute folders (parents first) that must be made before writing to `path`.
+//
+// Every folder along the way must already exist, unless it is listed in `createDirs`
+// (patch_manifest.js). Folders are never created implicitly: a missing one means the
+// install is broken or isn't the one we expect. The last part may be missing (it's the file
+// we're about to write).
+//
+// Windows is case-insensitive, so the path is used as is. Elsewhere each part is matched
+// case-insensitively, the same way Wine (and so the game) resolves it: a copied install
+// can have e.g. "Content/paks", and writing to a new "Content/Paks" beside it would hide
+// every pak the game had from Wine. Two entries that differ only in case are an error,
+// since Wine would only ever see one of them.
+function resolveGamePath(root, rel, { platform = process.platform, createDirs = [] } = {}) {
+    const parts = String(rel).split(/[\\/]+/).filter(Boolean);
+    const creatable = new Set(createDirs.map(normRel));
+    const create = [];
+    let cur = root;
+    let exists = true; // false once we're inside a folder that is still to be created
+    for (let i = 0; i < parts.length; i++) {
+        const want = parts[i];
+        const last = i === parts.length - 1;
+        const shown = parts.slice(0, i + 1).join('/');
+        const missing = () => {
+            if (last) return null;
+            if (!creatable.has(normRel(shown))) return { path: null, create: [], error: `Missing folder: ${shown}` };
+            create.push(cur);
+            exists = false;
+            return null;
+        };
+
+        if (!exists) {
+            cur = path.join(cur, want);
+            const err = missing();
+            if (err) return err;
+            continue;
+        }
+
+        if (platform === 'win32') {
+            cur = path.join(cur, want);
+            if (last) continue;
+            if (fs.existsSync(cur)) {
+                if (!isDir(cur)) return { path: null, create: [], error: `Not a folder: ${shown}` };
+                continue;
+            }
+            const err = missing();
+            if (err) return err;
+            continue;
+        }
+
+        let names;
+        try {
+            names = fs.readdirSync(cur);
+        } catch (e) {
+            return { path: null, create: [], error: `Can't read folder: ${parts.slice(0, i).join('/') || '.'} (${e.code || e.message})` };
+        }
+        const matches = names.filter((n) => n.toLowerCase() === want.toLowerCase());
+        if (matches.length > 1) {
+            const parent = parts.slice(0, i).join('/');
+            const list = matches.map((n) => (parent ? parent + '/' : '') + n).join(', ');
+            return {
+                path: null,
+                create: [],
+                error: `These differ only in upper/lower case: ${list}. The game only sees one of them; move everything into "${shown}" and delete the other.`,
+            };
+        }
+        if (!matches.length) {
+            cur = path.join(cur, want);
+            const err = missing();
+            if (err) return err;
+            continue;
+        }
+        cur = path.join(cur, matches[0]);
+        if (!last && !isDir(cur)) return { path: null, create: [], error: `Not a folder: ${shown}` };
+    }
+    return { path: cur, create, error: null };
+}
+
+function normRel(p) {
+    return String(p).split(/[\\/]+/).filter(Boolean).join('/').toLowerCase();
+}
+
+// Resolves several paths at once. Returns { paths: { rel: absPath }, create: [absDir], errors: [string] }.
+function resolveGamePaths(root, rels, options) {
+    const paths = {};
+    const create = [];
+    const errors = [];
+    for (const rel of rels) {
+        const r = resolveGamePath(root, rel, options);
+        if (r.error) {
+            if (!errors.includes(r.error)) errors.push(r.error);
+        } else {
+            paths[rel] = r.path;
+            for (const d of r.create) if (!create.includes(d)) create.push(d);
+        }
+    }
+    return { paths, create, errors };
+}
+
+const GAME_EXE = 'spacegame/Binaries/Win64/Fractured Space.exe';
+
+module.exports = { REQUIRED, GAME_EXE, checkGameFolder, resolveGamePath, resolveGamePaths };

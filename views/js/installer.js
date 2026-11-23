@@ -4,6 +4,7 @@ const crypto = require('crypto');
 const { shell, ipcRenderer } = require('electron')
 
 const steam = require('./find-steam.js');
+const { resolveGamePaths } = require('./game-folder.js');
 
 const patchManifest = require('./patch_manifest.js')
 const dataMapping = patchManifest.dataMapping;
@@ -19,29 +20,54 @@ function sha256File(file) {
     return crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
 }
 
+// Where each patched file goes in this install. Folders are never created: see resolveGamePath().
+function resolveTargets(directory) {
+    return resolveGamePaths(directory, dataMapping.map((v) => v.dest), { createDirs: patchManifest.createDirs });
+}
+
+function showMissingFolders(message, errors) {
+    ipcRenderer.invoke("showMessageBox", {
+        "title": " ",
+        "type": "error",
+        "message": message,
+        "detail": `${errors.join("\n\n")}\n\nThe game install looks incomplete or damaged. Verify the game files in Steam (Properties > Installed Files), then try again.`
+    });
+}
+
+// Returns false (nothing copied) if a target folder is missing
 function replaceFiles(directory) {
+    const { paths, create, errors } = resolveTargets(directory);
+    if (errors.length) {
+        showMissingFolders("Patch not installed", errors);
+        return false;
+    }
     const src = dataDir();
     try {
+        // Only the folders listed in patch_manifest.js createDirs, parents first
+        create.forEach((d) => {
+            if (!fs.existsSync(d)) fs.mkdirSync(d);
+        });
         dataMapping.forEach((v) => {
-            const dest = path.join(directory, v.dest);
-            fs.mkdirSync(path.dirname(dest), { recursive: true });
-            fs.copyFileSync(path.join(src, v.src), dest);
+            fs.copyFileSync(path.join(src, v.src), paths[v.dest]);
         });
     }catch (e){
         alert("Patching failed: \n"+e)
         console.log(e);
     }
+    return true;
 }
 
 function validateFiles(directory) {
     checkDirectXRedist()
-    
+
+    const { paths } = resolveTargets(directory);
     let errors = [];
     let valid = [];
     dataMapping.forEach((v) => {
         let hash = null;
         try {
-            hash = sha256File(directory + "/" + v.dest);
+            if (!paths[v.dest]) throw new Error(`No path for ${v.dest}`);
+            hash = sha256File(paths[v.dest]);
             if(hash != v.sha256){
                 errors.push(v.dest);
             }else{
@@ -106,7 +132,10 @@ module.exports.install = function (callback) {
     steam((folder) => {
         let success = true;
         // alert("DEBUG ENABLED: FILES WILL NOT BE PATCHED")
-        replaceFiles(folder);
+        if (!replaceFiles(folder)) {
+            callback(false);
+            return;
+        }
         const [errors, valid] = validateFiles(folder);
         if(errors.length > 0){
             ipcRenderer.invoke("showMessageBox", {
@@ -127,6 +156,11 @@ module.exports.install = function (callback) {
 
 module.exports.validate = function (callback) {
     steam((folder) => {
+        const folderErrors = resolveTargets(folder).errors;
+        if (folderErrors.length) {
+            showMissingFolders("Patch failed to validate", folderErrors);
+            return;
+        }
         const [errors, valid] = validateFiles(folder);
         if(errors.length > 0){
             ipcRenderer.invoke("showMessageBox", {
